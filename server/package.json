@@ -7,6 +7,8 @@
     "start": "node index.js",
     "dev": "nodemon index.js",
     "scrape": "node scraper/scrapePlayers.js",
+    "import-players": "node scripts/importPlayers.js",
+    "setup-mongodb": "node scripts/setup-mongodb.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [

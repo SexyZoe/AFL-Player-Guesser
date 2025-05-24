@@ -119,3 +119,42 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 
 📄 License
 This project is licensed under the MIT License.
+
+## 安装说明
+
+克隆仓库后，按照以下步骤安装依赖并运行项目：
+
+1. 安装根目录依赖：
+```bash
+npm install
+```
+
+2. 安装客户端依赖：
+```bash
+cd client
+npm install
+cd ..
+```
+
+3. 安装服务器依赖：
+```bash
+cd server
+npm install
+cd ..
+```
+
+4. 导入球员数据到MongoDB（确保MongoDB已安装并运行）：
+```bash
+# 首先在server目录下创建.env文件并添加MongoDB连接字符串
+# MONGODB_URI=mongodb://localhost:27017/afl-player-database
+
+# 然后运行导入脚本
+npm run import
+```
+
+5. 启动应用程序：
+```bash
+npm start
+```
+
+应用将在 http://localhost:3000 运行。

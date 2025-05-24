@@ -10,6 +10,9 @@ const fs = require('fs');
 // 加载环境变量
 dotenv.config();
 
+// 导入球员模型
+const Player = require('./models/Player');
+
 // 初始化Express应用
 const app = express();
 const server = http.createServer(app);
@@ -24,31 +27,56 @@ const io = socketIo(server, {
 app.use(cors());
 app.use(express.json());
 
-// 从JSON文件中加载球员数据
-const playersDataPath = path.join(__dirname, 'data', 'players.json');
+// 球员数据存储
 let players = [];
 
-if (fs.existsSync(playersDataPath)) {
+// 从数据库加载球员数据
+async function loadPlayersFromDB() {
   try {
-    const playersJson = fs.readFileSync(playersDataPath, 'utf8');
-    players = JSON.parse(playersJson);
-    console.log(`成功加载 ${players.length} 名球员数据`);
+    players = await Player.find({}).lean();
+    console.log(`成功从数据库加载 ${players.length} 名球员数据`);
   } catch (error) {
-    console.error('加载球员数据失败:', error);
+    console.error('从数据库加载球员数据失败:', error);
+    
+    // 尝试从JSON文件加载（备用方案）
+    loadPlayersFromJSON();
   }
-} else {
-  console.log('球员数据文件不存在，请先运行爬虫脚本');
+}
+
+// 从JSON文件加载球员数据（备用方案）
+function loadPlayersFromJSON() {
+  const playersDataPath = path.join(__dirname, 'data', 'players.json');
+  if (fs.existsSync(playersDataPath)) {
+    try {
+      const playersJson = fs.readFileSync(playersDataPath, 'utf8');
+      players = JSON.parse(playersJson);
+      console.log(`成功从JSON文件加载 ${players.length} 名球员数据`);
+    } catch (error) {
+      console.error('加载球员数据失败:', error);
+    }
+  } else {
+    console.log('球员数据文件不存在，请先运行导入脚本');
+  }
 }
 
 // 基本路由
-app.get('/api/players', (req, res) => {
+app.get('/api/players', async (req, res) => {
+  if (players.length === 0) {
+    // 如果内存中没有数据，尝试从数据库加载
+    players = await Player.find({}).lean();
+  }
   res.json(players);
 });
 
 // 获取随机球员
-app.get('/api/random-player', (req, res) => {
+app.get('/api/random-player', async (req, res) => {
   if (players.length === 0) {
-    return res.status(500).json({ error: '没有可用的球员数据' });
+    // 如果内存中没有数据，尝试从数据库加载
+    players = await Player.find({}).lean();
+    
+    if (players.length === 0) {
+      return res.status(500).json({ error: '没有可用的球员数据' });
+    }
   }
   
   const randomIndex = Math.floor(Math.random() * players.length);
@@ -147,8 +175,18 @@ function cleanupUserRooms(socketId) {
 // 连接数据库（如果提供了MongoDB URI）
 if (process.env.MONGODB_URI) {
   mongoose.connect(process.env.MONGODB_URI)
-    .then(() => console.log('MongoDB 连接成功'))
-    .catch(err => console.error('MongoDB 连接失败:', err));
+    .then(() => {
+      console.log('MongoDB 连接成功');
+      loadPlayersFromDB();
+    })
+    .catch(err => {
+      console.error('MongoDB 连接失败:', err);
+      // 尝试从JSON文件加载（备用方案）
+      loadPlayersFromJSON();
+    });
+} else {
+  console.log('未配置MONGODB_URI，将从JSON文件加载数据');
+  loadPlayersFromJSON();
 }
 
 // 启动服务器

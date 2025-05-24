@@ -3,13 +3,14 @@
   "version": "1.0.0",
   "description": "AFL球员猜谜游戏 - 完整项目",
   "scripts": {
-    "start:client": "cd client && npm start",
-    "start:server": "cd server && npm start",
-    "start:dev": "cd server && npm run dev",
-    "scrape": "cd server && npm run scrape",
-    "install:all": "npm install && cd client && npm install && cd ../server && npm install",
-    "start": "concurrently \"npm run start:server\" \"npm run start:client\""
-  },
+  "start:client": "cd client && npm start",
+  "start:server": "cd server && npm start",
+  "start:dev": "cd server && npm run dev",
+  "scrape": "cd server && npm run scrape",
+  "install:all": "npm install && cd client && npm install && cd ../server && npm install",
+  "start": "concurrently \"npm run start:server\" \"npm run start:client\"",
+  "import": "node server/scripts/importPlayers.js"
+},
   "keywords": [
     "afl",
     "game",
@@ -20,5 +21,8 @@
   "license": "MIT",
   "devDependencies": {
     "concurrently": "^8.2.2"
+  },
+  "dependencies": {
+    "mongoose": "^8.15.0"
   }
-} 
+}
