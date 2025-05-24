@@ -1,0 +1,33 @@
+{
+  "name": "afl-guess-game-server",
+  "version": "1.0.0",
+  "description": "AFL球员猜谜游戏 - 后端",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "scrape": "node scraper/scrapePlayers.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "afl",
+    "game",
+    "guess",
+    "football",
+    "api"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.6.7",
+    "cheerio": "^1.0.0-rc.12",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.1",
+    "express": "^4.18.2",
+    "mongoose": "^8.1.1",
+    "socket.io": "^4.7.4"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
+}

@@ -1,0 +1,154 @@
+/* 应用容器 */
+.app-container {
+  min-height: 100vh;
+  background-color: #f7fafc;
+  padding: 2rem 1rem;
+}
+
+/* 头部样式 */
+.app-header {
+  max-width: 1200px;
+  margin: 0 auto 2rem;
+  text-align: center;
+}
+
+.app-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.app-subtitle {
+  font-size: 1.25rem;
+}
+
+/* 主内容区域 */
+.app-main {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* 加载状态 */
+.loading-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loading-content {
+  text-align: center;
+}
+
+.loading-spinner {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  border: 4px solid transparent;
+  border-top-color: var(--afl-blue);
+  border-bottom-color: var(--afl-blue);
+  animation: spin 1s linear infinite;
+  margin: 0 auto 1rem;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loading-text {
+  font-size: 1.125rem;
+}
+
+/* 错误状态 */
+.error-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.error-content {
+  text-align: center;
+}
+
+.error-icon {
+  font-size: 2.5rem;
+  color: var(--afl-red);
+  margin-bottom: 1rem;
+}
+
+.error-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.error-button {
+  margin-top: 1rem;
+}
+
+/* 开始游戏按钮 */
+.start-button-container {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.start-button {
+  font-size: 1.125rem;
+  padding: 0.75rem 2rem;
+}
+
+/* 游戏容器 */
+.game-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.target-container {
+  width: 100%;
+  max-width: 28rem;
+  margin-bottom: 2rem;
+}
+
+.target-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.target-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.guesses-counter {
+  display: flex;
+  align-items: center;
+}
+
+.guesses-label {
+  font-weight: 600;
+}
+
+.guesses-value {
+  color: var(--afl-blue);
+  font-weight: bold;
+}
+
+.target-card {
+  margin-bottom: 1.5rem;
+}
+
+/* 页脚 */
+.app-footer {
+  max-width: 1200px;
+  margin: 3rem auto 0;
+  padding-top: 1.5rem;
+  border-top: 1px solid #e2e8f0;
+  text-align: center;
+  color: #718096;
+  font-size: 0.875rem;
+} 
