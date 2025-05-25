@@ -24,10 +24,6 @@ yarn-debug.log*
 yarn-error.log*
 *.log
 
-# 爬虫和调试数据
-server/scraper/
-server/debug/
-*.html
 
 # 缓存目录
 .cache/
