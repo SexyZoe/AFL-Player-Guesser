@@ -87,43 +87,39 @@ const App: React.FC = () => {
           </>
         )}
 
-        {gameState === 'playing' && targetPlayer && (
+        {gameState === 'playing' && (
           <div className="game-container">
-            <div className="target-container">
-              <div className="target-header">
-                <h2 className="target-title">Guess the Mystery Player</h2>
-                <div className="guesses-counter">
-                  <span className="guesses-label">Guesses: </span>
-                  <span className="guesses-value">{guesses}/{maxGuesses}</span>
-                </div>
+            {/* 游戏状态信息 */}
+            <div className="target-header">
+              <h2 className="target-title">AFL Player Guessing Game</h2>
+              <div className="guesses-counter">
+                <span className="guesses-label">Guesses: </span>
+                <span className="guesses-value">{guesses}/{maxGuesses}</span>
               </div>
-              
-              <div className="target-card">
-                <PlayerCard player={targetPlayer} revealed={false} />
-              </div>
-              
-              {/* 游戏规则说明 */}
-              <div className="game-rules mt-4 p-4 bg-gray-100 rounded-lg">
-                <h3 className="text-lg font-bold mb-2">Game Rules</h3>
-                <ul className="text-sm">
-                  <li>🟩 Green = Exact Match</li>
-                  <li>🟧 Orange = Close Match</li>
-                  <li>⬜ Blank = Not a Match</li>
-                  <li>↑ Target value is higher</li>
-                  <li>↓ Target value is lower</li>
-                </ul>
-              </div>
-              
-              {/* 显示猜测历史 */}
-              <GuessHistory guessHistory={guessHistory} />
             </div>
-
-            <div className="player-list-container flex-1">
+            
+            {/* 游戏规则说明 */}
+            <div className="game-rules mb-6">
+              <h3 className="text-lg font-bold mb-2">Game Rules</h3>
+              <ul className="text-sm">
+                <li>🟩 Green = Exact Match</li>
+                <li>🟧 Orange = Close Match</li>
+                <li>⬜ Blank = Not a Match</li>
+                <li>↑ Target value is higher</li>
+                <li>↓ Target value is lower</li>
+              </ul>
+            </div>
+            
+            {/* 玩家选择区域 */}
+            <div className="player-list-container">
               <PlayerList 
                 players={players} 
                 onSelectPlayer={(player) => guessPlayer(player)} 
               />
             </div>
+            
+            {/* 显示猜测历史 */}
+            <GuessHistory guessHistory={guessHistory} />
           </div>
         )}
 

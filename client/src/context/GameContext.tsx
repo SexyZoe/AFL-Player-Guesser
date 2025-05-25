@@ -131,6 +131,7 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
         setTargetPlayer(player);
         setGameState('playing');
         setGuesses(0);
+        setGuessHistory([]); // 清理之前的猜测历史
         setError('');
       } else {
         setError('获取随机球员失败');
@@ -148,6 +149,7 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
     socketService.createRoom();
     setGameState('waiting');
     setGuesses(0);
+    setGuessHistory([]); // 清理之前的猜测历史
   };
 
   // 加入多人游戏房间
@@ -273,6 +275,7 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
     setTargetPlayer(null);
     setRoomCode('');
     setGuesses(0);
+    setGuessHistory([]); // 清理猜测历史
     setError('');
   };
 

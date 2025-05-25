@@ -4,15 +4,9 @@ import { Player } from '../types';
 interface PlayerCardProps {
   player: Player;
   onClick?: () => void;
-  revealed?: boolean;
 }
 
-const PlayerCard: React.FC<PlayerCardProps> = ({ player, onClick, revealed = true }) => {
-  // 只显示部分信息，以保持神秘感
-  const renderHiddenInfo = (text: string) => {
-    return revealed ? text : '???';
-  };
-
+const PlayerCard: React.FC<PlayerCardProps> = ({ player, onClick }) => {
   // 格式化身高体重，避免单位重复
   const formatHeight = (height: string | number | undefined | null) => {
     if (height === undefined || height === null) return 'N/A';
@@ -68,25 +62,15 @@ const PlayerCard: React.FC<PlayerCardProps> = ({ player, onClick, revealed = tru
       <div className="absolute inset-0 rounded-2xl border-2 border-white border-opacity-20"></div>
       
       <div className="relative p-8 h-full flex flex-col">
-        {/* 神秘玩家标识 */}
-        {!revealed && (
-          <div className="absolute top-4 right-4 bg-gradient-to-r from-purple-500 to-pink-500 text-white px-3 py-1 rounded-full text-sm font-bold animate-pulse">
-            🔮 Mystery
-          </div>
-        )}
-        
         {/* 球员名字和号码 */}
         <div className="flex items-start justify-between mb-6">
           <div className="flex-1">
             <h3 className="text-3xl font-bold text-gray-800 leading-tight">
-              {revealed ? player.name : 'Mystery Player'}
+              {player.name}
             </h3>
-            {!revealed && (
-              <p className="text-gray-600 mt-2 text-lg">Can you guess who this is?</p>
-            )}
           </div>
           <div className="bg-gradient-to-r from-gray-800 to-gray-900 text-white text-2xl font-bold py-2 px-4 rounded-xl shadow-lg">
-            #{renderHiddenInfo(String(player.number || 'N/A'))}
+            #{player.number || 'N/A'}
           </div>
         </div>
         
@@ -94,11 +78,11 @@ const PlayerCard: React.FC<PlayerCardProps> = ({ player, onClick, revealed = tru
         <div className="mb-6 flex gap-3">
           <div className="bg-white bg-opacity-90 backdrop-blur-sm px-4 py-2 rounded-xl shadow-md flex-1">
             <div className="text-gray-500 text-sm font-medium">Team</div>
-            <div className="font-bold text-lg text-gray-800">{renderHiddenInfo(player.team || 'N/A')}</div>
+            <div className="font-bold text-lg text-gray-800">{player.team || 'N/A'}</div>
           </div>
           <div className="bg-white bg-opacity-90 backdrop-blur-sm px-4 py-2 rounded-xl shadow-md flex-1">
             <div className="text-gray-500 text-sm font-medium">Position</div>
-            <div className="font-bold text-lg text-gray-800">{renderHiddenInfo(player.position || 'N/A')}</div>
+            <div className="font-bold text-lg text-gray-800">{player.position || 'N/A'}</div>
           </div>
         </div>
         
@@ -106,19 +90,19 @@ const PlayerCard: React.FC<PlayerCardProps> = ({ player, onClick, revealed = tru
         <div className="grid grid-cols-2 gap-4 mt-auto">
           <div className="bg-white bg-opacity-90 backdrop-blur-sm rounded-xl p-4 shadow-md text-center transform hover:scale-105 transition-transform duration-200">
             <div className="text-gray-500 text-sm font-medium mb-1">Age</div>
-            <div className="font-bold text-2xl text-gray-800">{renderHiddenInfo(String(player.age || 'N/A'))}</div>
+            <div className="font-bold text-2xl text-gray-800">{player.age || 'N/A'}</div>
           </div>
           <div className="bg-white bg-opacity-90 backdrop-blur-sm rounded-xl p-4 shadow-md text-center transform hover:scale-105 transition-transform duration-200">
             <div className="text-gray-500 text-sm font-medium mb-1">Height</div>
-            <div className="font-bold text-2xl text-gray-800">{renderHiddenInfo(formatHeight(player.height))}</div>
+            <div className="font-bold text-2xl text-gray-800">{formatHeight(player.height)}</div>
           </div>
           <div className="bg-white bg-opacity-90 backdrop-blur-sm rounded-xl p-4 shadow-md text-center transform hover:scale-105 transition-transform duration-200">
             <div className="text-gray-500 text-sm font-medium mb-1">Weight</div>
-            <div className="font-bold text-2xl text-gray-800">{renderHiddenInfo(formatWeight(player.weight))}</div>
+            <div className="font-bold text-2xl text-gray-800">{formatWeight(player.weight)}</div>
           </div>
           <div className="bg-white bg-opacity-90 backdrop-blur-sm rounded-xl p-4 shadow-md text-center transform hover:scale-105 transition-transform duration-200">
             <div className="text-gray-500 text-sm font-medium mb-1">Games</div>
-            <div className="font-bold text-2xl text-gray-800">{renderHiddenInfo(String(player.games || player.gamesPlayed || 0))}</div>
+            <div className="font-bold text-2xl text-gray-800">{player.games || player.gamesPlayed || 0}</div>
           </div>
         </div>
       </div>
