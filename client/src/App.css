@@ -7,7 +7,8 @@
 
 /* 头部样式 */
 .app-header {
-  max-width: 1200px;
+  max-width: 1600px;
+  width: 100%;
   margin: 0 auto 2rem;
   text-align: center;
 }
@@ -24,7 +25,8 @@
 
 /* 主内容区域 */
 .app-main {
-  max-width: 1200px;
+  max-width: 1600px;
+  width: 100%;
   margin: 0 auto;
 }
 
@@ -103,13 +105,25 @@
 .game-container {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  gap: 2rem;
+}
+
+@media (min-width: 1024px) {
+  .game-container {
+    flex-direction: row;
+  }
 }
 
 .target-container {
   width: 100%;
-  max-width: 28rem;
-  margin-bottom: 2rem;
+  max-width: 320px;
+  margin: 0 auto;
+}
+
+@media (min-width: 1024px) {
+  .target-container {
+    margin: 0;
+  }
 }
 
 .target-header {
@@ -144,7 +158,8 @@
 
 /* 页脚 */
 .app-footer {
-  max-width: 1200px;
+  max-width: 1600px;
+  width: 100%;
   margin: 3rem auto 0;
   padding-top: 1.5rem;
   border-top: 1px solid #e2e8f0;

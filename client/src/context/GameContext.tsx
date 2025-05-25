@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
-import { Player, GameMode, GameState } from '../types';
+import { Player, GameMode, GameState, GuessHistoryItem, ComparisonResult, ComparisonDirection } from '../types';
 import { getAllPlayers, getRandomPlayer } from '../services/api';
 import * as socketService from '../services/socket';
 
@@ -12,11 +12,13 @@ interface GameContextType {
   loading: boolean;
   error: string;
   guesses: number;
+  maxGuesses: number;
+  guessHistory: GuessHistoryItem[];
   setGameMode: (mode: GameMode) => void;
   startGame: () => void;
   createRoom: () => void;
   joinRoom: (code: string) => void;
-  guessPlayer: (playerId: number) => void;
+  guessPlayer: (player: Player) => void;
   resetGame: () => void;
 }
 
@@ -43,6 +45,8 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string>('');
   const [guesses, setGuesses] = useState<number>(0);
+  const [maxGuesses] = useState<number>(8); // 最大猜测次数
+  const [guessHistory, setGuessHistory] = useState<GuessHistoryItem[]>([]);
 
   // 加载所有球员数据
   useEffect(() => {
@@ -152,16 +156,104 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
     setRoomCode(code);
   };
 
-  // 猜测球员
-  const guessPlayer = (playerId: number) => {
-    if (gameMode === 'solo') {
-      setGuesses((prev) => prev + 1);
-      const isCorrect = playerId === targetPlayer?.id;
-      if (isCorrect) {
-        setGameState('finished');
+  // 比较两个数值并返回方向
+  const compareValues = (guess: number, target: number): ComparisonDirection => {
+    if (guess === target) return 'equal';
+    if (guess < target) return 'higher';
+    return 'lower';
+  };
+
+  // 比较两个字符串并返回是否匹配
+  const compareStrings = (guess: string, target: string): ComparisonResult => {
+    return guess === target ? 'correct' : 'incorrect';
+  };
+
+  // 比较数值是否接近
+  const isClose = (guess: number, target: number, threshold: number): boolean => {
+    return Math.abs(guess - target) <= threshold;
+  };
+
+  // 比较球员并生成比较结果
+  const comparePlayer = (guessedPlayer: Player, targetPlayer: Player): GuessHistoryItem => {
+    // 安全解析数值，返回默认值为0
+    const parseNumber = (value: any, pattern: RegExp): number => {
+      if (value === undefined || value === null) return 0;
+      if (typeof value === 'number') return value;
+      if (typeof value === 'string') {
+        const match = value.match(pattern);
+        return match ? parseInt(match[1]) : 0;
       }
-    } else {
-      socketService.guessPlayer(roomCode, playerId);
+      return 0;
+    };
+    
+    // 获取比赛场次（兼容gamesPlayed和games字段）
+    const getGames = (player: Player): number => {
+      return player.gamesPlayed || player.games || 0;
+    };
+    
+    // 解析各个数值字段
+    const guessAge = parseNumber(guessedPlayer.age, /(\d+)yr/);
+    const targetAge = parseNumber(targetPlayer.age, /(\d+)yr/);
+    
+    const guessHeight = parseNumber(guessedPlayer.height, /(\d+)cm/);
+    const targetHeight = parseNumber(targetPlayer.height, /(\d+)cm/);
+    
+    const guessWeight = parseNumber(guessedPlayer.weight, /(\d+)kg/);
+    const targetWeight = parseNumber(targetPlayer.weight, /(\d+)kg/);
+
+    const guessGames = getGames(guessedPlayer);
+    const targetGames = getGames(targetPlayer);
+
+    const ageDirection = compareValues(guessAge, targetAge);
+    const heightDirection = compareValues(guessHeight, targetHeight);
+    const weightDirection = compareValues(guessWeight, targetWeight);
+    const gamesDirection = compareValues(guessGames, targetGames);
+
+    return {
+      player: guessedPlayer,
+      comparison: {
+        team: compareStrings(guessedPlayer.team || '', targetPlayer.team || ''),
+        number: guessedPlayer.number === targetPlayer.number ? 'correct' : 
+                isClose(guessedPlayer.number || 0, targetPlayer.number || 0, 5) ? 'close' : 'incorrect',
+        position: compareStrings(guessedPlayer.position || '', targetPlayer.position || ''),
+        age: guessAge === targetAge ? 'correct' : 
+             isClose(guessAge, targetAge, 2) ? 'close' : 'incorrect',
+        height: guessHeight === targetHeight ? 'correct' : 
+                isClose(guessHeight, targetHeight, 5) ? 'close' : 'incorrect',
+        weight: guessWeight === targetWeight ? 'correct' : 
+                isClose(guessWeight, targetWeight, 5) ? 'close' : 'incorrect',
+        gamesPlayed: guessGames === targetGames ? 'correct' : 
+               isClose(guessGames, targetGames, 10) ? 'close' : 'incorrect',
+      },
+      direction: {
+        age: ageDirection,
+        height: heightDirection,
+        weight: weightDirection,
+        gamesPlayed: gamesDirection
+      }
+    };
+  };
+
+  // 猜测球员
+  const guessPlayer = (player: Player) => {
+    if (!targetPlayer) return;
+    
+    setGuesses((prev) => prev + 1);
+    
+    // 生成比较结果
+    const comparisonResult = comparePlayer(player, targetPlayer);
+    
+    // 添加到猜测历史
+    setGuessHistory((prev) => [...prev, comparisonResult]);
+    
+    // 检查是否猜对
+    const isCorrect = player.name === targetPlayer.name;
+    
+    // 检查是否达到最大猜测次数
+    const isMaxGuesses = guesses + 1 >= maxGuesses;
+    
+    if (isCorrect || isMaxGuesses) {
+      setGameState('finished');
     }
   };
 
@@ -193,6 +285,8 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
     loading,
     error,
     guesses,
+    maxGuesses,
+    guessHistory,
     setGameMode,
     startGame,
     createRoom,

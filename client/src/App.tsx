@@ -5,6 +5,7 @@ import PlayerList from './components/PlayerList';
 import PrivateRoomPanel from './components/PrivateRoomPanel';
 import PlayerCard from './components/PlayerCard';
 import GameResult from './components/GameResult';
+import GuessHistory from './components/GuessHistory';
 import './App.css';
 
 const App: React.FC = () => {
@@ -17,6 +18,8 @@ const App: React.FC = () => {
     loading,
     error,
     guesses,
+    maxGuesses,
+    guessHistory,
     setGameMode,
     startGame,
     createRoom,
@@ -28,10 +31,10 @@ const App: React.FC = () => {
   // 加载状态
   if (loading) {
     return (
-      <div className="loading-container">
+      <div className="loading-container w-full h-screen flex items-center justify-center">
         <div className="loading-content">
           <div className="loading-spinner"></div>
-          <p className="loading-text">加载中...</p>
+          <p className="loading-text">Loading...</p>
         </div>
       </div>
     );
@@ -40,13 +43,13 @@ const App: React.FC = () => {
   // 错误状态
   if (error) {
     return (
-      <div className="error-container">
+      <div className="error-container w-full h-screen flex items-center justify-center">
         <div className="error-content">
           <div className="error-icon">⚠️</div>
-          <h2 className="error-title">出现错误</h2>
+          <h2 className="error-title">Error</h2>
           <p>{error}</p>
           <button onClick={resetGame} className="afl-button error-button">
-            重新开始
+            Restart
           </button>
         </div>
       </div>
@@ -54,13 +57,13 @@ const App: React.FC = () => {
   }
 
   return (
-    <div className="app-container">
-      <header className="app-header">
-        <h1 className="app-title">AFL猜猜谁</h1>
-        <p className="app-subtitle">猜出神秘的澳式足球球员！</p>
+    <div className="app-container w-full min-h-screen">
+      <header className="app-header w-full py-6 px-4 text-center">
+        <h1 className="app-title text-4xl font-bold">AFL Guess Who</h1>
+        <p className="app-subtitle text-xl">Guess the mystery AFL player!</p>
       </header>
 
-      <main className="app-main">
+      <main className="app-main w-full px-4 py-6">
         {gameState === 'waiting' && (
           <>
             <GameModeSelector selectedMode={gameMode} onSelectMode={setGameMode} />
@@ -77,7 +80,7 @@ const App: React.FC = () => {
                   onClick={startGame}
                   className="afl-button start-button"
                 >
-                  {gameMode === 'solo' ? '开始游戏' : '寻找对手'}
+                  {gameMode === 'solo' ? 'Start Game' : 'Find Opponent'}
                 </button>
               </div>
             )}
@@ -88,37 +91,59 @@ const App: React.FC = () => {
           <div className="game-container">
             <div className="target-container">
               <div className="target-header">
-                <h2 className="target-title">猜出神秘球员</h2>
+                <h2 className="target-title">Guess the Mystery Player</h2>
                 <div className="guesses-counter">
-                  <span className="guesses-label">猜测次数: </span>
-                  <span className="guesses-value">{guesses}</span>
+                  <span className="guesses-label">Guesses: </span>
+                  <span className="guesses-value">{guesses}/{maxGuesses}</span>
                 </div>
               </div>
               
               <div className="target-card">
                 <PlayerCard player={targetPlayer} revealed={false} />
               </div>
+              
+              {/* 游戏规则说明 */}
+              <div className="game-rules mt-4 p-4 bg-gray-100 rounded-lg">
+                <h3 className="text-lg font-bold mb-2">Game Rules</h3>
+                <ul className="text-sm">
+                  <li>🟩 Green = Exact Match</li>
+                  <li>🟧 Orange = Close Match</li>
+                  <li>⬜ Blank = Not a Match</li>
+                  <li>↑ Target value is higher</li>
+                  <li>↓ Target value is lower</li>
+                </ul>
+              </div>
+              
+              {/* 显示猜测历史 */}
+              <GuessHistory guessHistory={guessHistory} />
             </div>
 
-            <PlayerList 
-              players={players} 
-              onSelectPlayer={(player) => guessPlayer(player.id)} 
-            />
+            <div className="player-list-container flex-1">
+              <PlayerList 
+                players={players} 
+                onSelectPlayer={(player) => guessPlayer(player)} 
+              />
+            </div>
           </div>
         )}
 
         {gameState === 'finished' && targetPlayer && (
-          <GameResult
-            targetPlayer={targetPlayer}
-            guesses={guesses}
-            isMultiplayer={gameMode !== 'solo'}
-            onPlayAgain={resetGame}
-          />
+          <div className="result-container w-full max-w-7xl mx-auto">
+            <GameResult
+              targetPlayer={targetPlayer}
+              guesses={guesses}
+              isMultiplayer={gameMode !== 'solo'}
+              onPlayAgain={resetGame}
+            />
+            
+            {/* 显示最终猜测历史 */}
+            <GuessHistory guessHistory={guessHistory} />
+          </div>
         )}
       </main>
 
-      <footer className="app-footer">
-        <p>&copy; {new Date().getFullYear()} AFL猜谜游戏 | 纯娱乐目的使用</p>
+      <footer className="app-footer w-full py-4 px-4 text-center">
+        <p>&copy; {new Date().getFullYear()} AFL Guessing Game | For entertainment purposes only</p>
       </footer>
     </div>
   );

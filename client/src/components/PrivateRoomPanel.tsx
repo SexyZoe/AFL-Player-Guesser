@@ -22,7 +22,7 @@ const PrivateRoomPanel: React.FC<PrivateRoomPanelProps> = ({
 
   const copyToClipboard = () => {
     navigator.clipboard.writeText(roomCode);
-    alert('房间代码已复制到剪贴板');
+    alert('Room code copied to clipboard');
   };
 
   return (
@@ -30,24 +30,24 @@ const PrivateRoomPanel: React.FC<PrivateRoomPanelProps> = ({
       {!roomCode ? (
         <div className="flex flex-col gap-4">
           <div className="afl-card">
-            <h3 className="text-xl font-bold mb-4">创建私人房间</h3>
+            <h3 className="text-xl font-bold mb-4">Create Private Room</h3>
             <p className="mb-3">
-              创建一个私人房间并邀请朋友加入。房间创建后，你将获得一个可以分享的代码。
+              Create a private room and invite friends to join. Once created, you will get a code to share.
             </p>
             <button
               onClick={onCreateRoom}
               className="afl-button w-full"
             >
-              创建房间
+              Create Room
             </button>
           </div>
 
           <div className="afl-card">
-            <h3 className="text-xl font-bold mb-4">加入房间</h3>
+            <h3 className="text-xl font-bold mb-4">Join Room</h3>
             <form onSubmit={handleJoinRoom}>
               <input
                 type="text"
-                placeholder="输入房间代码..."
+                placeholder="Enter room code..."
                 className="afl-input w-full mb-3"
                 value={joinCode}
                 onChange={(e) => setJoinCode(e.target.value.toUpperCase())}
@@ -58,26 +58,26 @@ const PrivateRoomPanel: React.FC<PrivateRoomPanelProps> = ({
                 className="afl-button w-full"
                 disabled={!joinCode.trim()}
               >
-                加入房间
+                Join Room
               </button>
             </form>
           </div>
         </div>
       ) : (
         <div className="afl-card">
-          <h3 className="text-xl font-bold mb-4">等待玩家加入</h3>
+          <h3 className="text-xl font-bold mb-4">Waiting for Players</h3>
           <div className="bg-gray-100 p-3 rounded-md text-center mb-4">
-            <p className="text-sm text-gray-600 mb-1">房间代码:</p>
+            <p className="text-sm text-gray-600 mb-1">Room Code:</p>
             <p className="text-2xl font-mono font-bold tracking-widest">{roomCode}</p>
           </div>
           <button
             onClick={copyToClipboard}
             className="afl-button w-full mb-2"
           >
-            复制代码
+            Copy Code
           </button>
           <p className="text-center text-gray-600 text-sm">
-            分享此代码给朋友，他们可以使用它加入你的游戏
+            Share this code with friends so they can join your game
           </p>
         </div>
       )}

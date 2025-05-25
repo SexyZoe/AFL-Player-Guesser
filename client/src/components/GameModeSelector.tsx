@@ -9,7 +9,7 @@ interface GameModeSelectorProps {
 const GameModeSelector: React.FC<GameModeSelectorProps> = ({ selectedMode, onSelectMode }) => {
   return (
     <div className="flex flex-col items-center mb-8">
-      <h2 className="text-2xl font-bold mb-4">选择游戏模式</h2>
+      <h2 className="text-2xl font-bold mb-4">Select Game Mode</h2>
       
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 w-full max-w-3xl">
         <div 
@@ -17,8 +17,8 @@ const GameModeSelector: React.FC<GameModeSelectorProps> = ({ selectedMode, onSel
           onClick={() => onSelectMode('solo')}
         >
           <div className="text-3xl mb-2">🎯</div>
-          <h3 className="text-xl font-bold mb-1">单人模式</h3>
-          <p className="text-gray-600">尝试用最少的猜测次数猜出神秘球员</p>
+          <h3 className="text-xl font-bold mb-1">Solo Mode</h3>
+          <p className="text-gray-600">Try to guess the mystery player in as few attempts as possible</p>
         </div>
         
         <div 
@@ -26,8 +26,8 @@ const GameModeSelector: React.FC<GameModeSelectorProps> = ({ selectedMode, onSel
           onClick={() => onSelectMode('random')}
         >
           <div className="text-3xl mb-2">⚔️</div>
-          <h3 className="text-xl font-bold mb-1">随机匹配</h3>
-          <p className="text-gray-600">与随机在线玩家匹配并比赛谁能更快猜出</p>
+          <h3 className="text-xl font-bold mb-1">Random Match</h3>
+          <p className="text-gray-600">Match with a random online player and race to guess faster</p>
         </div>
         
         <div 
@@ -35,8 +35,8 @@ const GameModeSelector: React.FC<GameModeSelectorProps> = ({ selectedMode, onSel
           onClick={() => onSelectMode('private')}
         >
           <div className="text-3xl mb-2">👥</div>
-          <h3 className="text-xl font-bold mb-1">私人房间</h3>
-          <p className="text-gray-600">邀请朋友使用代码一起玩</p>
+          <h3 className="text-xl font-bold mb-1">Private Room</h3>
+          <p className="text-gray-600">Invite friends to play together using a room code</p>
         </div>
       </div>
     </div>
