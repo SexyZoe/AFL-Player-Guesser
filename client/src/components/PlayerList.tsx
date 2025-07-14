@@ -16,7 +16,7 @@ const PlayerList: React.FC<PlayerListProps> = ({ players, onSelectPlayer }) => {
   const inputRef = useRef<HTMLInputElement>(null);
 
   const filteredPlayers = players.filter(player =>
-    player.name.toLowerCase().includes(searchTerm.toLowerCase())
+    searchTerm ? player.name.toLowerCase().includes(searchTerm.toLowerCase()) : true
   ).slice(0, 8); // 限制显示前8个结果
 
   // 生成自动完成建议
@@ -53,12 +53,16 @@ const PlayerList: React.FC<PlayerListProps> = ({ players, onSelectPlayer }) => {
 
   // 处理键盘导航
   const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (!showDropdown || filteredPlayers.length === 0) {
+    if (!showDropdown) {
       if (e.key === 'ArrowDown' && filteredPlayers.length > 0) {
         e.preventDefault();
         setShowDropdown(true);
         setSelectedIndex(0);
       }
+      return;
+    }
+    
+    if (filteredPlayers.length === 0) {
       return;
     }
 
@@ -120,7 +124,7 @@ const PlayerList: React.FC<PlayerListProps> = ({ players, onSelectPlayer }) => {
     const value = e.target.value;
     setSearchTerm(value);
     setSelectedIndex(-1);
-    setShowDropdown(value.length > 0);
+    setShowDropdown(true); // 始终显示下拉菜单
     
     // 模拟搜索加载效果
     if (value.length > 0) {
@@ -141,8 +145,8 @@ const PlayerList: React.FC<PlayerListProps> = ({ players, onSelectPlayer }) => {
 
   // 处理输入框聚焦
   const handleInputFocus = () => {
-    if (searchTerm.length > 0 && filteredPlayers.length > 0) {
-      setShowDropdown(true);
+    setShowDropdown(true);
+    if (filteredPlayers.length > 0) {
       setSelectedIndex(0);
     }
   };
@@ -163,6 +167,24 @@ const PlayerList: React.FC<PlayerListProps> = ({ players, onSelectPlayer }) => {
     }
   };
 
+  // 处理下拉菜单点击
+  const handleDropdownClick = (e: React.MouseEvent) => {
+    // 如果点击的是搜索框，不要阻止事件
+    if ((e.target as Element).classList.contains('custom-dropdown-searchbox')) {
+      return;
+    }
+    
+    // 切换下拉菜单显示状态
+    setShowDropdown(!showDropdown);
+    
+    // 如果打开下拉菜单，聚焦搜索框
+    if (!showDropdown) {
+      setTimeout(() => {
+        inputRef.current?.focus();
+      }, 100);
+    }
+  };
+
   return (
     <div className="w-full max-w-4xl mx-auto">
       {/* 搜索区域 */}
@@ -175,115 +197,62 @@ const PlayerList: React.FC<PlayerListProps> = ({ players, onSelectPlayer }) => {
         </div>
 
         <div className="relative w-full max-w-2xl mx-auto" ref={searchRef}>
-          {/* 搜索输入框和下拉框的相对容器 */}
+          {/* 新的自定义下拉菜单 */}
           <div className="relative">
-            {/* 搜索框容器 */}
-            <div className="search-container relative">
-              {/* 自动完成建议背景文本 */}
-              {autocompleteSuggestion && !showDropdown && (
-                <div className="autocomplete-suggestion">
-                  <span className="invisible">{searchTerm}</span>
-                  <span>{autocompleteSuggestion.slice(searchTerm.length)}</span>
-                </div>
-              )}
+            <div 
+              className={`custom-dropdown-select ${showDropdown ? 'open' : ''}`}
+              onClick={handleDropdownClick}
+            >
+              <span className="custom-dropdown-current">
+                {searchTerm || 'Search for any AFL player...'}
+              </span>
               
-              <input
-                ref={inputRef}
-                type="text"
-                placeholder="Search for any AFL player..."
-                className="search-input relative z-10 bg-transparent"
-                value={searchTerm}
-                onChange={handleInputChange}
-                onFocus={handleInputFocus}
-                onKeyDown={handleKeyDown}
-                autoComplete="off"
-              />
-              <button
-                className="search-button"
-                onClick={handleSearchClick}
-                disabled={isLoading}
-              >
-                {isLoading ? (
-                  <div className="loading-dots">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                  </div>
-                ) : (
-                  '🔍'
-                )}
-              </button>
-            </div>
-
-            {/* 清除按钮 */}
-            {searchTerm && (
-              <button
-                className="absolute right-20 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-red-500 transition-all duration-200 text-xl z-20 w-8 h-8 rounded-full hover:bg-red-50 flex items-center justify-center"
-                onClick={() => {
-                  setSearchTerm('');
-                  setSelectedIndex(-1);
-                  setAutocompleteSuggestion('');
-                  setShowDropdown(false);
-                }}
-              >
-                ✕
-              </button>
-            )}
-
-            {/* 下拉式搜索结果容器 - 绝对定位在输入框下方 */}
-            {showDropdown && searchTerm && (
-              <div className="dropdown-suggestions absolute top-full left-0 right-0 mt-2 bg-white border border-gray-300 rounded-lg shadow-lg z-50 max-h-80 overflow-hidden">
+              {/* 自定义下拉列表 */}
+              <div className="custom-dropdown-list">
+                {/* 搜索框 */}
+                <div className="custom-dropdown-search">
+                  <input
+                    ref={inputRef}
+                    type="text"
+                    placeholder="Search for any AFL player..."
+                    className="custom-dropdown-searchbox"
+                    value={searchTerm}
+                    onChange={handleInputChange}
+                    onFocus={handleInputFocus}
+                    onKeyDown={handleKeyDown}
+                    autoComplete="off"
+                  />
+                </div>
+                
+                {/* 搜索结果 */}
                 {filteredPlayers.length > 0 ? (
-                  <>
-                    {/* 头部信息 */}
-                    <div className="px-4 py-3 bg-gray-50 border-b border-gray-200 text-sm text-gray-600 font-medium flex items-center justify-between">
-                      <span className="flex items-center gap-2">
-                        <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
-                        {filteredPlayers.length} player{filteredPlayers.length !== 1 ? 's' : ''} found
-                      </span>
-                      <span className="text-xs text-gray-500 flex items-center gap-1">
-                        <kbd className="text-xs">↑↓</kbd> navigate • <kbd className="text-xs">Enter</kbd> select
-                      </span>
-                    </div>
-                    
-                    {/* 搜索结果列表 */}
-                    <div className="max-h-64 overflow-y-auto">
-                      {filteredPlayers.map((player, index) => (
-                        <div
-                          key={player.id}
-                          className={`dropdown-item px-4 py-3 cursor-pointer transition-all duration-200 border-b border-gray-100 last:border-b-0 ${
-                            index === selectedIndex 
-                              ? 'bg-blue-50 border-l-4 border-l-blue-500 text-blue-900' 
-                              : 'hover:bg-gray-50 text-gray-800'
-                          }`}
-                          onClick={() => handleSelectPlayer(player)}
-                          onMouseEnter={() => setSelectedIndex(index)}
-                        >
-                          <div className="flex items-center justify-between">
-                            <div className="font-medium text-base">
-                              {/* 高亮匹配的文本 */}
-                              {searchTerm ? (
-                                <>
-                                  {player.name.substring(0, player.name.toLowerCase().indexOf(searchTerm.toLowerCase()))}
-                                  <span className={`${index === selectedIndex ? 'bg-blue-200 text-blue-900' : 'bg-yellow-200 text-yellow-800'} px-1 rounded font-semibold`}>
-                                    {player.name.substring(
-                                      player.name.toLowerCase().indexOf(searchTerm.toLowerCase()),
-                                      player.name.toLowerCase().indexOf(searchTerm.toLowerCase()) + searchTerm.length
-                                    )}
-                                  </span>
-                                  {player.name.substring(player.name.toLowerCase().indexOf(searchTerm.toLowerCase()) + searchTerm.length)}
-                                </>
-                              ) : (
-                                player.name
+                  <div>
+                    {filteredPlayers.map((player, index) => (
+                      <div
+                        key={player.id}
+                        className={`custom-dropdown-option ${
+                          index === selectedIndex ? 'selected' : ''
+                        }`}
+                        onClick={() => handleSelectPlayer(player)}
+                        onMouseEnter={() => setSelectedIndex(index)}
+                      >
+                        {/* 高亮匹配的文本 */}
+                        {searchTerm && player.name.toLowerCase().includes(searchTerm.toLowerCase()) ? (
+                          <>
+                            {player.name.substring(0, player.name.toLowerCase().indexOf(searchTerm.toLowerCase()))}
+                            <span className="custom-dropdown-highlight">
+                              {player.name.substring(
+                                player.name.toLowerCase().indexOf(searchTerm.toLowerCase()),
+                                player.name.toLowerCase().indexOf(searchTerm.toLowerCase()) + searchTerm.length
                               )}
-                            </div>
-                            <div className={`text-xs font-medium ${index === selectedIndex ? 'text-blue-600' : 'text-gray-400'}`}>
-                              {index === selectedIndex ? '→' : ''}
-                            </div>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
+                            </span>
+                            {player.name.substring(player.name.toLowerCase().indexOf(searchTerm.toLowerCase()) + searchTerm.length)}
+                          </>
+                        ) : (
+                          player.name
+                        )}
+                      </div>
+                    ))}
                     
                     {/* 底部提示 */}
                     {filteredPlayers.length === 8 && (
@@ -291,35 +260,17 @@ const PlayerList: React.FC<PlayerListProps> = ({ players, onSelectPlayer }) => {
                         ⚡ Showing first 8 results • Type more to narrow down
                       </div>
                     )}
-                  </>
-                ) : (
+                  </div>
+                ) : searchTerm ? (
                   <div className="px-6 py-8 text-center">
                     <div className="text-4xl mb-3 opacity-50">🔍</div>
                     <p className="text-gray-500 text-base font-medium mb-1">No players found</p>
                     <p className="text-gray-400 text-sm">Try a different search term</p>
                   </div>
-                )}
-              </div>
-            )}
-          </div>
-
-          {/* 自动完成提示 - 移到相对容器外部 */}
-          {autocompleteSuggestion && !showDropdown && (
-            <div className="autocomplete-hint absolute top-full left-0 right-0 mt-1 z-40">
-              <div className="flex items-center justify-between">
-                <span className="text-sm text-gray-600">
-                  Press <kbd>Tab</kbd> or <kbd>→</kbd> to complete: 
-                  <strong className="ml-2 text-blue-600">{autocompleteSuggestion}</strong>
-                </span>
-                <button
-                  onClick={acceptAutocompletion}
-                  className="text-blue-500 hover:text-blue-700 font-medium text-sm transition-colors duration-200 px-3 py-1 rounded-lg hover:bg-blue-50"
-                >
-                  Accept
-                </button>
+                ) : null}
               </div>
             </div>
-          )}
+          </div>
         </div>
 
         {/* 搜索提示 */}
@@ -327,7 +278,7 @@ const PlayerList: React.FC<PlayerListProps> = ({ players, onSelectPlayer }) => {
           <div className="mt-6 text-center text-gray-500 text-sm space-y-2">
             <div className="flex items-center justify-center gap-2">
               <span className="text-lg">💡</span>
-              <span>Start typing a player's name to see search suggestions</span>
+              <span>Click the dropdown to start searching for players</span>
             </div>
             <div className="text-xs flex items-center justify-center gap-4 bg-gray-50 rounded-lg py-2 px-4 max-w-md mx-auto">
               <span className="flex items-center gap-1">
@@ -351,7 +302,7 @@ const PlayerList: React.FC<PlayerListProps> = ({ players, onSelectPlayer }) => {
           <div className="relative z-10">
             <div className="text-8xl mb-6 animate-pulse">⌨️</div>
             <p className="text-gray-600 text-3xl font-bold mb-3">Ready to make your guess?</p>
-            <p className="text-gray-500 text-lg mb-6">Use the search box above to find and select a player</p>
+            <p className="text-gray-500 text-lg mb-6">Click the dropdown above to search for a player</p>
             <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-4 max-w-md mx-auto border border-white/50">
               <p className="text-sm text-gray-600 font-medium">🔥 Pro tip: Use keyboard shortcuts for faster searching!</p>
             </div>
