@@ -203,7 +203,7 @@ const PlayerList: React.FC<PlayerListProps> = ({ players, onSelectPlayer }) => {
               className={`custom-dropdown-select ${showDropdown ? 'open' : ''}`}
               onClick={handleDropdownClick}
             >
-              <span className="custom-dropdown-current">
+              <span className={`custom-dropdown-current ${!searchTerm ? 'placeholder' : ''}`}>
                 {searchTerm || 'Search for any AFL player...'}
               </span>
               
@@ -256,16 +256,16 @@ const PlayerList: React.FC<PlayerListProps> = ({ players, onSelectPlayer }) => {
                     
                     {/* 底部提示 */}
                     {filteredPlayers.length === 8 && (
-                      <div className="px-4 py-2 bg-yellow-50 border-t border-yellow-200 text-xs text-yellow-700 text-center">
+                      <div className="mx-2 mb-2 px-4 py-3 bg-gradient-to-r from-yellow-50 to-amber-50 border border-yellow-200 text-sm text-yellow-700 text-center rounded-lg font-medium">
                         ⚡ Showing first 8 results • Type more to narrow down
                       </div>
                     )}
                   </div>
                 ) : searchTerm ? (
-                  <div className="px-6 py-8 text-center">
-                    <div className="text-4xl mb-3 opacity-50">🔍</div>
-                    <p className="text-gray-500 text-base font-medium mb-1">No players found</p>
-                    <p className="text-gray-400 text-sm">Try a different search term</p>
+                  <div className="mx-2 mb-2 px-6 py-8 text-center bg-gradient-to-b from-white to-gray-50 rounded-lg border border-gray-200">
+                    <div className="text-4xl mb-3 opacity-60">🔍</div>
+                    <p className="text-gray-600 text-base font-semibold mb-2">No players found</p>
+                    <p className="text-gray-500 text-sm">Try a different search term</p>
                   </div>
                 ) : null}
               </div>
@@ -294,21 +294,6 @@ const PlayerList: React.FC<PlayerListProps> = ({ players, onSelectPlayer }) => {
           </div>
         )}
       </div>
-
-      {/* 空状态显示 */}
-      {!searchTerm && (
-        <div className="text-center py-20 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 rounded-3xl border-2 border-dashed border-blue-200 relative overflow-hidden mt-8">
-          <div className="absolute inset-0 bg-gradient-to-r from-blue-400/5 to-purple-400/5"></div>
-          <div className="relative z-10">
-            <div className="text-8xl mb-6 animate-pulse">⌨️</div>
-            <p className="text-gray-600 text-3xl font-bold mb-3">Ready to make your guess?</p>
-            <p className="text-gray-500 text-lg mb-6">Click the dropdown above to search for a player</p>
-            <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-4 max-w-md mx-auto border border-white/50">
-              <p className="text-sm text-gray-600 font-medium">🔥 Pro tip: Use keyboard shortcuts for faster searching!</p>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 };

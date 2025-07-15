@@ -340,6 +340,8 @@ kbd:hover {
 /* 搜索框容器动画 */
 .search-wrapper {
   animation: searchAppear 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  z-index: 1000;
 }
 
 @keyframes searchAppear {
@@ -822,63 +824,68 @@ kbd:hover {
 
 /* 新的自定义下拉菜单样式 */
 .custom-dropdown-select {
-    background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0) 100%);
-    background-repeat: repeat-x;
-    background-color: #fff;
-    border-radius: 6px;
-    border: solid 1px #eee;
-    box-shadow: 0px 2px 5px 0px rgba(155, 155, 155, 0.5);
+    background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+    border-radius: 1rem;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     box-sizing: border-box;
     cursor: pointer;
     display: block;
-    font-size: 14px;
-    font-weight: normal;
-    height: 42px;
-    line-height: 40px;
+    font-size: 16px;
+    font-weight: 500;
+    height: 50px;
+    line-height: 48px;
     outline: none;
-    padding-left: 18px;
-    padding-right: 30px;
+    padding-left: 1.5rem;
+    padding-right: 3rem;
     position: relative;
     text-align: left !important;
-    transition: all 0.2s ease-in-out;
+    transition: all 0.3s ease;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
     white-space: nowrap;
     width: 100%;
+    color: #4A5568;
 }
 
 .custom-dropdown-select:focus {
-    background-color: #fff;
+    background: linear-gradient(135deg, #edf2f7 0%, #e2e8f0 100%);
+    border-color: #00B4CC;
+    box-shadow: 0 0 0 3px rgba(0, 180, 204, 0.1), 0 4px 20px rgba(0, 0, 0, 0.15);
 }
 
 .custom-dropdown-select:hover {
-    background-color: #fff;
+    background: linear-gradient(135deg, #edf2f7 0%, #e2e8f0 100%);
+    border-color: #cbd5e0;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+    transform: translateY(-1px);
 }
 
 .custom-dropdown-select:active,
 .custom-dropdown-select.open {
-    background-color: #fff !important;
-    border-color: #bbb;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05) inset;
+    background: linear-gradient(135deg, #edf2f7 0%, #e2e8f0 100%) !important;
+    border-color: #00B4CC;
+    box-shadow: 0 0 0 3px rgba(0, 180, 204, 0.1), 0 8px 30px rgba(0, 180, 204, 0.2);
+    transform: translateY(-1px);
 }
 
 .custom-dropdown-select:after {
     height: 0;
     width: 0;
-    border-left: 4px solid transparent;
-    border-right: 4px solid transparent;
-    border-top: 4px solid #777;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid #4A5568;
     -webkit-transform: origin(50% 20%);
     transform: origin(50% 20%);
-    transition: all 0.125s ease-in-out;
+    transition: all 0.3s ease;
     content: '';
     display: block;
     margin-top: -2px;
     pointer-events: none;
     position: absolute;
-    right: 10px;
+    right: 1.5rem;
     top: 50%;
 }
 
@@ -905,11 +912,10 @@ kbd:hover {
     transform: scale(0.75);
     -webkit-transform-origin: 50% 0;
     transform-origin: 50% 0;
-    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.09);
-    background-color: #fff;
-    border-radius: 6px;
+    background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+    border-radius: 1rem;
     margin-top: 4px;
-    padding: 3px 0;
+    padding: 0.5rem 0;
     opacity: 0;
     overflow: hidden;
     pointer-events: none;
@@ -917,10 +923,11 @@ kbd:hover {
     top: 100%;
     left: 0;
     right: 0;
-    z-index: 999;
+    z-index: 9999;
     max-height: 250px;
     overflow: auto;
-    border: 1px solid #ddd;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
 .custom-dropdown-list:hover .custom-dropdown-option:not(:hover) {
@@ -932,47 +939,68 @@ kbd:hover {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0.5rem;
+    margin: 1rem;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 0.5rem;
+    padding: 0.25rem;
+    border: 1px solid rgba(226, 232, 240, 0.5);
 }
 
 .custom-dropdown-searchbox {
-    width: 90%;
-    padding: 0.5rem;
-    border: 1px solid #999;
-    border-color: #999;
-    border-radius: 4px;
+    width: 100%;
+    padding: 0.75rem;
+    border: none;
+    border-radius: 0.375rem;
     outline: none;
     font-size: 14px;
+    background: transparent;
+    color: #4A5568;
+    font-weight: 500;
 }
 
 .custom-dropdown-searchbox:focus {
-    border-color: #12CBC4;
+    color: #2D3748;
+}
+
+.custom-dropdown-searchbox::placeholder {
+    color: #A0AEC0;
+    font-weight: 400;
 }
 
 .custom-dropdown-option {
     cursor: default;
-    font-weight: 400;
-    line-height: 40px;
+    font-weight: 500;
+    line-height: 1.5;
     outline: none;
-    padding-left: 18px;
-    padding-right: 29px;
+    padding: 0.75rem 1.5rem;
     text-align: left;
     transition: all 0.2s;
     list-style: none;
+    color: #4A5568;
+    margin: 0.25rem 0.5rem;
+    border-radius: 0.5rem;
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(226, 232, 240, 0.5);
 }
 
 .custom-dropdown-option:hover,
 .custom-dropdown-option:focus {
-    background-color: #f6f6f6 !important;
+    background: rgba(255, 255, 255, 0.9) !important;
+    border-color: #e2e8f0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transform: translateY(-1px);
 }
 
 .custom-dropdown-option.selected {
     font-weight: 600;
-    color: #12cbc4;
+    color: #2D3748;
+    background: rgba(255, 255, 255, 0.95);
+    border-color: #00B4CC;
+    box-shadow: 0 2px 12px rgba(0, 180, 204, 0.2);
 }
 
 .custom-dropdown-option.selected:focus {
-    background: #f6f6f6;
+    background: rgba(255, 255, 255, 0.95);
 }
 
 .custom-dropdown-current {
@@ -980,11 +1008,50 @@ kbd:hover {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    font-weight: 500;
+    color: #4A5568;
+}
+
+.custom-dropdown-current.placeholder {
+    color: #A0AEC0;
+    font-weight: 400;
 }
 
 .custom-dropdown-highlight {
-    background-color: #ffeb3b;
-    font-weight: bold;
-    padding: 0 2px;
-    border-radius: 2px;
+    background: linear-gradient(135deg, #fed7aa 0%, #fdba74 100%);
+    color: #9a3412;
+    font-weight: 700;
+    padding: 2px 4px;
+    border-radius: 4px;
+    box-shadow: 0 1px 3px rgba(154, 52, 18, 0.2);
+}
+
+/* 统一的卡片样式 */
+.unified-card {
+    background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+    border-radius: 1rem;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.unified-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+}
+
+/* 统一的文本样式 */
+.unified-text-primary {
+    color: #2D3748;
+    font-weight: 600;
+}
+
+.unified-text-secondary {
+    color: #4A5568;
+    font-weight: 500;
+}
+
+.unified-text-muted {
+    color: #718096;
+    font-weight: 400;
 } 

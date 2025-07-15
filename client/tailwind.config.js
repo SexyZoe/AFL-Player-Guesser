@@ -14,7 +14,7 @@ module.exports = {
   },
   plugins: [
     require('@tailwindcss/forms'),
-    require('tailwind-scrollbar'),
+    // require('tailwind-scrollbar'), // 暂时移除避免版本冲突
   ],
 }
 
