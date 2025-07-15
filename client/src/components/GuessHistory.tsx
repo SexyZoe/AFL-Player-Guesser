@@ -61,9 +61,7 @@ const GuessHistory: React.FC<GuessHistoryProps> = ({ guessHistory }) => {
   return (
     <div className="mt-6">
       {/* Tailwind 测试元素 */}
-      <div className="bg-red-500 text-white p-4 font-bold mb-4 rounded-lg">
-        Tailwind Test - 如果你看到红底白字，说明Tailwind CSS已正常工作！
-      </div>
+      
       
       <div className="mb-6 flex items-center gap-4">
         <h3 className="text-3xl font-bold bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent">Guess History</h3>
@@ -107,6 +105,7 @@ const GuessHistory: React.FC<GuessHistoryProps> = ({ guessHistory }) => {
                 <th className="py-5 px-6 text-center font-bold text-gray-800 text-base">Age</th>
                 <th className="py-5 px-6 text-center font-bold text-gray-800 text-base">Height</th>
                 <th className="py-5 px-6 text-center font-bold text-gray-800 text-base">Weight</th>
+                <th className="py-5 px-6 text-center font-bold text-gray-800 text-base">Origin</th>
                 <th className="py-5 px-6 text-center font-bold text-gray-800 text-base">Games</th>
               </tr>
             </thead>
@@ -148,6 +147,11 @@ const GuessHistory: React.FC<GuessHistoryProps> = ({ guessHistory }) => {
                     <div className={`py-3 px-4 rounded-xl text-sm flex items-center justify-center gap-2 transition-all duration-300 ${getComparisonClass(guess.comparison.weight)}`}>
                       <span>{formatWeight(guess.player.weight)}</span>
                       <span className="text-base font-bold">{getDirectionIndicator(guess.direction.weight)}</span>
+                    </div>
+                  </td>
+                  <td className="py-5 px-6 text-center">
+                    <div className={`py-3 px-4 rounded-xl text-sm transition-all duration-300 ${getComparisonClass(guess.comparison.origin)}`}>
+                      {guess.player.origin || 'N/A'}
                     </div>
                   </td>
                   <td className="py-5 px-6 text-center">

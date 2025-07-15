@@ -14,6 +14,7 @@ interface GameContextType {
   guesses: number;
   maxGuesses: number;
   guessHistory: GuessHistoryItem[];
+  isGameWon: boolean;
   setGameMode: (mode: GameMode) => void;
   startGame: () => void;
   createRoom: () => void;
@@ -47,6 +48,7 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
   const [guesses, setGuesses] = useState<number>(0);
   const [maxGuesses] = useState<number>(8); // 最大猜测次数
   const [guessHistory, setGuessHistory] = useState<GuessHistoryItem[]>([]);
+  const [isGameWon, setIsGameWon] = useState<boolean>(false);
 
   // 加载所有球员数据
   useEffect(() => {
@@ -132,6 +134,7 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
         setGameState('playing');
         setGuesses(0);
         setGuessHistory([]); // 清理之前的猜测历史
+        setIsGameWon(false);
         setError('');
       } else {
         setError('获取随机球员失败');
@@ -150,6 +153,7 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
     setGameState('waiting');
     setGuesses(0);
     setGuessHistory([]); // 清理之前的猜测历史
+    setIsGameWon(false);
   };
 
   // 加入多人游戏房间
@@ -226,6 +230,7 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
                 isClose(guessWeight, targetWeight, 5) ? 'close' : 'incorrect',
         gamesPlayed: guessGames === targetGames ? 'correct' : 
                isClose(guessGames, targetGames, 10) ? 'close' : 'incorrect',
+        origin: compareStrings(guessedPlayer.origin || '', targetPlayer.origin || ''),
       },
       direction: {
         age: ageDirection,
@@ -254,7 +259,11 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
     // 检查是否达到最大猜测次数
     const isMaxGuesses = guesses + 1 >= maxGuesses;
     
-    if (isCorrect || isMaxGuesses) {
+    if (isCorrect) {
+      setIsGameWon(true);
+      setGameState('finished');
+    } else if (isMaxGuesses) {
+      setIsGameWon(false);
       setGameState('finished');
     }
   };
@@ -276,6 +285,7 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
     setRoomCode('');
     setGuesses(0);
     setGuessHistory([]); // 清理猜测历史
+    setIsGameWon(false);
     setError('');
   };
 
@@ -290,6 +300,7 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
     guesses,
     maxGuesses,
     guessHistory,
+    isGameWon,
     setGameMode,
     startGame,
     createRoom,

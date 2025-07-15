@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Player } from '../types';
 
 interface PlayerCardProps {
@@ -7,6 +7,9 @@ interface PlayerCardProps {
 }
 
 const PlayerCard: React.FC<PlayerCardProps> = ({ player, onClick }) => {
+  const [imageError, setImageError] = useState(false);
+  const [imageLoading, setImageLoading] = useState(true);
+
   // 格式化身高体重，避免单位重复
   const formatHeight = (height: string | number | undefined | null) => {
     if (height === undefined || height === null) return 'N/A';
@@ -18,6 +21,17 @@ const PlayerCard: React.FC<PlayerCardProps> = ({ player, onClick }) => {
     if (weight === undefined || weight === null) return 'N/A';
     if (typeof weight === 'number') return `${weight}kg`;
     return weight.endsWith('kg') ? weight : `${weight}kg`;
+  };
+
+  // 处理图片加载错误
+  const handleImageError = () => {
+    setImageError(true);
+    setImageLoading(false);
+  };
+
+  // 处理图片加载完成
+  const handleImageLoad = () => {
+    setImageLoading(false);
   };
 
   // 获取球队的颜色
@@ -53,7 +67,7 @@ const PlayerCard: React.FC<PlayerCardProps> = ({ player, onClick }) => {
     <div 
       className="relative rounded-2xl overflow-hidden shadow-2xl hover:shadow-3xl transition-all duration-500 cursor-pointer transform hover:-translate-y-2 hover:scale-105 h-full bg-white"
       onClick={onClick}
-      style={{ minHeight: '400px' }}
+      style={{ minHeight: '500px' }}
     >
       {/* 球队颜色渐变背景 */}
       <div className={`absolute inset-0 bg-gradient-to-br ${getTeamColor(player.team || '')}`} style={{opacity: 0.15}}></div>
@@ -62,6 +76,36 @@ const PlayerCard: React.FC<PlayerCardProps> = ({ player, onClick }) => {
       <div className="absolute inset-0 rounded-2xl border-2 border-white border-opacity-20"></div>
       
       <div className="relative p-8 h-full flex flex-col">
+        {/* 球员头像 */}
+        <div className="flex justify-center mb-6">
+          <div className="relative w-32 h-32 rounded-full overflow-hidden border-4 border-white shadow-lg">
+            {player.image ? (
+              <>
+                {imageLoading && (
+                  <div className="absolute inset-0 flex items-center justify-center bg-gray-200">
+                    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+                  </div>
+                )}
+                <img
+                  src={player.image}
+                  alt={player.name}
+                  className={`w-full h-full object-cover transition-opacity duration-300 ${imageLoading ? 'opacity-0' : 'opacity-100'}`}
+                  onLoad={handleImageLoad}
+                  onError={handleImageError}
+                />
+              </>
+            ) : (
+              <div className="w-full h-full bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center">
+                <span className="text-gray-500 text-4xl">👤</span>
+              </div>
+            )}
+            {imageError && (
+              <div className="absolute inset-0 w-full h-full bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center">
+                <span className="text-gray-500 text-4xl">👤</span>
+              </div>
+            )}
+          </div>
+        </div>
         {/* 球员名字和号码 */}
         <div className="flex items-start justify-between mb-6">
           <div className="flex-1">

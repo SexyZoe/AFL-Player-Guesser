@@ -10,6 +10,8 @@ export interface Player {
   position: string;
   gamesPlayed: number;
   games?: number; // 为了兼容性添加games字段
+  origin?: string; // 球员出生地/籍贯
+  image?: string; // 球员头像图片URL
 }
 
 // 游戏模式类型
@@ -55,6 +57,7 @@ export interface GuessHistoryItem {
     height: ComparisonResult;
     weight: ComparisonResult;
     gamesPlayed: ComparisonResult;
+    origin: ComparisonResult;
   };
   direction: {
     age: ComparisonDirection;

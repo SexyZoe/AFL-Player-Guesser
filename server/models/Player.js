@@ -11,7 +11,8 @@ const playerSchema = new mongoose.Schema({
   weight: String,
   origin: String,
   position: String,
-  team: String
+  team: String,
+  image: String  // 球员图片URL
 }, { timestamps: true });
 
 // 创建模型

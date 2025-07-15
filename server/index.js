@@ -27,6 +27,19 @@ const io = socketIo(server, {
 app.use(cors());
 app.use(express.json());
 
+// 静态文件服务 - 提供球员图片
+app.use('/images', express.static(path.join(__dirname, 'public/images')));
+
+// 生产环境下提供前端构建文件
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, '../client/build')));
+  
+  // 处理前端路由
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../client/build/index.html'));
+  });
+}
+
 // 球员数据存储
 let players = [];
 

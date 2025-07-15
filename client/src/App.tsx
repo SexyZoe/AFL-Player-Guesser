@@ -20,6 +20,7 @@ const App: React.FC = () => {
     guesses,
     maxGuesses,
     guessHistory,
+    isGameWon,
     setGameMode,
     startGame,
     createRoom,
@@ -129,6 +130,7 @@ const App: React.FC = () => {
               targetPlayer={targetPlayer}
               guesses={guesses}
               isMultiplayer={gameMode !== 'solo'}
+              isGameWon={isGameWon}
               onPlayAgain={resetGame}
             />
             

@@ -7,6 +7,7 @@ interface GameResultProps {
   guesses: number;
   isMultiplayer?: boolean;
   isWinner?: boolean;
+  isGameWon?: boolean;
   onPlayAgain: () => void;
 }
 
@@ -15,6 +16,7 @@ const GameResult: React.FC<GameResultProps> = ({
   guesses,
   isMultiplayer = false,
   isWinner = true,
+  isGameWon = true,
   onPlayAgain,
 }) => {
   return (
@@ -24,7 +26,9 @@ const GameResult: React.FC<GameResultProps> = ({
           ? isWinner
             ? '🎉 You Won! 🎉'
             : 'Sorry, You Lost!'
-          : '🎉 Congratulations! You Guessed Correctly! 🎉'}
+          : isGameWon
+            ? '🎉 Congratulations! You Guessed Correctly! 🎉'
+            : '😔 Game Over! You Ran Out of Guesses!'}
       </h2>
 
       <div className="mb-6">
@@ -33,25 +37,31 @@ const GameResult: React.FC<GameResultProps> = ({
             ? isWinner 
               ? `You correctly guessed the player in ${guesses} attempts!` 
               : 'The other player guessed correctly first.'
-            : `You took ${guesses} attempts to find the correct answer.`}
+            : isGameWon
+              ? `You took ${guesses} attempts to find the correct answer.`
+              : `You used all ${guesses} attempts but didn't guess correctly.`}
         </p>
         {!isMultiplayer && (
           <div className="mt-2">
             <p className="font-semibold">
-              {guesses <= 3
-                ? 'Amazing! You\'re an AFL expert!'
-                : guesses <= 6
-                ? 'Great job! You know your AFL well!'
-                : 'Good effort! Keep practicing!'}
+              {isGameWon
+                ? guesses <= 3
+                  ? 'Amazing! You\'re an AFL expert!'
+                  : guesses <= 6
+                  ? 'Great job! You know your AFL well!'
+                  : 'Good effort! Keep practicing!'
+                : 'Don\'t give up! Try again to improve your AFL knowledge!'}
             </p>
           </div>
         )}
       </div>
 
       <div className="mb-6">
-        <h3 className="text-xl font-bold mb-3">The correct answer was:</h3>
+        <h3 className="text-xl font-bold mb-3">
+          {isGameWon ? 'The correct answer was:' : 'The correct answer is:'}
+        </h3>
         <div className="max-w-sm mx-auto">
-          <PlayerCard player={targetPlayer} revealed={true} />
+          <PlayerCard player={targetPlayer} />
         </div>
       </div>
 

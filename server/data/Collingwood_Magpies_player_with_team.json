@@ -504,6 +504,30 @@
     "team": "Collingwood Magpies"
   },
   {
+    "number": 45,
+    "name": "Steele Roan R",
+    "games": 2,
+    "age": "22yr 9mth",
+    "dob": "2002-09-19",
+    "height": "183cm",
+    "weight": "78kg",
+    "origin": "West Perth",
+    "position": "Midfield",
+    "team": "Collingwood Magpies"
+  },
+  {
+    "number": 47,
+    "name": "Howes Noah R",
+    "games": 0,
+    "age": "19yr 8mth",
+    "dob": "2005-10-28",
+    "height": "196cm",
+    "weight": "97kg",
+    "origin": "South Adelaide",
+    "position": "Forward",
+    "team": "Collingwood Magpies"
+  },
+  {
     "number": 29,
     "name": "West Charlie",
     "games": 0,

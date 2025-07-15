@@ -1,0 +1,5402 @@
+[
+  {
+    "id": "6831a9ec2753892f1482255b",
+    "name": "Berry Sam",
+    "team": "Adelaide Crows",
+    "number": 3,
+    "imageFileName": "6831a9ec2753892f1482255b.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482255c",
+    "name": "Bond Hugh",
+    "team": "Adelaide Crows",
+    "number": 40,
+    "imageFileName": "6831a9ec2753892f1482255c.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482255d",
+    "name": "Borlase James R",
+    "team": "Adelaide Crows",
+    "number": 35,
+    "imageFileName": "6831a9ec2753892f1482255d.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482255e",
+    "name": "Burgess Chris R",
+    "team": "Adelaide Crows",
+    "number": 21,
+    "imageFileName": "6831a9ec2753892f1482255e.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482255f",
+    "name": "Butts Jordon",
+    "team": "Adelaide Crows",
+    "number": 41,
+    "imageFileName": "6831a9ec2753892f1482255f.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822560",
+    "name": "Cook Brayden",
+    "team": "Adelaide Crows",
+    "number": 15,
+    "imageFileName": "6831a9ec2753892f14822560.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822561",
+    "name": "Crouch Matt",
+    "team": "Adelaide Crows",
+    "number": 5,
+    "imageFileName": "6831a9ec2753892f14822561.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822562",
+    "name": "Cumming Isaac",
+    "team": "Adelaide Crows",
+    "number": 44,
+    "imageFileName": "6831a9ec2753892f14822562.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822563",
+    "name": "Curtin Daniel",
+    "team": "Adelaide Crows",
+    "number": 6,
+    "imageFileName": "6831a9ec2753892f14822563.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822564",
+    "name": "Dawson Jordan",
+    "team": "Adelaide Crows",
+    "number": 12,
+    "imageFileName": "6831a9ec2753892f14822564.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822565",
+    "name": "Dowling Billy",
+    "team": "Adelaide Crows",
+    "number": 31,
+    "imageFileName": "6831a9ec2753892f14822565.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822566",
+    "name": "Draper Sid",
+    "team": "Adelaide Crows",
+    "number": 34,
+    "imageFileName": "6831a9ec2753892f14822566.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822567",
+    "name": "Edwards Charlie",
+    "team": "Adelaide Crows",
+    "number": 11,
+    "imageFileName": "6831a9ec2753892f14822567.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822568",
+    "name": "Fogarty Darcy",
+    "team": "Adelaide Crows",
+    "number": 32,
+    "imageFileName": "6831a9ec2753892f14822568.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822569",
+    "name": "Gallagher Karl R",
+    "team": "Adelaide Crows",
+    "number": 36,
+    "imageFileName": "6831a9ec2753892f14822569.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482256a",
+    "name": "Hinge Mitchell",
+    "team": "Adelaide Crows",
+    "number": 20,
+    "imageFileName": "6831a9ec2753892f1482256a.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482256b",
+    "name": "Jones Chayce",
+    "team": "Adelaide Crows",
+    "number": 1,
+    "imageFileName": "6831a9ec2753892f1482256b.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482256c",
+    "name": "Keane Mark",
+    "team": "Adelaide Crows",
+    "number": 48,
+    "imageFileName": "6831a9ec2753892f1482256c.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482256d",
+    "name": "Keays Ben",
+    "team": "Adelaide Crows",
+    "number": 2,
+    "imageFileName": "6831a9ec2753892f1482256d.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482256e",
+    "name": "Laird Rory",
+    "team": "Adelaide Crows",
+    "number": 29,
+    "imageFileName": "6831a9ec2753892f1482256e.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482256f",
+    "name": "McAndrew Lachlan R",
+    "team": "Adelaide Crows",
+    "number": 42,
+    "imageFileName": "6831a9ec2753892f1482256f.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822570",
+    "name": "Michalanney Max",
+    "team": "Adelaide Crows",
+    "number": 16,
+    "imageFileName": "6831a9ec2753892f14822570.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822571",
+    "name": "Milera Wayne",
+    "team": "Adelaide Crows",
+    "number": 30,
+    "imageFileName": "6831a9ec2753892f14822571.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822572",
+    "name": "Murphy Lachlan",
+    "team": "Adelaide Crows",
+    "number": 4,
+    "imageFileName": "6831a9ec2753892f14822572.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822573",
+    "name": "Murray Nick",
+    "team": "Adelaide Crows",
+    "number": 9,
+    "imageFileName": "6831a9ec2753892f14822573.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822574",
+    "name": "Murray Toby R",
+    "team": "Adelaide Crows",
+    "number": 39,
+    "imageFileName": "6831a9ec2753892f14822574.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822575",
+    "name": "Nankervis Luke",
+    "team": "Adelaide Crows",
+    "number": 27,
+    "imageFileName": "6831a9ec2753892f14822575.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822576",
+    "name": "Neal-Bullen Alex",
+    "team": "Adelaide Crows",
+    "number": 28,
+    "imageFileName": "6831a9ec2753892f14822576.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822577",
+    "name": "O'Brien Reilly",
+    "team": "Adelaide Crows",
+    "number": 43,
+    "imageFileName": "6831a9ec2753892f14822577.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822578",
+    "name": "Peatling James",
+    "team": "Adelaide Crows",
+    "number": 25,
+    "imageFileName": "6831a9ec2753892f14822578.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822579",
+    "name": "Pedlar Luke",
+    "team": "Adelaide Crows",
+    "number": 10,
+    "imageFileName": "6831a9ec2753892f14822579.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482257a",
+    "name": "Rachele Josh",
+    "team": "Adelaide Crows",
+    "number": 8,
+    "imageFileName": "6831a9ec2753892f1482257a.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482257b",
+    "name": "Rankine Izak",
+    "team": "Adelaide Crows",
+    "number": 23,
+    "imageFileName": "6831a9ec2753892f1482257b.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482257c",
+    "name": "Ryan Oscar",
+    "team": "Adelaide Crows",
+    "number": 22,
+    "imageFileName": "6831a9ec2753892f1482257c.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482257d",
+    "name": "Schoenberg Harry R",
+    "team": "Adelaide Crows",
+    "number": 26,
+    "imageFileName": "6831a9ec2753892f1482257d.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482257e",
+    "name": "Sholl Lachlan",
+    "team": "Adelaide Crows",
+    "number": 38,
+    "imageFileName": "6831a9ec2753892f1482257e.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482257f",
+    "name": "Smith Brodie",
+    "team": "Adelaide Crows",
+    "number": 33,
+    "imageFileName": "6831a9ec2753892f1482257f.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822580",
+    "name": "Soligo Jake",
+    "team": "Adelaide Crows",
+    "number": 14,
+    "imageFileName": "6831a9ec2753892f14822580.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822581",
+    "name": "Strachan Kieran",
+    "team": "Adelaide Crows",
+    "number": 45,
+    "imageFileName": "6831a9ec2753892f14822581.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822582",
+    "name": "Taylor Zac",
+    "team": "Adelaide Crows",
+    "number": 19,
+    "imageFileName": "6831a9ec2753892f14822582.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822583",
+    "name": "Thilthorpe Riley",
+    "team": "Adelaide Crows",
+    "number": 7,
+    "imageFileName": "6831a9ec2753892f14822583.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822584",
+    "name": "Walker Taylor",
+    "team": "Adelaide Crows",
+    "number": 13,
+    "imageFileName": "6831a9ec2753892f14822584.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822585",
+    "name": "Welsh Tyler",
+    "team": "Adelaide Crows",
+    "number": 17,
+    "imageFileName": "6831a9ec2753892f14822585.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822586",
+    "name": "Worrell Josh",
+    "team": "Adelaide Crows",
+    "number": 24,
+    "imageFileName": "6831a9ec2753892f14822586.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822588",
+    "name": "Ah Chee Callum",
+    "team": "Brisbane Lions",
+    "number": 4,
+    "imageFileName": "6831a9ec2753892f14822588.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822589",
+    "name": "Andrews Harris",
+    "team": "Brisbane Lions",
+    "number": 31,
+    "imageFileName": "6831a9ec2753892f14822589.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482258a",
+    "name": "Answerth Noah",
+    "team": "Brisbane Lions",
+    "number": 43,
+    "imageFileName": "6831a9ec2753892f1482258a.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482258b",
+    "name": "Ashcroft Levi",
+    "team": "Brisbane Lions",
+    "number": 10,
+    "imageFileName": "6831a9ec2753892f1482258b.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482258c",
+    "name": "Ashcroft Will",
+    "team": "Brisbane Lions",
+    "number": 8,
+    "imageFileName": "6831a9ec2753892f1482258c.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482258d",
+    "name": "Bailey Zac",
+    "team": "Brisbane Lions",
+    "number": 33,
+    "imageFileName": "6831a9ec2753892f1482258d.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482258e",
+    "name": "Beecken Luke R",
+    "team": "Brisbane Lions",
+    "number": 17,
+    "imageFileName": "6831a9ec2753892f1482258e.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482258f",
+    "name": "Berry Jarrod",
+    "team": "Brisbane Lions",
+    "number": 7,
+    "imageFileName": "6831a9ec2753892f1482258f.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822590",
+    "name": "Brain Shadeau R",
+    "team": "Brisbane Lions",
+    "number": 34,
+    "imageFileName": "6831a9ec2753892f14822590.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822591",
+    "name": "Cameron Charlie",
+    "team": "Brisbane Lions",
+    "number": 23,
+    "imageFileName": "6831a9ec2753892f14822591.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822592",
+    "name": "Coleman Keidean",
+    "team": "Brisbane Lions",
+    "number": 18,
+    "imageFileName": "6831a9ec2753892f14822592.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822593",
+    "name": "Craven Darcy R",
+    "team": "Brisbane Lions",
+    "number": 45,
+    "imageFileName": "6831a9ec2753892f14822593.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822594",
+    "name": "Day Sam",
+    "team": "Brisbane Lions",
+    "number": 14,
+    "imageFileName": "6831a9ec2753892f14822594.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822595",
+    "name": "Doedee Tom",
+    "team": "Brisbane Lions",
+    "number": 12,
+    "imageFileName": "6831a9ec2753892f14822595.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822596",
+    "name": "Dunkley Josh",
+    "team": "Brisbane Lions",
+    "number": 5,
+    "imageFileName": "6831a9ec2753892f14822596.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822597",
+    "name": "Fletcher Jaspa",
+    "team": "Brisbane Lions",
+    "number": 3,
+    "imageFileName": "6831a9ec2753892f14822597.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822598",
+    "name": "Fort Darcy",
+    "team": "Brisbane Lions",
+    "number": 32,
+    "imageFileName": "6831a9ec2753892f14822598.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822599",
+    "name": "Gallop Ty",
+    "team": "Brisbane Lions",
+    "number": 22,
+    "imageFileName": "6831a9ec2753892f14822599.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482259a",
+    "name": "Gardiner Darcy",
+    "team": "Brisbane Lions",
+    "number": 27,
+    "imageFileName": "6831a9ec2753892f1482259a.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482259b",
+    "name": "Hipwood Eric",
+    "team": "Brisbane Lions",
+    "number": 30,
+    "imageFileName": "6831a9ec2753892f1482259b.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482259c",
+    "name": "Joyce Darragh R",
+    "team": "Brisbane Lions",
+    "number": 41,
+    "imageFileName": "6831a9ec2753892f1482259c.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482259d",
+    "name": "Lester Ryan R",
+    "team": "Brisbane Lions",
+    "number": 35,
+    "imageFileName": "6831a9ec2753892f1482259d.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482259e",
+    "name": "Lloyd Luke",
+    "team": "Brisbane Lions",
+    "number": 19,
+    "imageFileName": "6831a9ec2753892f1482259e.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482259f",
+    "name": "Lohmann Kai",
+    "team": "Brisbane Lions",
+    "number": 1,
+    "imageFileName": "6831a9ec2753892f1482259f.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148225a0",
+    "name": "Marshall Sam",
+    "team": "Brisbane Lions",
+    "number": 20,
+    "imageFileName": "6831a9ec2753892f148225a0.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148225a1",
+    "name": "McCarthy Lincoln",
+    "team": "Brisbane Lions",
+    "number": 11,
+    "imageFileName": "6831a9ec2753892f148225a1.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148225a2",
+    "name": "McCluggage Hugh",
+    "team": "Brisbane Lions",
+    "number": 6,
+    "imageFileName": "6831a9ec2753892f148225a2.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148225a3",
+    "name": "McInerney Oscar",
+    "team": "Brisbane Lions",
+    "number": 46,
+    "imageFileName": "6831a9ec2753892f148225a3.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148225a4",
+    "name": "McKenna Conor R",
+    "team": "Brisbane Lions",
+    "number": 26,
+    "imageFileName": "6831a9ec2753892f148225a4.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148225a5",
+    "name": "McLachlan Will R",
+    "team": "Brisbane Lions",
+    "number": 28,
+    "imageFileName": "6831a9ec2753892f148225a5.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148225a6",
+    "name": "Morris Logan",
+    "team": "Brisbane Lions",
+    "number": 13,
+    "imageFileName": "6831a9ec2753892f148225a6.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148225a7",
+    "name": "Neale Lachie",
+    "team": "Brisbane Lions",
+    "number": 9,
+    "imageFileName": "6831a9ec2753892f148225a7.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148225a8",
+    "name": "Payne Jack",
+    "team": "Brisbane Lions",
+    "number": 40,
+    "imageFileName": "6831a9ec2753892f148225a8.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148225a9",
+    "name": "Rayner Cameron",
+    "team": "Brisbane Lions",
+    "number": 16,
+    "imageFileName": "6831a9ec2753892f148225a9.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148225aa",
+    "name": "Reville Bruce R",
+    "team": "Brisbane Lions",
+    "number": 38,
+    "imageFileName": "6831a9ec2753892f148225aa.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148225ab",
+    "name": "Robertson Deven",
+    "team": "Brisbane Lions",
+    "number": 2,
+    "imageFileName": "6831a9ec2753892f148225ab.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148225ac",
+    "name": "Ryan Brandon R",
+    "team": "Brisbane Lions",
+    "number": 24,
+    "imageFileName": "6831a9ec2753892f148225ac.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148225ad",
+    "name": "Smith Henry",
+    "team": "Brisbane Lions",
+    "number": 25,
+    "imageFileName": "6831a9ec2753892f148225ad.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148225ae",
+    "name": "Starcevich Brandon",
+    "team": "Brisbane Lions",
+    "number": 37,
+    "imageFileName": "6831a9ec2753892f148225ae.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148225af",
+    "name": "Torrent Reece",
+    "team": "Brisbane Lions",
+    "number": 36,
+    "imageFileName": "6831a9ec2753892f148225af.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148225b0",
+    "name": "Tunstill James",
+    "team": "Brisbane Lions",
+    "number": 29,
+    "imageFileName": "6831a9ec2753892f148225b0.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148225b1",
+    "name": "Wilmot Darcy",
+    "team": "Brisbane Lions",
+    "number": 44,
+    "imageFileName": "6831a9ec2753892f148225b1.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148225b2",
+    "name": "Zakostelsky Zane",
+    "team": "Brisbane Lions",
+    "number": 21,
+    "imageFileName": "6831a9ec2753892f148225b2.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148225b3",
+    "name": "Zorko Dayne",
+    "team": "Brisbane Lions",
+    "number": 15,
+    "imageFileName": "6831a9ec2753892f148225b3.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148225b5",
+    "name": "Acres Blake",
+    "team": "Carlton Blues",
+    "number": 13,
+    "imageFileName": "6831a9ec2753892f148225b5.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148225b6",
+    "name": "Binns Jaxon",
+    "team": "Carlton Blues",
+    "number": 25,
+    "imageFileName": "6831a9ec2753892f148225b6.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148225b7",
+    "name": "Boyd Jordan",
+    "team": "Carlton Blues",
+    "number": 37,
+    "imageFileName": "6831a9ec2753892f148225b7.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148225b8",
+    "name": "Camporeale Ben",
+    "team": "Carlton Blues",
+    "number": 16,
+    "imageFileName": "6831a9ec2753892f148225b8.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148225b9",
+    "name": "Camporeale Lucas",
+    "team": "Carlton Blues",
+    "number": 21,
+    "imageFileName": "6831a9ec2753892f148225b9.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148225ba",
+    "name": "Carroll Matt R",
+    "team": "Carlton Blues",
+    "number": 32,
+    "imageFileName": "6831a9ec2753892f148225ba.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148225bb",
+    "name": "Cerra Adam",
+    "team": "Carlton Blues",
+    "number": 5,
+    "imageFileName": "6831a9ec2753892f148225bb.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148225bc",
+    "name": "Charleson Harry R",
+    "team": "Carlton Blues",
+    "number": 28,
+    "imageFileName": "6831a9ec2753892f148225bc.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148225bd",
+    "name": "Cincotta Alex R",
+    "team": "Carlton Blues",
+    "number": 39,
+    "imageFileName": "6831a9ec2753892f148225bd.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148225be",
+    "name": "Cottrell Matt",
+    "team": "Carlton Blues",
+    "number": 46,
+    "imageFileName": "6831a9ec2753892f148225be.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148225bf",
+    "name": "Cowan Lachlan",
+    "team": "Carlton Blues",
+    "number": 2,
+    "imageFileName": "6831a9ec2753892f148225bf.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148225c0",
+    "name": "Cripps Patrick",
+    "team": "Carlton Blues",
+    "number": 9,
+    "imageFileName": "6831a9ec2753892f148225c0.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148225c1",
+    "name": "Curnow Charlie",
+    "team": "Carlton Blues",
+    "number": 30,
+    "imageFileName": "6831a9ec2753892f148225c1.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148225c2",
+    "name": "De Koning Tom",
+    "team": "Carlton Blues",
+    "number": 12,
+    "imageFileName": "6831a9ec2753892f148225c2.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148225c3",
+    "name": "Docherty Sam",
+    "team": "Carlton Blues",
+    "number": 15,
+    "imageFileName": "6831a9ec2753892f148225c3.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148225c4",
+    "name": "Duffy Matt R",
+    "team": "Carlton Blues",
+    "number": 41,
+    "imageFileName": "6831a9ec2753892f148225c4.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148225c5",
+    "name": "Durdin Corey",
+    "team": "Carlton Blues",
+    "number": 19,
+    "imageFileName": "6831a9ec2753892f148225c5.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148225c6",
+    "name": "Evans Francis R",
+    "team": "Carlton Blues",
+    "number": 44,
+    "imageFileName": "6831a9ec2753892f148225c6.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148225c7",
+    "name": "Fantasia Orazio",
+    "team": "Carlton Blues",
+    "number": 14,
+    "imageFileName": "6831a9ec2753892f148225c7.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148225c8",
+    "name": "Fogarty Lachlan",
+    "team": "Carlton Blues",
+    "number": 8,
+    "imageFileName": "6831a9ec2753892f148225c8.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148225c9",
+    "name": "Haynes Nick",
+    "team": "Carlton Blues",
+    "number": 26,
+    "imageFileName": "6831a9ec2753892f148225c9.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148225ca",
+    "name": "Hewett George",
+    "team": "Carlton Blues",
+    "number": 29,
+    "imageFileName": "6831a9ec2753892f148225ca.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148225cb",
+    "name": "Hollands Elijah",
+    "team": "Carlton Blues",
+    "number": 20,
+    "imageFileName": "6831a9ec2753892f148225cb.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148225cc",
+    "name": "Hollands Oliver",
+    "team": "Carlton Blues",
+    "number": 4,
+    "imageFileName": "6831a9ec2753892f148225cc.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148225cd",
+    "name": "Kemp Brodie",
+    "team": "Carlton Blues",
+    "number": 17,
+    "imageFileName": "6831a9ec2753892f148225cd.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148225ce",
+    "name": "Lemmey Harry",
+    "team": "Carlton Blues",
+    "number": 31,
+    "imageFileName": "6831a9ec2753892f148225ce.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148225cf",
+    "name": "Lord Cooper R",
+    "team": "Carlton Blues",
+    "number": 36,
+    "imageFileName": "6831a9ec2753892f148225cf.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148225d0",
+    "name": "McGovern Mitch",
+    "team": "Carlton Blues",
+    "number": 11,
+    "imageFileName": "6831a9ec2753892f148225d0.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148225d1",
+    "name": "McKay Harry",
+    "team": "Carlton Blues",
+    "number": 10,
+    "imageFileName": "6831a9ec2753892f148225d1.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148225d2",
+    "name": "Moir Ashton",
+    "team": "Carlton Blues",
+    "number": 43,
+    "imageFileName": "6831a9ec2753892f148225d2.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148225d3",
+    "name": "Monahan Rob R",
+    "team": "Carlton Blues",
+    "number": 34,
+    "imageFileName": "6831a9ec2753892f148225d3.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148225d4",
+    "name": "Motlop Jesse",
+    "team": "Carlton Blues",
+    "number": 3,
+    "imageFileName": "6831a9ec2753892f148225d4.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148225d5",
+    "name": "Newman Nic",
+    "team": "Carlton Blues",
+    "number": 24,
+    "imageFileName": "6831a9ec2753892f148225d5.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148225d6",
+    "name": "O'Farrell Harry",
+    "team": "Carlton Blues",
+    "number": 22,
+    "imageFileName": "6831a9ec2753892f148225d6.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148225d7",
+    "name": "O'Keeffe Hudson R",
+    "team": "Carlton Blues",
+    "number": 40,
+    "imageFileName": "6831a9ec2753892f148225d7.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148225d8",
+    "name": "Pittonet Marc",
+    "team": "Carlton Blues",
+    "number": 27,
+    "imageFileName": "6831a9ec2753892f148225d8.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148225d9",
+    "name": "Saad Adam",
+    "team": "Carlton Blues",
+    "number": 42,
+    "imageFileName": "6831a9ec2753892f148225d9.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148225da",
+    "name": "Silvagni Jack",
+    "team": "Carlton Blues",
+    "number": 1,
+    "imageFileName": "6831a9ec2753892f148225da.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148225db",
+    "name": "Smith Jagga",
+    "team": "Carlton Blues",
+    "number": 7,
+    "imageFileName": "6831a9ec2753892f148225db.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148225dc",
+    "name": "Walsh Sam",
+    "team": "Carlton Blues",
+    "number": 18,
+    "imageFileName": "6831a9ec2753892f148225dc.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148225dd",
+    "name": "Weitering Jacob",
+    "team": "Carlton Blues",
+    "number": 23,
+    "imageFileName": "6831a9ec2753892f148225dd.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148225de",
+    "name": "White Will R",
+    "team": "Carlton Blues",
+    "number": 38,
+    "imageFileName": "6831a9ec2753892f148225de.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148225df",
+    "name": "Williams Zachary",
+    "team": "Carlton Blues",
+    "number": 6,
+    "imageFileName": "6831a9ec2753892f148225df.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148225e0",
+    "name": "Wilson Billy",
+    "team": "Carlton Blues",
+    "number": 35,
+    "imageFileName": "6831a9ec2753892f148225e0.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148225e1",
+    "name": "Young Lewis",
+    "team": "Carlton Blues",
+    "number": 33,
+    "imageFileName": "6831a9ec2753892f148225e1.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148225e3",
+    "name": "Allan Edward",
+    "team": "Collingwood Magpies",
+    "number": 16,
+    "imageFileName": "6831a9ec2753892f148225e3.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148225e4",
+    "name": "Cameron Darcy",
+    "team": "Collingwood Magpies",
+    "number": 14,
+    "imageFileName": "6831a9ec2753892f148225e4.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148225e5",
+    "name": "Cochran Joel",
+    "team": "Collingwood Magpies",
+    "number": 27,
+    "imageFileName": "6831a9ec2753892f148225e5.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148225e6",
+    "name": "Cox Mason",
+    "team": "Collingwood Magpies",
+    "number": 46,
+    "imageFileName": "6831a9ec2753892f148225e6.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148225e7",
+    "name": "Crisp Jack",
+    "team": "Collingwood Magpies",
+    "number": 25,
+    "imageFileName": "6831a9ec2753892f148225e7.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148225e8",
+    "name": "Daicos Josh",
+    "team": "Collingwood Magpies",
+    "number": 7,
+    "imageFileName": "6831a9ec2753892f148225e8.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148225e9",
+    "name": "Daicos Nick",
+    "team": "Collingwood Magpies",
+    "number": 35,
+    "imageFileName": "6831a9ec2753892f148225e9.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148225ea",
+    "name": "De Goey Jordan",
+    "team": "Collingwood Magpies",
+    "number": 2,
+    "imageFileName": "6831a9ec2753892f148225ea.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148225eb",
+    "name": "Dean Charlie R",
+    "team": "Collingwood Magpies",
+    "number": 43,
+    "imageFileName": "6831a9ec2753892f148225eb.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148225ec",
+    "name": "Demattia Harry",
+    "team": "Collingwood Magpies",
+    "number": 13,
+    "imageFileName": "6831a9ec2753892f148225ec.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148225ed",
+    "name": "Elliott Jamie",
+    "team": "Collingwood Magpies",
+    "number": 5,
+    "imageFileName": "6831a9ec2753892f148225ed.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148225ee",
+    "name": "Frampton Billy",
+    "team": "Collingwood Magpies",
+    "number": 17,
+    "imageFileName": "6831a9ec2753892f148225ee.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148225ef",
+    "name": "Harrison Harvey",
+    "team": "Collingwood Magpies",
+    "number": 36,
+    "imageFileName": "6831a9ec2753892f148225ef.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148225f0",
+    "name": "Hayes Will",
+    "team": "Collingwood Magpies",
+    "number": 39,
+    "imageFileName": "6831a9ec2753892f148225f0.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148225f1",
+    "name": "Hill Bobby",
+    "team": "Collingwood Magpies",
+    "number": 23,
+    "imageFileName": "6831a9ec2753892f148225f1.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148225f2",
+    "name": "Hoskin-Elliott Will",
+    "team": "Collingwood Magpies",
+    "number": 32,
+    "imageFileName": "6831a9ec2753892f148225f2.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148225f3",
+    "name": "Houston Dan",
+    "team": "Collingwood Magpies",
+    "number": 9,
+    "imageFileName": "6831a9ec2753892f148225f3.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148225f4",
+    "name": "Howe Jeremy",
+    "team": "Collingwood Magpies",
+    "number": 38,
+    "imageFileName": "6831a9ec2753892f148225f4.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148225f5",
+    "name": "Jiath Tew",
+    "team": "Collingwood Magpies",
+    "number": 19,
+    "imageFileName": "6831a9ec2753892f148225f5.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148225f6",
+    "name": "Johnson Ash R",
+    "team": "Collingwood Magpies",
+    "number": 40,
+    "imageFileName": "6831a9ec2753892f148225f6.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148225f7",
+    "name": "Lipinski Patrick",
+    "team": "Collingwood Magpies",
+    "number": 1,
+    "imageFileName": "6831a9ec2753892f148225f7.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148225f8",
+    "name": "Long Ned R",
+    "team": "Collingwood Magpies",
+    "number": 44,
+    "imageFileName": "6831a9ec2753892f148225f8.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148225f9",
+    "name": "Macrae Finlay",
+    "team": "Collingwood Magpies",
+    "number": 18,
+    "imageFileName": "6831a9ec2753892f148225f9.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148225fa",
+    "name": "Markov Oleg R",
+    "team": "Collingwood Magpies",
+    "number": 37,
+    "imageFileName": "6831a9ec2753892f148225fa.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148225fb",
+    "name": "Maynard Brayden",
+    "team": "Collingwood Magpies",
+    "number": 4,
+    "imageFileName": "6831a9ec2753892f148225fb.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148225fc",
+    "name": "McCreery Beau",
+    "team": "Collingwood Magpies",
+    "number": 31,
+    "imageFileName": "6831a9ec2753892f148225fc.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148225fd",
+    "name": "McInnes Reef",
+    "team": "Collingwood Magpies",
+    "number": 26,
+    "imageFileName": "6831a9ec2753892f148225fd.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148225fe",
+    "name": "McStay Daniel",
+    "team": "Collingwood Magpies",
+    "number": 11,
+    "imageFileName": "6831a9ec2753892f148225fe.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148225ff",
+    "name": "Membrey Tim",
+    "team": "Collingwood Magpies",
+    "number": 28,
+    "imageFileName": "6831a9ec2753892f148225ff.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822600",
+    "name": "Mihocek Brody",
+    "team": "Collingwood Magpies",
+    "number": 41,
+    "imageFileName": "6831a9ec2753892f14822600.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822601",
+    "name": "Mitchell Tom",
+    "team": "Collingwood Magpies",
+    "number": 6,
+    "imageFileName": "6831a9ec2753892f14822601.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822602",
+    "name": "Moore Darcy",
+    "team": "Collingwood Magpies",
+    "number": 30,
+    "imageFileName": "6831a9ec2753892f14822602.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822603",
+    "name": "Parker Wil R",
+    "team": "Collingwood Magpies",
+    "number": 15,
+    "imageFileName": "6831a9ec2753892f14822603.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822604",
+    "name": "Pendlebury Scott",
+    "team": "Collingwood Magpies",
+    "number": 10,
+    "imageFileName": "6831a9ec2753892f14822604.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822605",
+    "name": "Perryman Harry",
+    "team": "Collingwood Magpies",
+    "number": 12,
+    "imageFileName": "6831a9ec2753892f14822605.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822606",
+    "name": "Quaynor Isaac",
+    "team": "Collingwood Magpies",
+    "number": 3,
+    "imageFileName": "6831a9ec2753892f14822606.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822607",
+    "name": "Ryan Jakob",
+    "team": "Collingwood Magpies",
+    "number": 24,
+    "imageFileName": "6831a9ec2753892f14822607.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822608",
+    "name": "Schultz Lachlan",
+    "team": "Collingwood Magpies",
+    "number": 8,
+    "imageFileName": "6831a9ec2753892f14822608.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822609",
+    "name": "Sidebottom Steele",
+    "team": "Collingwood Magpies",
+    "number": 22,
+    "imageFileName": "6831a9ec2753892f14822609.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482260a",
+    "name": "Smit Iliro R",
+    "team": "Collingwood Magpies",
+    "number": 20,
+    "imageFileName": "6831a9ec2753892f1482260a.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482260b",
+    "name": "Steene Oscar",
+    "team": "Collingwood Magpies",
+    "number": 21,
+    "imageFileName": "6831a9ec2753892f1482260b.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482260c",
+    "name": "Sullivan Lachie R",
+    "team": "Collingwood Magpies",
+    "number": 33,
+    "imageFileName": "6831a9ec2753892f1482260c.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482260d",
+    "name": "West Charlie",
+    "team": "Collingwood Magpies",
+    "number": 29,
+    "imageFileName": "6831a9ec2753892f1482260d.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482260f",
+    "name": "Bryan Nick",
+    "team": "Essendon Bombers",
+    "number": 24,
+    "imageFileName": "6831a9ec2753892f1482260f.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822610",
+    "name": "Caddy Nate",
+    "team": "Essendon Bombers",
+    "number": 30,
+    "imageFileName": "6831a9ec2753892f14822610.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822611",
+    "name": "Caldwell Jye",
+    "team": "Essendon Bombers",
+    "number": 6,
+    "imageFileName": "6831a9ec2753892f14822611.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822612",
+    "name": "Clarke Angus",
+    "team": "Essendon Bombers",
+    "number": 36,
+    "imageFileName": "6831a9ec2753892f14822612.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822613",
+    "name": "Cox Nikolas",
+    "team": "Essendon Bombers",
+    "number": 13,
+    "imageFileName": "6831a9ec2753892f14822613.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822614",
+    "name": "Davey Alwyn",
+    "team": "Essendon Bombers",
+    "number": 33,
+    "imageFileName": "6831a9ec2753892f14822614.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822615",
+    "name": "Day-Wicks Archer R",
+    "team": "Essendon Bombers",
+    "number": 44,
+    "imageFileName": "6831a9ec2753892f14822615.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822616",
+    "name": "Draper Sam",
+    "team": "Essendon Bombers",
+    "number": 2,
+    "imageFileName": "6831a9ec2753892f14822616.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822617",
+    "name": "Durham Sam",
+    "team": "Essendon Bombers",
+    "number": 22,
+    "imageFileName": "6831a9ec2753892f14822617.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822618",
+    "name": "Duursma Xavier",
+    "team": "Essendon Bombers",
+    "number": 28,
+    "imageFileName": "6831a9ec2753892f14822618.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822619",
+    "name": "Edwards Tom R",
+    "team": "Essendon Bombers",
+    "number": 45,
+    "imageFileName": "6831a9ec2753892f14822619.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482261a",
+    "name": "El-Hawli Saad R",
+    "team": "Essendon Bombers",
+    "number": 41,
+    "imageFileName": "6831a9ec2753892f1482261a.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482261b",
+    "name": "Gerreyn Kayle",
+    "team": "Essendon Bombers",
+    "number": 19,
+    "imageFileName": "6831a9ec2753892f1482261b.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482261c",
+    "name": "Goldstein Todd",
+    "team": "Essendon Bombers",
+    "number": 17,
+    "imageFileName": "6831a9ec2753892f1482261c.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482261d",
+    "name": "Gresham Jade",
+    "team": "Essendon Bombers",
+    "number": 11,
+    "imageFileName": "6831a9ec2753892f1482261d.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482261e",
+    "name": "Guelfi Matt",
+    "team": "Essendon Bombers",
+    "number": 35,
+    "imageFileName": "6831a9ec2753892f1482261e.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482261f",
+    "name": "Hayes Lewis",
+    "team": "Essendon Bombers",
+    "number": 18,
+    "imageFileName": "6831a9ec2753892f1482261f.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822620",
+    "name": "Hobbs Ben",
+    "team": "Essendon Bombers",
+    "number": 8,
+    "imageFileName": "6831a9ec2753892f14822620.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822621",
+    "name": "Johnson Zak",
+    "team": "Essendon Bombers",
+    "number": 40,
+    "imageFileName": "6831a9ec2753892f14822621.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822622",
+    "name": "Jones Harrison",
+    "team": "Essendon Bombers",
+    "number": 23,
+    "imageFileName": "6831a9ec2753892f14822622.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822623",
+    "name": "Kako Isaac",
+    "team": "Essendon Bombers",
+    "number": 10,
+    "imageFileName": "6831a9ec2753892f14822623.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822624",
+    "name": "Langford Kyle",
+    "team": "Essendon Bombers",
+    "number": 4,
+    "imageFileName": "6831a9ec2753892f14822624.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822625",
+    "name": "Laverde Jayden",
+    "team": "Essendon Bombers",
+    "number": 15,
+    "imageFileName": "6831a9ec2753892f14822625.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822626",
+    "name": "Lual Luamon",
+    "team": "Essendon Bombers",
+    "number": 34,
+    "imageFileName": "6831a9ec2753892f14822626.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822627",
+    "name": "Martin Nicholas",
+    "team": "Essendon Bombers",
+    "number": 37,
+    "imageFileName": "6831a9ec2753892f14822627.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822628",
+    "name": "McGrath Andrew",
+    "team": "Essendon Bombers",
+    "number": 1,
+    "imageFileName": "6831a9ec2753892f14822628.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822629",
+    "name": "McKay Ben",
+    "team": "Essendon Bombers",
+    "number": 32,
+    "imageFileName": "6831a9ec2753892f14822629.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482262a",
+    "name": "Menzie Jye R",
+    "team": "Essendon Bombers",
+    "number": 29,
+    "imageFileName": "6831a9ec2753892f1482262a.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482262b",
+    "name": "Merrett Zachary",
+    "team": "Essendon Bombers",
+    "number": 7,
+    "imageFileName": "6831a9ec2753892f1482262b.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482262c",
+    "name": "Nguyen Jayden R",
+    "team": "Essendon Bombers",
+    "number": 42,
+    "imageFileName": "6831a9ec2753892f1482262c.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482262d",
+    "name": "Parish Darcy",
+    "team": "Essendon Bombers",
+    "number": 3,
+    "imageFileName": "6831a9ec2753892f1482262d.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482262e",
+    "name": "Perkins Archie",
+    "team": "Essendon Bombers",
+    "number": 16,
+    "imageFileName": "6831a9ec2753892f1482262e.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482262f",
+    "name": "Prior Jaxon R",
+    "team": "Essendon Bombers",
+    "number": 25,
+    "imageFileName": "6831a9ec2753892f1482262f.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822630",
+    "name": "Redman Mason",
+    "team": "Essendon Bombers",
+    "number": 27,
+    "imageFileName": "6831a9ec2753892f14822630.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822631",
+    "name": "Reid Zach",
+    "team": "Essendon Bombers",
+    "number": 31,
+    "imageFileName": "6831a9ec2753892f14822631.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822632",
+    "name": "Ridley Jordan",
+    "team": "Essendon Bombers",
+    "number": 14,
+    "imageFileName": "6831a9ec2753892f14822632.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822633",
+    "name": "Roberts Archie",
+    "team": "Essendon Bombers",
+    "number": 21,
+    "imageFileName": "6831a9ec2753892f14822633.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822634",
+    "name": "Setterfield Will",
+    "team": "Essendon Bombers",
+    "number": 12,
+    "imageFileName": "6831a9ec2753892f14822634.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822635",
+    "name": "Shiel Dylan",
+    "team": "Essendon Bombers",
+    "number": 9,
+    "imageFileName": "6831a9ec2753892f14822635.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822636",
+    "name": "Tsatas Elijah",
+    "team": "Essendon Bombers",
+    "number": 5,
+    "imageFileName": "6831a9ec2753892f14822636.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822637",
+    "name": "Unwin Rhys",
+    "team": "Essendon Bombers",
+    "number": 38,
+    "imageFileName": "6831a9ec2753892f14822637.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822638",
+    "name": "Visentini Vigo R",
+    "team": "Essendon Bombers",
+    "number": 39,
+    "imageFileName": "6831a9ec2753892f14822638.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822639",
+    "name": "Wright Peter",
+    "team": "Essendon Bombers",
+    "number": 20,
+    "imageFileName": "6831a9ec2753892f14822639.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482263b",
+    "name": "Aish James",
+    "team": "Fremantle Dockers",
+    "number": 11,
+    "imageFileName": "6831a9ec2753892f1482263b.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482263c",
+    "name": "Amiss Jye",
+    "team": "Fremantle Dockers",
+    "number": 24,
+    "imageFileName": "6831a9ec2753892f1482263c.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482263d",
+    "name": "Banfield Bailey",
+    "team": "Fremantle Dockers",
+    "number": 41,
+    "imageFileName": "6831a9ec2753892f1482263d.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482263e",
+    "name": "Bolton Shai",
+    "team": "Fremantle Dockers",
+    "number": 15,
+    "imageFileName": "6831a9ec2753892f1482263e.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482263f",
+    "name": "Brayshaw Andrew",
+    "team": "Fremantle Dockers",
+    "number": 8,
+    "imageFileName": "6831a9ec2753892f1482263f.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822640",
+    "name": "Brodie Will",
+    "team": "Fremantle Dockers",
+    "number": 17,
+    "imageFileName": "6831a9ec2753892f14822640.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822641",
+    "name": "Carr Jaren",
+    "team": "Fremantle Dockers",
+    "number": 38,
+    "imageFileName": "6831a9ec2753892f14822641.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822642",
+    "name": "Chapman Heath",
+    "team": "Fremantle Dockers",
+    "number": 5,
+    "imageFileName": "6831a9ec2753892f14822642.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822643",
+    "name": "Clark Jordan",
+    "team": "Fremantle Dockers",
+    "number": 6,
+    "imageFileName": "6831a9ec2753892f14822643.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822644",
+    "name": "Cox Brennan",
+    "team": "Fremantle Dockers",
+    "number": 36,
+    "imageFileName": "6831a9ec2753892f14822644.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822645",
+    "name": "Darcy Sean",
+    "team": "Fremantle Dockers",
+    "number": 4,
+    "imageFileName": "6831a9ec2753892f14822645.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822646",
+    "name": "Davies Hugh",
+    "team": "Fremantle Dockers",
+    "number": 12,
+    "imageFileName": "6831a9ec2753892f14822646.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822647",
+    "name": "Delean Jack",
+    "team": "Fremantle Dockers",
+    "number": 40,
+    "imageFileName": "6831a9ec2753892f14822647.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822648",
+    "name": "Draper Josh R",
+    "team": "Fremantle Dockers",
+    "number": 37,
+    "imageFileName": "6831a9ec2753892f14822648.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822649",
+    "name": "Dudley Isaiah R",
+    "team": "Fremantle Dockers",
+    "number": 43,
+    "imageFileName": "6831a9ec2753892f14822649.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482264a",
+    "name": "Erasmus Neil",
+    "team": "Fremantle Dockers",
+    "number": 28,
+    "imageFileName": "6831a9ec2753892f1482264a.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482264b",
+    "name": "Frederick Michael",
+    "team": "Fremantle Dockers",
+    "number": 32,
+    "imageFileName": "6831a9ec2753892f1482264b.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482264c",
+    "name": "Fyfe Nathan",
+    "team": "Fremantle Dockers",
+    "number": 7,
+    "imageFileName": "6831a9ec2753892f1482264c.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482264d",
+    "name": "Jackson Luke",
+    "team": "Fremantle Dockers",
+    "number": 9,
+    "imageFileName": "6831a9ec2753892f1482264d.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482264e",
+    "name": "Johnson Matt",
+    "team": "Fremantle Dockers",
+    "number": 44,
+    "imageFileName": "6831a9ec2753892f1482264e.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482264f",
+    "name": "Jones Odin R",
+    "team": "Fremantle Dockers",
+    "number": 27,
+    "imageFileName": "6831a9ec2753892f1482264f.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822650",
+    "name": "McDonald Oscar R",
+    "team": "Fremantle Dockers",
+    "number": 21,
+    "imageFileName": "6831a9ec2753892f14822650.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822651",
+    "name": "Murphy Ollie",
+    "team": "Fremantle Dockers",
+    "number": 33,
+    "imageFileName": "6831a9ec2753892f14822651.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822652",
+    "name": "Narkle Quinton R",
+    "team": "Fremantle Dockers",
+    "number": 19,
+    "imageFileName": "6831a9ec2753892f14822652.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822653",
+    "name": "Nicholls Charlie",
+    "team": "Fremantle Dockers",
+    "number": 22,
+    "imageFileName": "6831a9ec2753892f14822653.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822654",
+    "name": "O'Driscoll Nathan",
+    "team": "Fremantle Dockers",
+    "number": 30,
+    "imageFileName": "6831a9ec2753892f14822654.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822655",
+    "name": "O'Meara Jaeger",
+    "team": "Fremantle Dockers",
+    "number": 2,
+    "imageFileName": "6831a9ec2753892f14822655.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822656",
+    "name": "Pearce Alex",
+    "team": "Fremantle Dockers",
+    "number": 25,
+    "imageFileName": "6831a9ec2753892f14822656.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822657",
+    "name": "Reid Murphy",
+    "team": "Fremantle Dockers",
+    "number": 16,
+    "imageFileName": "6831a9ec2753892f14822657.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822658",
+    "name": "Reidy Liam R",
+    "team": "Fremantle Dockers",
+    "number": 18,
+    "imageFileName": "6831a9ec2753892f14822658.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822659",
+    "name": "Riddle Aiden R",
+    "team": "Fremantle Dockers",
+    "number": 42,
+    "imageFileName": "6831a9ec2753892f14822659.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482265a",
+    "name": "Ryan Luke",
+    "team": "Fremantle Dockers",
+    "number": 13,
+    "imageFileName": "6831a9ec2753892f1482265a.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482265b",
+    "name": "Serong Caleb",
+    "team": "Fremantle Dockers",
+    "number": 3,
+    "imageFileName": "6831a9ec2753892f1482265b.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482265c",
+    "name": "Sharp Jeremy R",
+    "team": "Fremantle Dockers",
+    "number": 14,
+    "imageFileName": "6831a9ec2753892f1482265c.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482265d",
+    "name": "Simpson Cooper",
+    "team": "Fremantle Dockers",
+    "number": 29,
+    "imageFileName": "6831a9ec2753892f1482265d.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482265e",
+    "name": "Sturt Sam",
+    "team": "Fremantle Dockers",
+    "number": 1,
+    "imageFileName": "6831a9ec2753892f1482265e.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482265f",
+    "name": "Switkowski Sam",
+    "team": "Fremantle Dockers",
+    "number": 39,
+    "imageFileName": "6831a9ec2753892f1482265f.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822660",
+    "name": "Treacy Josh",
+    "team": "Fremantle Dockers",
+    "number": 35,
+    "imageFileName": "6831a9ec2753892f14822660.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822661",
+    "name": "Voss Patrick R",
+    "team": "Fremantle Dockers",
+    "number": 20,
+    "imageFileName": "6831a9ec2753892f14822661.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822662",
+    "name": "Wagner Corey",
+    "team": "Fremantle Dockers",
+    "number": 34,
+    "imageFileName": "6831a9ec2753892f14822662.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822663",
+    "name": "Walker Brandon",
+    "team": "Fremantle Dockers",
+    "number": 31,
+    "imageFileName": "6831a9ec2753892f14822663.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822664",
+    "name": "Walters Michael",
+    "team": "Fremantle Dockers",
+    "number": 10,
+    "imageFileName": "6831a9ec2753892f14822664.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822665",
+    "name": "Worner Karl R",
+    "team": "Fremantle Dockers",
+    "number": 23,
+    "imageFileName": "6831a9ec2753892f14822665.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822666",
+    "name": "Young Hayden",
+    "team": "Fremantle Dockers",
+    "number": 26,
+    "imageFileName": "6831a9ec2753892f14822666.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822668",
+    "name": "Atkins Tom R",
+    "team": "Geelong Cats",
+    "number": 30,
+    "imageFileName": "6831a9ec2753892f14822668.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822669",
+    "name": "Bews Jed",
+    "team": "Geelong Cats",
+    "number": 24,
+    "imageFileName": "6831a9ec2753892f14822669.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482266a",
+    "name": "Blicavs Mark",
+    "team": "Geelong Cats",
+    "number": 46,
+    "imageFileName": "6831a9ec2753892f1482266a.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482266b",
+    "name": "Bowes Jack",
+    "team": "Geelong Cats",
+    "number": 12,
+    "imageFileName": "6831a9ec2753892f1482266b.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482266c",
+    "name": "Bruhn Tanner",
+    "team": "Geelong Cats",
+    "number": 4,
+    "imageFileName": "6831a9ec2753892f1482266c.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482266d",
+    "name": "Burke Cillian R",
+    "team": "Geelong Cats",
+    "number": 41,
+    "imageFileName": "6831a9ec2753892f1482266d.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482266e",
+    "name": "Cameron Jeremy",
+    "team": "Geelong Cats",
+    "number": 5,
+    "imageFileName": "6831a9ec2753892f1482266e.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482266f",
+    "name": "Clark Jhye",
+    "team": "Geelong Cats",
+    "number": 13,
+    "imageFileName": "6831a9ec2753892f1482266f.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822670",
+    "name": "Clohesy Ted R",
+    "team": "Geelong Cats",
+    "number": 40,
+    "imageFileName": "6831a9ec2753892f14822670.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822671",
+    "name": "Close Bradley R",
+    "team": "Geelong Cats",
+    "number": 45,
+    "imageFileName": "6831a9ec2753892f14822671.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822672",
+    "name": "Conway Toby",
+    "team": "Geelong Cats",
+    "number": 6,
+    "imageFileName": "6831a9ec2753892f14822672.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822673",
+    "name": "Dangerfield Patrick",
+    "team": "Geelong Cats",
+    "number": 35,
+    "imageFileName": "6831a9ec2753892f14822673.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822674",
+    "name": "De Koning Sam",
+    "team": "Geelong Cats",
+    "number": 16,
+    "imageFileName": "6831a9ec2753892f14822674.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822675",
+    "name": "Dempsey Ollie R",
+    "team": "Geelong Cats",
+    "number": 28,
+    "imageFileName": "6831a9ec2753892f14822675.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822676",
+    "name": "Duncan Mitchell",
+    "team": "Geelong Cats",
+    "number": 22,
+    "imageFileName": "6831a9ec2753892f14822676.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822677",
+    "name": "Edwards Mitchell",
+    "team": "Geelong Cats",
+    "number": 11,
+    "imageFileName": "6831a9ec2753892f14822677.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822678",
+    "name": "Guthrie Cameron",
+    "team": "Geelong Cats",
+    "number": 29,
+    "imageFileName": "6831a9ec2753892f14822678.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822679",
+    "name": "Guthrie Zach",
+    "team": "Geelong Cats",
+    "number": 39,
+    "imageFileName": "6831a9ec2753892f14822679.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482267a",
+    "name": "Henry Jack",
+    "team": "Geelong Cats",
+    "number": 38,
+    "imageFileName": "6831a9ec2753892f1482267a.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482267b",
+    "name": "Henry Oliver",
+    "team": "Geelong Cats",
+    "number": 36,
+    "imageFileName": "6831a9ec2753892f1482267b.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482267c",
+    "name": "Hoffman Lennox",
+    "team": "Geelong Cats",
+    "number": 23,
+    "imageFileName": "6831a9ec2753892f1482267c.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482267d",
+    "name": "Holmes Max",
+    "team": "Geelong Cats",
+    "number": 9,
+    "imageFileName": "6831a9ec2753892f1482267d.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482267e",
+    "name": "Humphries Lawson",
+    "team": "Geelong Cats",
+    "number": 17,
+    "imageFileName": "6831a9ec2753892f1482267e.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482267f",
+    "name": "Ivisic Xavier R",
+    "team": "Geelong Cats",
+    "number": 25,
+    "imageFileName": "6831a9ec2753892f1482267f.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822680",
+    "name": "Knevitt Mitchell",
+    "team": "Geelong Cats",
+    "number": 10,
+    "imageFileName": "6831a9ec2753892f14822680.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822681",
+    "name": "Kolodjashnij Jake",
+    "team": "Geelong Cats",
+    "number": 8,
+    "imageFileName": "6831a9ec2753892f14822681.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822682",
+    "name": "Mannagh Shaun",
+    "team": "Geelong Cats",
+    "number": 7,
+    "imageFileName": "6831a9ec2753892f14822682.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822683",
+    "name": "Martin Jack",
+    "team": "Geelong Cats",
+    "number": 19,
+    "imageFileName": "6831a9ec2753892f14822683.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822684",
+    "name": "Matofai-Forbes Keighton",
+    "team": "Geelong Cats",
+    "number": 31,
+    "imageFileName": "6831a9ec2753892f14822684.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822685",
+    "name": "Miers Gryan",
+    "team": "Geelong Cats",
+    "number": 32,
+    "imageFileName": "6831a9ec2753892f14822685.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822686",
+    "name": "Molier Jacob",
+    "team": "Geelong Cats",
+    "number": 20,
+    "imageFileName": "6831a9ec2753892f14822686.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822687",
+    "name": "Mullin Oisin R",
+    "team": "Geelong Cats",
+    "number": 34,
+    "imageFileName": "6831a9ec2753892f14822687.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822688",
+    "name": "Neale Shannon",
+    "team": "Geelong Cats",
+    "number": 33,
+    "imageFileName": "6831a9ec2753892f14822688.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822689",
+    "name": "O'Connor Mark",
+    "team": "Geelong Cats",
+    "number": 42,
+    "imageFileName": "6831a9ec2753892f14822689.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482268a",
+    "name": "O'Sullivan Connor",
+    "team": "Geelong Cats",
+    "number": 14,
+    "imageFileName": "6831a9ec2753892f1482268a.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482268b",
+    "name": "Pike Joe R",
+    "team": "Geelong Cats",
+    "number": 37,
+    "imageFileName": "6831a9ec2753892f1482268b.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482268c",
+    "name": "Polkinghorne Jay",
+    "team": "Geelong Cats",
+    "number": 2,
+    "imageFileName": "6831a9ec2753892f1482268c.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482268d",
+    "name": "Retschko Patrick R",
+    "team": "Geelong Cats",
+    "number": 27,
+    "imageFileName": "6831a9ec2753892f1482268d.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482268e",
+    "name": "Smith Bailey",
+    "team": "Geelong Cats",
+    "number": 3,
+    "imageFileName": "6831a9ec2753892f1482268e.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482268f",
+    "name": "Stanley Rhys",
+    "team": "Geelong Cats",
+    "number": 1,
+    "imageFileName": "6831a9ec2753892f1482268f.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822690",
+    "name": "Stengle Tyson",
+    "team": "Geelong Cats",
+    "number": 18,
+    "imageFileName": "6831a9ec2753892f14822690.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822691",
+    "name": "Stevens George",
+    "team": "Geelong Cats",
+    "number": 15,
+    "imageFileName": "6831a9ec2753892f14822691.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822692",
+    "name": "Stewart Thomas",
+    "team": "Geelong Cats",
+    "number": 44,
+    "imageFileName": "6831a9ec2753892f14822692.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822693",
+    "name": "Wiltshire Oliver",
+    "team": "Geelong Cats",
+    "number": 21,
+    "imageFileName": "6831a9ec2753892f14822693.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822695",
+    "name": "Ainsworth Ben",
+    "team": "Gold Coast Suns",
+    "number": 9,
+    "imageFileName": "6831a9ec2753892f14822695.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822696",
+    "name": "Anderson Noah",
+    "team": "Gold Coast Suns",
+    "number": 15,
+    "imageFileName": "6831a9ec2753892f14822696.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822697",
+    "name": "Andrew Mac",
+    "team": "Gold Coast Suns",
+    "number": 1,
+    "imageFileName": "6831a9ec2753892f14822697.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822698",
+    "name": "Ballard Charlie",
+    "team": "Gold Coast Suns",
+    "number": 10,
+    "imageFileName": "6831a9ec2753892f14822698.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822699",
+    "name": "Bell Cooper",
+    "team": "Gold Coast Suns",
+    "number": 31,
+    "imageFileName": "6831a9ec2753892f14822699.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482269a",
+    "name": "Berry Thomas",
+    "team": "Gold Coast Suns",
+    "number": 16,
+    "imageFileName": "6831a9ec2753892f1482269a.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482269b",
+    "name": "Budarick Connor",
+    "team": "Gold Coast Suns",
+    "number": 35,
+    "imageFileName": "6831a9ec2753892f1482269b.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482269c",
+    "name": "Clohesy Sam R",
+    "team": "Gold Coast Suns",
+    "number": 33,
+    "imageFileName": "6831a9ec2753892f1482269c.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482269d",
+    "name": "Collins Samuel",
+    "team": "Gold Coast Suns",
+    "number": 25,
+    "imageFileName": "6831a9ec2753892f1482269d.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482269e",
+    "name": "Davies Alex",
+    "team": "Gold Coast Suns",
+    "number": 5,
+    "imageFileName": "6831a9ec2753892f1482269e.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482269f",
+    "name": "Eastham Asher R",
+    "team": "Gold Coast Suns",
+    "number": 42,
+    "imageFileName": "6831a9ec2753892f1482269f.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148226a0",
+    "name": "Evans Zak R",
+    "team": "Gold Coast Suns",
+    "number": 36,
+    "imageFileName": "6831a9ec2753892f148226a0.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148226a1",
+    "name": "Farrar Jy",
+    "team": "Gold Coast Suns",
+    "number": 50,
+    "imageFileName": "6831a9ec2753892f148226a1.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148226a2",
+    "name": "Fiorini Brayden",
+    "team": "Gold Coast Suns",
+    "number": 8,
+    "imageFileName": "6831a9ec2753892f148226a2.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148226a3",
+    "name": "Flanders Sam",
+    "team": "Gold Coast Suns",
+    "number": 3,
+    "imageFileName": "6831a9ec2753892f148226a3.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148226a4",
+    "name": "Graham Caleb",
+    "team": "Gold Coast Suns",
+    "number": 46,
+    "imageFileName": "6831a9ec2753892f148226a4.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148226a5",
+    "name": "Graham Will",
+    "team": "Gold Coast Suns",
+    "number": 26,
+    "imageFileName": "6831a9ec2753892f148226a5.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148226a6",
+    "name": "Gulbin Lachlan R",
+    "team": "Gold Coast Suns",
+    "number": 39,
+    "imageFileName": "6831a9ec2753892f148226a6.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148226a7",
+    "name": "Himmelberg Elliott",
+    "team": "Gold Coast Suns",
+    "number": 12,
+    "imageFileName": "6831a9ec2753892f148226a7.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148226a8",
+    "name": "Holman Nicholas",
+    "team": "Gold Coast Suns",
+    "number": 7,
+    "imageFileName": "6831a9ec2753892f148226a8.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148226a9",
+    "name": "Humphrey Bailey",
+    "team": "Gold Coast Suns",
+    "number": 19,
+    "imageFileName": "6831a9ec2753892f148226a9.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148226aa",
+    "name": "Jeffrey Joel",
+    "team": "Gold Coast Suns",
+    "number": 40,
+    "imageFileName": "6831a9ec2753892f148226aa.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148226ab",
+    "name": "Jepson Ben R",
+    "team": "Gold Coast Suns",
+    "number": 44,
+    "imageFileName": "6831a9ec2753892f148226ab.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148226ac",
+    "name": "Johnston Lloyd R",
+    "team": "Gold Coast Suns",
+    "number": 38,
+    "imageFileName": "6831a9ec2753892f148226ac.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148226ad",
+    "name": "King Ben",
+    "team": "Gold Coast Suns",
+    "number": 34,
+    "imageFileName": "6831a9ec2753892f148226ad.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148226ae",
+    "name": "Knobel Max R",
+    "team": "Gold Coast Suns",
+    "number": 37,
+    "imageFileName": "6831a9ec2753892f148226ae.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148226af",
+    "name": "Lemmens Sean",
+    "team": "Gold Coast Suns",
+    "number": 23,
+    "imageFileName": "6831a9ec2753892f148226af.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148226b0",
+    "name": "Lombard Leo",
+    "team": "Gold Coast Suns",
+    "number": 30,
+    "imageFileName": "6831a9ec2753892f148226b0.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148226b1",
+    "name": "Long Ben",
+    "team": "Gold Coast Suns",
+    "number": 22,
+    "imageFileName": "6831a9ec2753892f148226b1.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148226b2",
+    "name": "Miller Touk",
+    "team": "Gold Coast Suns",
+    "number": 11,
+    "imageFileName": "6831a9ec2753892f148226b2.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148226b3",
+    "name": "Moyle Ned",
+    "team": "Gold Coast Suns",
+    "number": 21,
+    "imageFileName": "6831a9ec2753892f148226b3.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148226b4",
+    "name": "Noble John R",
+    "team": "Gold Coast Suns",
+    "number": 2,
+    "imageFileName": "6831a9ec2753892f148226b4.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148226b5",
+    "name": "Powell Wil",
+    "team": "Gold Coast Suns",
+    "number": 27,
+    "imageFileName": "6831a9ec2753892f148226b5.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148226b6",
+    "name": "Read Ethan",
+    "team": "Gold Coast Suns",
+    "number": 20,
+    "imageFileName": "6831a9ec2753892f148226b6.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148226b7",
+    "name": "Rioli Daniel",
+    "team": "Gold Coast Suns",
+    "number": 17,
+    "imageFileName": "6831a9ec2753892f148226b7.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148226b8",
+    "name": "Rogers Jake",
+    "team": "Gold Coast Suns",
+    "number": 29,
+    "imageFileName": "6831a9ec2753892f148226b8.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148226b9",
+    "name": "Rosas Malcolm R",
+    "team": "Gold Coast Suns",
+    "number": 41,
+    "imageFileName": "6831a9ec2753892f148226b9.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148226ba",
+    "name": "Rowell Matt",
+    "team": "Gold Coast Suns",
+    "number": 18,
+    "imageFileName": "6831a9ec2753892f148226ba.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148226bb",
+    "name": "Sexton Alex",
+    "team": "Gold Coast Suns",
+    "number": 6,
+    "imageFileName": "6831a9ec2753892f148226bb.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148226bc",
+    "name": "Swallow David",
+    "team": "Gold Coast Suns",
+    "number": 24,
+    "imageFileName": "6831a9ec2753892f148226bc.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148226bd",
+    "name": "Uwland Bodhi R",
+    "team": "Gold Coast Suns",
+    "number": 32,
+    "imageFileName": "6831a9ec2753892f148226bd.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148226be",
+    "name": "Walter Jed",
+    "team": "Gold Coast Suns",
+    "number": 4,
+    "imageFileName": "6831a9ec2753892f148226be.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148226bf",
+    "name": "Weller Lachlan",
+    "team": "Gold Coast Suns",
+    "number": 14,
+    "imageFileName": "6831a9ec2753892f148226bf.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148226c0",
+    "name": "Witts Jarrod",
+    "team": "Gold Coast Suns",
+    "number": 28,
+    "imageFileName": "6831a9ec2753892f148226c0.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148226c2",
+    "name": "Aleer Leek",
+    "team": "GWS Giants",
+    "number": 21,
+    "imageFileName": "6831a9ec2753892f148226c2.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148226c3",
+    "name": "Angove Cody",
+    "team": "GWS Giants",
+    "number": 29,
+    "imageFileName": "6831a9ec2753892f148226c3.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148226c4",
+    "name": "Angwin Ryan",
+    "team": "GWS Giants",
+    "number": 9,
+    "imageFileName": "6831a9ec2753892f148226c4.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148226c5",
+    "name": "Ash Lachlan",
+    "team": "GWS Giants",
+    "number": 7,
+    "imageFileName": "6831a9ec2753892f148226c5.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148226c6",
+    "name": "Bedford Toby",
+    "team": "GWS Giants",
+    "number": 14,
+    "imageFileName": "6831a9ec2753892f148226c6.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148226c7",
+    "name": "Briggs Kieren",
+    "team": "GWS Giants",
+    "number": 32,
+    "imageFileName": "6831a9ec2753892f148226c7.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148226c8",
+    "name": "Brown Callum R",
+    "team": "GWS Giants",
+    "number": 46,
+    "imageFileName": "6831a9ec2753892f148226c8.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148226c9",
+    "name": "Buckley Jack",
+    "team": "GWS Giants",
+    "number": 44,
+    "imageFileName": "6831a9ec2753892f148226c9.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148226ca",
+    "name": "Cadman Aaron",
+    "team": "GWS Giants",
+    "number": 5,
+    "imageFileName": "6831a9ec2753892f148226ca.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148226cb",
+    "name": "Callaghan Finn",
+    "team": "GWS Giants",
+    "number": 17,
+    "imageFileName": "6831a9ec2753892f148226cb.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148226cc",
+    "name": "Coniglio Stephen",
+    "team": "GWS Giants",
+    "number": 3,
+    "imageFileName": "6831a9ec2753892f148226cc.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148226cd",
+    "name": "Daniels Brent",
+    "team": "GWS Giants",
+    "number": 16,
+    "imageFileName": "6831a9ec2753892f148226cd.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148226ce",
+    "name": "Delana Josaia R",
+    "team": "GWS Giants",
+    "number": 38,
+    "imageFileName": "6831a9ec2753892f148226ce.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148226cf",
+    "name": "Derksen Wade R",
+    "team": "GWS Giants",
+    "number": 45,
+    "imageFileName": "6831a9ec2753892f148226cf.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148226d0",
+    "name": "Fahey Josh R",
+    "team": "GWS Giants",
+    "number": 34,
+    "imageFileName": "6831a9ec2753892f148226d0.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148226d1",
+    "name": "Fonti Joseph",
+    "team": "GWS Giants",
+    "number": 37,
+    "imageFileName": "6831a9ec2753892f148226d1.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148226d2",
+    "name": "Gothard Phoenix",
+    "team": "GWS Giants",
+    "number": 11,
+    "imageFileName": "6831a9ec2753892f148226d2.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148226d3",
+    "name": "Green Tom",
+    "team": "GWS Giants",
+    "number": 12,
+    "imageFileName": "6831a9ec2753892f148226d3.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148226d4",
+    "name": "Greene Toby",
+    "team": "GWS Giants",
+    "number": 4,
+    "imageFileName": "6831a9ec2753892f148226d4.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148226d5",
+    "name": "Gruzewski Max",
+    "team": "GWS Giants",
+    "number": 35,
+    "imageFileName": "6831a9ec2753892f148226d5.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148226d6",
+    "name": "Hannaford Oliver",
+    "team": "GWS Giants",
+    "number": 13,
+    "imageFileName": "6831a9ec2753892f148226d6.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148226d7",
+    "name": "Himmelberg Harrison",
+    "team": "GWS Giants",
+    "number": 27,
+    "imageFileName": "6831a9ec2753892f148226d7.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148226d8",
+    "name": "Hogan Jesse",
+    "team": "GWS Giants",
+    "number": 23,
+    "imageFileName": "6831a9ec2753892f148226d8.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148226d9",
+    "name": "Idun Connor",
+    "team": "GWS Giants",
+    "number": 39,
+    "imageFileName": "6831a9ec2753892f148226d9.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148226da",
+    "name": "Jones Darcy",
+    "team": "GWS Giants",
+    "number": 2,
+    "imageFileName": "6831a9ec2753892f148226da.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148226db",
+    "name": "Keeffe Lachlan R",
+    "team": "GWS Giants",
+    "number": 25,
+    "imageFileName": "6831a9ec2753892f148226db.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148226dc",
+    "name": "Kelly Joshua",
+    "team": "GWS Giants",
+    "number": 22,
+    "imageFileName": "6831a9ec2753892f148226dc.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148226dd",
+    "name": "Leake James",
+    "team": "GWS Giants",
+    "number": 30,
+    "imageFileName": "6831a9ec2753892f148226dd.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148226de",
+    "name": "Madden Nick R",
+    "team": "GWS Giants",
+    "number": 41,
+    "imageFileName": "6831a9ec2753892f148226de.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148226df",
+    "name": "McMullin Toby",
+    "team": "GWS Giants",
+    "number": 31,
+    "imageFileName": "6831a9ec2753892f148226df.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148226e0",
+    "name": "O'Halloran Xavier",
+    "team": "GWS Giants",
+    "number": 33,
+    "imageFileName": "6831a9ec2753892f148226e0.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148226e1",
+    "name": "Oliver Harrison",
+    "team": "GWS Giants",
+    "number": 19,
+    "imageFileName": "6831a9ec2753892f148226e1.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148226e2",
+    "name": "Ough Jack",
+    "team": "GWS Giants",
+    "number": 28,
+    "imageFileName": "6831a9ec2753892f148226e2.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148226e3",
+    "name": "Riccardi Jake",
+    "team": "GWS Giants",
+    "number": 26,
+    "imageFileName": "6831a9ec2753892f148226e3.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148226e4",
+    "name": "Rowston Harry",
+    "team": "GWS Giants",
+    "number": 24,
+    "imageFileName": "6831a9ec2753892f148226e4.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148226e5",
+    "name": "Smith Logan",
+    "team": "GWS Giants",
+    "number": 36,
+    "imageFileName": "6831a9ec2753892f148226e5.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148226e6",
+    "name": "Stone Conor",
+    "team": "GWS Giants",
+    "number": 18,
+    "imageFileName": "6831a9ec2753892f148226e6.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148226e7",
+    "name": "Stringer Jake",
+    "team": "GWS Giants",
+    "number": 20,
+    "imageFileName": "6831a9ec2753892f148226e7.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148226e8",
+    "name": "Taylor Sam",
+    "team": "GWS Giants",
+    "number": 15,
+    "imageFileName": "6831a9ec2753892f148226e8.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148226e9",
+    "name": "Thomas Harvey",
+    "team": "GWS Giants",
+    "number": 1,
+    "imageFileName": "6831a9ec2753892f148226e9.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148226ea",
+    "name": "Ward Callan",
+    "team": "GWS Giants",
+    "number": 8,
+    "imageFileName": "6831a9ec2753892f148226ea.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148226eb",
+    "name": "Wardius Nathan R",
+    "team": "GWS Giants",
+    "number": 42,
+    "imageFileName": "6831a9ec2753892f148226eb.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148226ec",
+    "name": "Wehr Jacob R",
+    "team": "GWS Giants",
+    "number": 10,
+    "imageFileName": "6831a9ec2753892f148226ec.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148226ed",
+    "name": "Whitfield Lachie",
+    "team": "GWS Giants",
+    "number": 6,
+    "imageFileName": "6831a9ec2753892f148226ed.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148226ef",
+    "name": "Amon Karl",
+    "team": "Hawthorn Hawks",
+    "number": 10,
+    "imageFileName": "6831a9ec2753892f148226ef.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148226f0",
+    "name": "Anderson Cody",
+    "team": "Hawthorn Hawks",
+    "number": 32,
+    "imageFileName": "6831a9ec2753892f148226f0.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148226f1",
+    "name": "Barrass Tom",
+    "team": "Hawthorn Hawks",
+    "number": 37,
+    "imageFileName": "6831a9ec2753892f148226f1.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148226f2",
+    "name": "Battle Josh",
+    "team": "Hawthorn Hawks",
+    "number": 24,
+    "imageFileName": "6831a9ec2753892f148226f2.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148226f3",
+    "name": "Blanck James R",
+    "team": "Hawthorn Hawks",
+    "number": 36,
+    "imageFileName": "6831a9ec2753892f148226f3.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148226f4",
+    "name": "Breust Luke",
+    "team": "Hawthorn Hawks",
+    "number": 22,
+    "imageFileName": "6831a9ec2753892f148226f4.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148226f5",
+    "name": "Butler Sam",
+    "team": "Hawthorn Hawks",
+    "number": 30,
+    "imageFileName": "6831a9ec2753892f148226f5.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148226f6",
+    "name": "Chol Mabior",
+    "team": "Hawthorn Hawks",
+    "number": 18,
+    "imageFileName": "6831a9ec2753892f148226f6.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148226f7",
+    "name": "D'Ambrosio Massimo R",
+    "team": "Hawthorn Hawks",
+    "number": 16,
+    "imageFileName": "6831a9ec2753892f148226f7.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148226f8",
+    "name": "Day Will",
+    "team": "Hawthorn Hawks",
+    "number": 12,
+    "imageFileName": "6831a9ec2753892f148226f8.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148226f9",
+    "name": "Dear Calsher",
+    "team": "Hawthorn Hawks",
+    "number": 35,
+    "imageFileName": "6831a9ec2753892f148226f9.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148226fa",
+    "name": "Frost Sam",
+    "team": "Hawthorn Hawks",
+    "number": 8,
+    "imageFileName": "6831a9ec2753892f148226fa.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148226fb",
+    "name": "Ginnivan Jack",
+    "team": "Hawthorn Hawks",
+    "number": 33,
+    "imageFileName": "6831a9ec2753892f148226fb.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148226fc",
+    "name": "Gunston Jack",
+    "team": "Hawthorn Hawks",
+    "number": 19,
+    "imageFileName": "6831a9ec2753892f148226fc.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148226fd",
+    "name": "Hardwick Blake",
+    "team": "Hawthorn Hawks",
+    "number": 15,
+    "imageFileName": "6831a9ec2753892f148226fd.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148226fe",
+    "name": "Hill Matt R",
+    "team": "Hawthorn Hawks",
+    "number": 41,
+    "imageFileName": "6831a9ec2753892f148226fe.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148226ff",
+    "name": "Hustwaite Henry",
+    "team": "Hawthorn Hawks",
+    "number": 44,
+    "imageFileName": "6831a9ec2753892f148226ff.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822700",
+    "name": "Impey Jarman",
+    "team": "Hawthorn Hawks",
+    "number": 4,
+    "imageFileName": "6831a9ec2753892f14822700.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822701",
+    "name": "Jiath Changkuoth",
+    "team": "Hawthorn Hawks",
+    "number": 9,
+    "imageFileName": "6831a9ec2753892f14822701.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822702",
+    "name": "Lewis Mitchell",
+    "team": "Hawthorn Hawks",
+    "number": 2,
+    "imageFileName": "6831a9ec2753892f14822702.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822704",
+    "name": "Macdonald Bailey",
+    "team": "Hawthorn Hawks",
+    "number": 42,
+    "imageFileName": "6831a9ec2753892f14822704.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822703",
+    "name": "MacDonald Connor",
+    "team": "Hawthorn Hawks",
+    "number": 31,
+    "imageFileName": "6831a9ec2753892f14822703.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822705",
+    "name": "Mackenzie Cameron",
+    "team": "Hawthorn Hawks",
+    "number": 28,
+    "imageFileName": "6831a9ec2753892f14822705.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822706",
+    "name": "Maginness Finn",
+    "team": "Hawthorn Hawks",
+    "number": 20,
+    "imageFileName": "6831a9ec2753892f14822706.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822707",
+    "name": "McCabe William",
+    "team": "Hawthorn Hawks",
+    "number": 27,
+    "imageFileName": "6831a9ec2753892f14822707.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822708",
+    "name": "Meek Lloyd",
+    "team": "Hawthorn Hawks",
+    "number": 17,
+    "imageFileName": "6831a9ec2753892f14822708.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822709",
+    "name": "Mitchell Seamus R",
+    "team": "Hawthorn Hawks",
+    "number": 40,
+    "imageFileName": "6831a9ec2753892f14822709.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482270a",
+    "name": "Moore Dylan",
+    "team": "Hawthorn Hawks",
+    "number": 13,
+    "imageFileName": "6831a9ec2753892f1482270a.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482270b",
+    "name": "Morrison Harry",
+    "team": "Hawthorn Hawks",
+    "number": 1,
+    "imageFileName": "6831a9ec2753892f1482270b.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482270c",
+    "name": "Mraz Noah",
+    "team": "Hawthorn Hawks",
+    "number": 21,
+    "imageFileName": "6831a9ec2753892f1482270c.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482270d",
+    "name": "Nash Conor",
+    "team": "Hawthorn Hawks",
+    "number": 11,
+    "imageFileName": "6831a9ec2753892f1482270d.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482270e",
+    "name": "Newcombe Jai",
+    "team": "Hawthorn Hawks",
+    "number": 3,
+    "imageFileName": "6831a9ec2753892f1482270e.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482270f",
+    "name": "Ramsden Max R",
+    "team": "Hawthorn Hawks",
+    "number": 38,
+    "imageFileName": "6831a9ec2753892f1482270f.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822710",
+    "name": "Reeves Ned",
+    "team": "Hawthorn Hawks",
+    "number": 7,
+    "imageFileName": "6831a9ec2753892f14822710.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822711",
+    "name": "Ryan Bodie",
+    "team": "Hawthorn Hawks",
+    "number": 26,
+    "imageFileName": "6831a9ec2753892f14822711.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822712",
+    "name": "Scaife Jasper R",
+    "team": "Hawthorn Hawks",
+    "number": 39,
+    "imageFileName": "6831a9ec2753892f14822712.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822713",
+    "name": "Scrimshaw Jack",
+    "team": "Hawthorn Hawks",
+    "number": 14,
+    "imageFileName": "6831a9ec2753892f14822713.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822714",
+    "name": "Serong Jai",
+    "team": "Hawthorn Hawks",
+    "number": 29,
+    "imageFileName": "6831a9ec2753892f14822714.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822715",
+    "name": "Sicily James",
+    "team": "Hawthorn Hawks",
+    "number": 6,
+    "imageFileName": "6831a9ec2753892f14822715.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822716",
+    "name": "Uhr-Henry Jaime R",
+    "team": "Hawthorn Hawks",
+    "number": 43,
+    "imageFileName": "6831a9ec2753892f14822716.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822717",
+    "name": "Ward Josh",
+    "team": "Hawthorn Hawks",
+    "number": 25,
+    "imageFileName": "6831a9ec2753892f14822717.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822718",
+    "name": "Watson Nick",
+    "team": "Hawthorn Hawks",
+    "number": 34,
+    "imageFileName": "6831a9ec2753892f14822718.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822719",
+    "name": "Weddle Joshua",
+    "team": "Hawthorn Hawks",
+    "number": 23,
+    "imageFileName": "6831a9ec2753892f14822719.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482271a",
+    "name": "Worpel James",
+    "team": "Hawthorn Hawks",
+    "number": 5,
+    "imageFileName": "6831a9ec2753892f1482271a.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482271c",
+    "name": "Adams Jed",
+    "team": "Melbourne Demons",
+    "number": 26,
+    "imageFileName": "6831a9ec2753892f1482271c.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482271d",
+    "name": "Billings Jack",
+    "team": "Melbourne Demons",
+    "number": 14,
+    "imageFileName": "6831a9ec2753892f1482271d.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482271e",
+    "name": "Bowey Jake",
+    "team": "Melbourne Demons",
+    "number": 17,
+    "imageFileName": "6831a9ec2753892f1482271e.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482271f",
+    "name": "Brown Kynan R",
+    "team": "Melbourne Demons",
+    "number": 41,
+    "imageFileName": "6831a9ec2753892f1482271f.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822720",
+    "name": "Campbell Tom",
+    "team": "Melbourne Demons",
+    "number": 29,
+    "imageFileName": "6831a9ec2753892f14822720.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822721",
+    "name": "Chandler Kade",
+    "team": "Melbourne Demons",
+    "number": 37,
+    "imageFileName": "6831a9ec2753892f14822721.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822722",
+    "name": "Culley Jai R",
+    "team": "Melbourne Demons",
+    "number": 46,
+    "imageFileName": "6831a9ec2753892f14822722.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822723",
+    "name": "Fritsch Bayley",
+    "team": "Melbourne Demons",
+    "number": 31,
+    "imageFileName": "6831a9ec2753892f14822723.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822724",
+    "name": "Fullarton Tom",
+    "team": "Melbourne Demons",
+    "number": 33,
+    "imageFileName": "6831a9ec2753892f14822724.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822725",
+    "name": "Gawn Max",
+    "team": "Melbourne Demons",
+    "number": 11,
+    "imageFileName": "6831a9ec2753892f14822725.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822726",
+    "name": "Henderson Jack R",
+    "team": "Melbourne Demons",
+    "number": 43,
+    "imageFileName": "6831a9ec2753892f14822726.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822727",
+    "name": "Hore Marty R",
+    "team": "Melbourne Demons",
+    "number": 27,
+    "imageFileName": "6831a9ec2753892f14822727.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822728",
+    "name": "Howes Blake",
+    "team": "Melbourne Demons",
+    "number": 22,
+    "imageFileName": "6831a9ec2753892f14822728.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822729",
+    "name": "Jefferson Matthew",
+    "team": "Melbourne Demons",
+    "number": 21,
+    "imageFileName": "6831a9ec2753892f14822729.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482272a",
+    "name": "Johnson Aidan",
+    "team": "Melbourne Demons",
+    "number": 42,
+    "imageFileName": "6831a9ec2753892f1482272a.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482272b",
+    "name": "Kentfield Luker R",
+    "team": "Melbourne Demons",
+    "number": 44,
+    "imageFileName": "6831a9ec2753892f1482272b.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482272c",
+    "name": "Langdon Ed",
+    "team": "Melbourne Demons",
+    "number": 15,
+    "imageFileName": "6831a9ec2753892f1482272c.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482272d",
+    "name": "Langford Harvey",
+    "team": "Melbourne Demons",
+    "number": 19,
+    "imageFileName": "6831a9ec2753892f1482272d.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482272e",
+    "name": "Laurie Bailey",
+    "team": "Melbourne Demons",
+    "number": 16,
+    "imageFileName": "6831a9ec2753892f1482272e.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482272f",
+    "name": "Lever Jake",
+    "team": "Melbourne Demons",
+    "number": 8,
+    "imageFileName": "6831a9ec2753892f1482272f.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822730",
+    "name": "Lindsay Xavier",
+    "team": "Melbourne Demons",
+    "number": 20,
+    "imageFileName": "6831a9ec2753892f14822730.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822731",
+    "name": "May Steven",
+    "team": "Melbourne Demons",
+    "number": 1,
+    "imageFileName": "6831a9ec2753892f14822731.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822732",
+    "name": "McAdam Shane",
+    "team": "Melbourne Demons",
+    "number": 23,
+    "imageFileName": "6831a9ec2753892f14822732.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822733",
+    "name": "McDonald Tom",
+    "team": "Melbourne Demons",
+    "number": 25,
+    "imageFileName": "6831a9ec2753892f14822733.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822734",
+    "name": "McVee Judd R",
+    "team": "Melbourne Demons",
+    "number": 4,
+    "imageFileName": "6831a9ec2753892f14822734.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822735",
+    "name": "Melksham Jake",
+    "team": "Melbourne Demons",
+    "number": 18,
+    "imageFileName": "6831a9ec2753892f14822735.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822736",
+    "name": "Mentha Ricky R",
+    "team": "Melbourne Demons",
+    "number": 39,
+    "imageFileName": "6831a9ec2753892f14822736.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822737",
+    "name": "Moniz-Wakefield Andy R",
+    "team": "Melbourne Demons",
+    "number": 45,
+    "imageFileName": "6831a9ec2753892f14822737.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822738",
+    "name": "Oliver Clayton",
+    "team": "Melbourne Demons",
+    "number": 13,
+    "imageFileName": "6831a9ec2753892f14822738.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822739",
+    "name": "Petracca Christian",
+    "team": "Melbourne Demons",
+    "number": 5,
+    "imageFileName": "6831a9ec2753892f14822739.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482273a",
+    "name": "Petty Harrison",
+    "team": "Melbourne Demons",
+    "number": 35,
+    "imageFileName": "6831a9ec2753892f1482273a.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482273b",
+    "name": "Pickett Kysaiah",
+    "team": "Melbourne Demons",
+    "number": 36,
+    "imageFileName": "6831a9ec2753892f1482273b.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482273c",
+    "name": "Rivers Trent",
+    "team": "Melbourne Demons",
+    "number": 24,
+    "imageFileName": "6831a9ec2753892f1482273c.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482273d",
+    "name": "Salem Christian",
+    "team": "Melbourne Demons",
+    "number": 3,
+    "imageFileName": "6831a9ec2753892f1482273d.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482273e",
+    "name": "Sestan Oliver R",
+    "team": "Melbourne Demons",
+    "number": 38,
+    "imageFileName": "6831a9ec2753892f1482273e.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482273f",
+    "name": "Sharp Harry",
+    "team": "Melbourne Demons",
+    "number": 30,
+    "imageFileName": "6831a9ec2753892f1482273f.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822740",
+    "name": "Spargo Charlie",
+    "team": "Melbourne Demons",
+    "number": 9,
+    "imageFileName": "6831a9ec2753892f14822740.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822741",
+    "name": "Sparrow Tom",
+    "team": "Melbourne Demons",
+    "number": 32,
+    "imageFileName": "6831a9ec2753892f14822741.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822742",
+    "name": "Tholstrup Koltyn",
+    "team": "Melbourne Demons",
+    "number": 12,
+    "imageFileName": "6831a9ec2753892f14822742.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822743",
+    "name": "Turner Daniel",
+    "team": "Melbourne Demons",
+    "number": 10,
+    "imageFileName": "6831a9ec2753892f14822743.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822744",
+    "name": "Van Rooyen Jacob",
+    "team": "Melbourne Demons",
+    "number": 2,
+    "imageFileName": "6831a9ec2753892f14822744.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822745",
+    "name": "Verrall Will R",
+    "team": "Melbourne Demons",
+    "number": 28,
+    "imageFileName": "6831a9ec2753892f14822745.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822746",
+    "name": "Viney Jack",
+    "team": "Melbourne Demons",
+    "number": 7,
+    "imageFileName": "6831a9ec2753892f14822746.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822747",
+    "name": "Windsor Caleb",
+    "team": "Melbourne Demons",
+    "number": 6,
+    "imageFileName": "6831a9ec2753892f14822747.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822748",
+    "name": "Woewodin Taj",
+    "team": "Melbourne Demons",
+    "number": 40,
+    "imageFileName": "6831a9ec2753892f14822748.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482274a",
+    "name": "Archer Jackson",
+    "team": "North Melbourne Kangaroos",
+    "number": 34,
+    "imageFileName": "6831a9ec2753892f1482274a.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482274b",
+    "name": "Bergman Miller",
+    "team": "North Melbourne Kangaroos",
+    "number": 27,
+    "imageFileName": "6831a9ec2753892f1482274b.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482274c",
+    "name": "Coleman-Jones Callum",
+    "team": "North Melbourne Kangaroos",
+    "number": 21,
+    "imageFileName": "6831a9ec2753892f1482274c.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482274d",
+    "name": "Comben Charlie",
+    "team": "North Melbourne Kangaroos",
+    "number": 30,
+    "imageFileName": "6831a9ec2753892f1482274d.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482274e",
+    "name": "Corr Aidan",
+    "team": "North Melbourne Kangaroos",
+    "number": 4,
+    "imageFileName": "6831a9ec2753892f1482274e.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482274f",
+    "name": "Curtis Paul",
+    "team": "North Melbourne Kangaroos",
+    "number": 25,
+    "imageFileName": "6831a9ec2753892f1482274f.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822750",
+    "name": "Daniel Caleb",
+    "team": "North Melbourne Kangaroos",
+    "number": 5,
+    "imageFileName": "6831a9ec2753892f14822750.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822751",
+    "name": "Darling Jack",
+    "team": "North Melbourne Kangaroos",
+    "number": 28,
+    "imageFileName": "6831a9ec2753892f14822751.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822752",
+    "name": "Davies-Uniacke Luke",
+    "team": "North Melbourne Kangaroos",
+    "number": 9,
+    "imageFileName": "6831a9ec2753892f14822752.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822753",
+    "name": "Dawson Kallan R",
+    "team": "North Melbourne Kangaroos",
+    "number": 42,
+    "imageFileName": "6831a9ec2753892f14822753.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822754",
+    "name": "Dawson Will",
+    "team": "North Melbourne Kangaroos",
+    "number": 18,
+    "imageFileName": "6831a9ec2753892f14822754.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822755",
+    "name": "Duursma Zane",
+    "team": "North Melbourne Kangaroos",
+    "number": 7,
+    "imageFileName": "6831a9ec2753892f14822755.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822756",
+    "name": "Fisher Zac",
+    "team": "North Melbourne Kangaroos",
+    "number": 16,
+    "imageFileName": "6831a9ec2753892f14822756.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822757",
+    "name": "Ford Eddie",
+    "team": "North Melbourne Kangaroos",
+    "number": 40,
+    "imageFileName": "6831a9ec2753892f14822757.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822758",
+    "name": "George Brayden",
+    "team": "North Melbourne Kangaroos",
+    "number": 33,
+    "imageFileName": "6831a9ec2753892f14822758.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822759",
+    "name": "Goad Taylor",
+    "team": "North Melbourne Kangaroos",
+    "number": 22,
+    "imageFileName": "6831a9ec2753892f14822759.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482275a",
+    "name": "Goater Josh",
+    "team": "North Melbourne Kangaroos",
+    "number": 31,
+    "imageFileName": "6831a9ec2753892f1482275a.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482275b",
+    "name": "Hansen Robert R",
+    "team": "North Melbourne Kangaroos",
+    "number": 46,
+    "imageFileName": "6831a9ec2753892f1482275b.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482275c",
+    "name": "Hardeman Riley",
+    "team": "North Melbourne Kangaroos",
+    "number": 17,
+    "imageFileName": "6831a9ec2753892f1482275c.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482275d",
+    "name": "Harvey Cooper",
+    "team": "North Melbourne Kangaroos",
+    "number": 37,
+    "imageFileName": "6831a9ec2753892f1482275d.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482275e",
+    "name": "Konstanty Jacob",
+    "team": "North Melbourne Kangaroos",
+    "number": 41,
+    "imageFileName": "6831a9ec2753892f1482275e.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482275f",
+    "name": "Larkey Nick",
+    "team": "North Melbourne Kangaroos",
+    "number": 20,
+    "imageFileName": "6831a9ec2753892f1482275f.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822760",
+    "name": "Logue Griffin",
+    "team": "North Melbourne Kangaroos",
+    "number": 19,
+    "imageFileName": "6831a9ec2753892f14822760.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822761",
+    "name": "Maley Finnbar R",
+    "team": "North Melbourne Kangaroos",
+    "number": 39,
+    "imageFileName": "6831a9ec2753892f14822761.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822762",
+    "name": "McDonald Luke",
+    "team": "North Melbourne Kangaroos",
+    "number": 11,
+    "imageFileName": "6831a9ec2753892f14822762.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822763",
+    "name": "McKercher Colby",
+    "team": "North Melbourne Kangaroos",
+    "number": 10,
+    "imageFileName": "6831a9ec2753892f14822763.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822764",
+    "name": "O'Sullivan Finn",
+    "team": "North Melbourne Kangaroos",
+    "number": 2,
+    "imageFileName": "6831a9ec2753892f14822764.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822765",
+    "name": "Parker Luke",
+    "team": "North Melbourne Kangaroos",
+    "number": 26,
+    "imageFileName": "6831a9ec2753892f14822765.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822766",
+    "name": "Payne Geordie R",
+    "team": "North Melbourne Kangaroos",
+    "number": 23,
+    "imageFileName": "6831a9ec2753892f14822766.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822767",
+    "name": "Phillips Will",
+    "team": "North Melbourne Kangaroos",
+    "number": 29,
+    "imageFileName": "6831a9ec2753892f14822767.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822768",
+    "name": "Pink Toby R",
+    "team": "North Melbourne Kangaroos",
+    "number": 32,
+    "imageFileName": "6831a9ec2753892f14822768.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822769",
+    "name": "Powell Tom",
+    "team": "North Melbourne Kangaroos",
+    "number": 24,
+    "imageFileName": "6831a9ec2753892f14822769.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482276a",
+    "name": "Scott Bailey",
+    "team": "North Melbourne Kangaroos",
+    "number": 8,
+    "imageFileName": "6831a9ec2753892f1482276a.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482276b",
+    "name": "Sheezel Harry",
+    "team": "North Melbourne Kangaroos",
+    "number": 3,
+    "imageFileName": "6831a9ec2753892f1482276b.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482276c",
+    "name": "Simpkin Jy",
+    "team": "North Melbourne Kangaroos",
+    "number": 12,
+    "imageFileName": "6831a9ec2753892f1482276c.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482276d",
+    "name": "Stephens Dylan",
+    "team": "North Melbourne Kangaroos",
+    "number": 15,
+    "imageFileName": "6831a9ec2753892f1482276d.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482276e",
+    "name": "Stevens River",
+    "team": "North Melbourne Kangaroos",
+    "number": 36,
+    "imageFileName": "6831a9ec2753892f1482276e.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482276f",
+    "name": "Teakle Brynn R",
+    "team": "North Melbourne Kangaroos",
+    "number": 43,
+    "imageFileName": "6831a9ec2753892f1482276f.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822770",
+    "name": "Tucker Darcy",
+    "team": "North Melbourne Kangaroos",
+    "number": 13,
+    "imageFileName": "6831a9ec2753892f14822770.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822771",
+    "name": "Urquhart Luke",
+    "team": "North Melbourne Kangaroos",
+    "number": 14,
+    "imageFileName": "6831a9ec2753892f14822771.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822772",
+    "name": "Wardlaw George",
+    "team": "North Melbourne Kangaroos",
+    "number": 6,
+    "imageFileName": "6831a9ec2753892f14822772.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822773",
+    "name": "Whitlock Matt",
+    "team": "North Melbourne Kangaroos",
+    "number": 35,
+    "imageFileName": "6831a9ec2753892f14822773.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822774",
+    "name": "Xerri Tristan",
+    "team": "North Melbourne Kangaroos",
+    "number": 38,
+    "imageFileName": "6831a9ec2753892f14822774.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822775",
+    "name": "Zurhaar Cameron",
+    "team": "North Melbourne Kangaroos",
+    "number": 44,
+    "imageFileName": "6831a9ec2753892f14822775.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822777",
+    "name": "Aliir Aliir",
+    "team": "Port Adelaide Power",
+    "number": 21,
+    "imageFileName": "6831a9ec2753892f14822777.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822778",
+    "name": "Anastasopoulos Tom",
+    "team": "Port Adelaide Power",
+    "number": 29,
+    "imageFileName": "6831a9ec2753892f14822778.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822779",
+    "name": "Atkins Rory",
+    "team": "Port Adelaide Power",
+    "number": 32,
+    "imageFileName": "6831a9ec2753892f14822779.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482277a",
+    "name": "Barrett Benny R",
+    "team": "Port Adelaide Power",
+    "number": 40,
+    "imageFileName": "6831a9ec2753892f1482277a.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482277b",
+    "name": "Bergman Miles",
+    "team": "Port Adelaide Power",
+    "number": 14,
+    "imageFileName": "6831a9ec2753892f1482277b.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482277c",
+    "name": "Berry Joe",
+    "team": "Port Adelaide Power",
+    "number": 5,
+    "imageFileName": "6831a9ec2753892f1482277c.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482277d",
+    "name": "Boak Travis",
+    "team": "Port Adelaide Power",
+    "number": 10,
+    "imageFileName": "6831a9ec2753892f1482277d.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482277e",
+    "name": "Burgoyne Jase",
+    "team": "Port Adelaide Power",
+    "number": 7,
+    "imageFileName": "6831a9ec2753892f1482277e.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482277f",
+    "name": "Burton Ryan",
+    "team": "Port Adelaide Power",
+    "number": 3,
+    "imageFileName": "6831a9ec2753892f1482277f.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822780",
+    "name": "Butters Zak",
+    "team": "Port Adelaide Power",
+    "number": 9,
+    "imageFileName": "6831a9ec2753892f14822780.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822781",
+    "name": "Byrne-Jones Darcy",
+    "team": "Port Adelaide Power",
+    "number": 33,
+    "imageFileName": "6831a9ec2753892f14822781.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822782",
+    "name": "Charleson Lachlan",
+    "team": "Port Adelaide Power",
+    "number": 26,
+    "imageFileName": "6831a9ec2753892f14822782.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822783",
+    "name": "Cochrane Tom R",
+    "team": "Port Adelaide Power",
+    "number": 37,
+    "imageFileName": "6831a9ec2753892f14822783.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822784",
+    "name": "Drew Willem",
+    "team": "Port Adelaide Power",
+    "number": 28,
+    "imageFileName": "6831a9ec2753892f14822784.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822785",
+    "name": "Evans Logan R",
+    "team": "Port Adelaide Power",
+    "number": 22,
+    "imageFileName": "6831a9ec2753892f14822785.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822786",
+    "name": "Farrell Kane",
+    "team": "Port Adelaide Power",
+    "number": 6,
+    "imageFileName": "6831a9ec2753892f14822786.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822787",
+    "name": "Finlayson Jeremy",
+    "team": "Port Adelaide Power",
+    "number": 11,
+    "imageFileName": "6831a9ec2753892f14822787.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822788",
+    "name": "Georgiades Mitch",
+    "team": "Port Adelaide Power",
+    "number": 19,
+    "imageFileName": "6831a9ec2753892f14822788.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822789",
+    "name": "Horne-Francis Jason",
+    "team": "Port Adelaide Power",
+    "number": 18,
+    "imageFileName": "6831a9ec2753892f14822789.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482278a",
+    "name": "Jackson Hugh",
+    "team": "Port Adelaide Power",
+    "number": 39,
+    "imageFileName": "6831a9ec2753892f1482278a.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482278b",
+    "name": "Jones Lachlan",
+    "team": "Port Adelaide Power",
+    "number": 34,
+    "imageFileName": "6831a9ec2753892f1482278b.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482278c",
+    "name": "Lai Josh R",
+    "team": "Port Adelaide Power",
+    "number": 43,
+    "imageFileName": "6831a9ec2753892f1482278c.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482278d",
+    "name": "Lord Ollie",
+    "team": "Port Adelaide Power",
+    "number": 30,
+    "imageFileName": "6831a9ec2753892f1482278d.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482278e",
+    "name": "Lorenz Will",
+    "team": "Port Adelaide Power",
+    "number": 36,
+    "imageFileName": "6831a9ec2753892f1482278e.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482278f",
+    "name": "Lukosius Jack",
+    "team": "Port Adelaide Power",
+    "number": 12,
+    "imageFileName": "6831a9ec2753892f1482278f.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822790",
+    "name": "Marshall Todd",
+    "team": "Port Adelaide Power",
+    "number": 4,
+    "imageFileName": "6831a9ec2753892f14822790.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822791",
+    "name": "McEntee Jed R",
+    "team": "Port Adelaide Power",
+    "number": 41,
+    "imageFileName": "6831a9ec2753892f14822791.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822792",
+    "name": "Mead Jackson",
+    "team": "Port Adelaide Power",
+    "number": 44,
+    "imageFileName": "6831a9ec2753892f14822792.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822793",
+    "name": "Moraes Christian",
+    "team": "Port Adelaide Power",
+    "number": 31,
+    "imageFileName": "6831a9ec2753892f14822793.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822794",
+    "name": "Moss Jacob R",
+    "team": "Port Adelaide Power",
+    "number": 42,
+    "imageFileName": "6831a9ec2753892f14822794.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822795",
+    "name": "Powell-Pepper Sam",
+    "team": "Port Adelaide Power",
+    "number": 2,
+    "imageFileName": "6831a9ec2753892f14822795.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822796",
+    "name": "Ratugolea Esava",
+    "team": "Port Adelaide Power",
+    "number": 27,
+    "imageFileName": "6831a9ec2753892f14822796.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822797",
+    "name": "Richards Joe",
+    "team": "Port Adelaide Power",
+    "number": 35,
+    "imageFileName": "6831a9ec2753892f14822797.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822798",
+    "name": "Rioli Willie",
+    "team": "Port Adelaide Power",
+    "number": 15,
+    "imageFileName": "6831a9ec2753892f14822798.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822799",
+    "name": "Rozee Connor",
+    "team": "Port Adelaide Power",
+    "number": 1,
+    "imageFileName": "6831a9ec2753892f14822799.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482279a",
+    "name": "Sinn Josh",
+    "team": "Port Adelaide Power",
+    "number": 8,
+    "imageFileName": "6831a9ec2753892f1482279a.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482279b",
+    "name": "Soldo Ivan",
+    "team": "Port Adelaide Power",
+    "number": 13,
+    "imageFileName": "6831a9ec2753892f1482279b.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482279c",
+    "name": "Sweet Jordon R",
+    "team": "Port Adelaide Power",
+    "number": 24,
+    "imageFileName": "6831a9ec2753892f1482279c.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482279d",
+    "name": "Visentini Dante",
+    "team": "Port Adelaide Power",
+    "number": 38,
+    "imageFileName": "6831a9ec2753892f1482279d.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482279e",
+    "name": "Walsh Xavier R",
+    "team": "Port Adelaide Power",
+    "number": 45,
+    "imageFileName": "6831a9ec2753892f1482279e.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482279f",
+    "name": "Whitlock Jack",
+    "team": "Port Adelaide Power",
+    "number": 17,
+    "imageFileName": "6831a9ec2753892f1482279f.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148227a0",
+    "name": "Williams Dylan R",
+    "team": "Port Adelaide Power",
+    "number": 23,
+    "imageFileName": "6831a9ec2753892f148227a0.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148227a1",
+    "name": "Wines Oliver",
+    "team": "Port Adelaide Power",
+    "number": 16,
+    "imageFileName": "6831a9ec2753892f148227a1.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148227a2",
+    "name": "Zerk-Thatcher Brandon",
+    "team": "Port Adelaide Power",
+    "number": 25,
+    "imageFileName": "6831a9ec2753892f148227a2.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148227a4",
+    "name": "Alger Jasper",
+    "team": "Richmond Tigers",
+    "number": 29,
+    "imageFileName": "6831a9ec2753892f148227a4.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148227a5",
+    "name": "Armstrong Harry",
+    "team": "Richmond Tigers",
+    "number": 34,
+    "imageFileName": "6831a9ec2753892f148227a5.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148227a6",
+    "name": "Balta Noah",
+    "team": "Richmond Tigers",
+    "number": 21,
+    "imageFileName": "6831a9ec2753892f148227a6.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148227a7",
+    "name": "Banks Sam",
+    "team": "Richmond Tigers",
+    "number": 41,
+    "imageFileName": "6831a9ec2753892f148227a7.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148227a8",
+    "name": "Bauer Jacob R",
+    "team": "Richmond Tigers",
+    "number": 43,
+    "imageFileName": "6831a9ec2753892f148227a8.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148227a9",
+    "name": "Blight Jacob R",
+    "team": "Richmond Tigers",
+    "number": 46,
+    "imageFileName": "6831a9ec2753892f148227a9.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148227aa",
+    "name": "Broad Nathan",
+    "team": "Richmond Tigers",
+    "number": 35,
+    "imageFileName": "6831a9ec2753892f148227aa.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148227ab",
+    "name": "Brown Tom",
+    "team": "Richmond Tigers",
+    "number": 30,
+    "imageFileName": "6831a9ec2753892f148227ab.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148227ac",
+    "name": "Campbell Seth R",
+    "team": "Richmond Tigers",
+    "number": 44,
+    "imageFileName": "6831a9ec2753892f148227ac.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148227ad",
+    "name": "Clarke Judson",
+    "team": "Richmond Tigers",
+    "number": 23,
+    "imageFileName": "6831a9ec2753892f148227ad.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148227ae",
+    "name": "Colina Mate R",
+    "team": "Richmond Tigers",
+    "number": 39,
+    "imageFileName": "6831a9ec2753892f148227ae.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148227af",
+    "name": "Dow Thomson",
+    "team": "Richmond Tigers",
+    "number": 27,
+    "imageFileName": "6831a9ec2753892f148227af.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148227b0",
+    "name": "Faull Jonty",
+    "team": "Richmond Tigers",
+    "number": 26,
+    "imageFileName": "6831a9ec2753892f148227b0.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148227b1",
+    "name": "Fawcett Liam",
+    "team": "Richmond Tigers",
+    "number": 37,
+    "imageFileName": "6831a9ec2753892f148227b1.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148227b2",
+    "name": "Gibcus Josh",
+    "team": "Richmond Tigers",
+    "number": 18,
+    "imageFileName": "6831a9ec2753892f148227b2.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148227b3",
+    "name": "Gray Campbell R",
+    "team": "Richmond Tigers",
+    "number": 50,
+    "imageFileName": "6831a9ec2753892f148227b3.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148227b4",
+    "name": "Green Steely",
+    "team": "Richmond Tigers",
+    "number": 48,
+    "imageFileName": "6831a9ec2753892f148227b4.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148227b5",
+    "name": "Hayes-Brown Oliver R",
+    "team": "Richmond Tigers",
+    "number": 47,
+    "imageFileName": "6831a9ec2753892f148227b5.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148227b6",
+    "name": "Hopper Jacob",
+    "team": "Richmond Tigers",
+    "number": 2,
+    "imageFileName": "6831a9ec2753892f148227b6.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148227b7",
+    "name": "Hotton Taj",
+    "team": "Richmond Tigers",
+    "number": 24,
+    "imageFileName": "6831a9ec2753892f148227b7.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148227b8",
+    "name": "Koschitzke Jacob",
+    "team": "Richmond Tigers",
+    "number": 20,
+    "imageFileName": "6831a9ec2753892f148227b8.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148227b9",
+    "name": "Lalor Sam",
+    "team": "Richmond Tigers",
+    "number": 22,
+    "imageFileName": "6831a9ec2753892f148227b9.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148227ba",
+    "name": "Lefau Mykelti R",
+    "team": "Richmond Tigers",
+    "number": 42,
+    "imageFileName": "6831a9ec2753892f148227ba.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148227bb",
+    "name": "Lynch Tom",
+    "team": "Richmond Tigers",
+    "number": 19,
+    "imageFileName": "6831a9ec2753892f148227bb.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148227bc",
+    "name": "Mansell Rhyan",
+    "team": "Richmond Tigers",
+    "number": 7,
+    "imageFileName": "6831a9ec2753892f148227bc.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148227bd",
+    "name": "McAuliffe Kane",
+    "team": "Richmond Tigers",
+    "number": 28,
+    "imageFileName": "6831a9ec2753892f148227bd.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148227be",
+    "name": "McIntosh Kamdyn",
+    "team": "Richmond Tigers",
+    "number": 33,
+    "imageFileName": "6831a9ec2753892f148227be.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148227bf",
+    "name": "Miller Ben",
+    "team": "Richmond Tigers",
+    "number": 12,
+    "imageFileName": "6831a9ec2753892f148227bf.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148227c0",
+    "name": "Nankervis Toby",
+    "team": "Richmond Tigers",
+    "number": 25,
+    "imageFileName": "6831a9ec2753892f148227c0.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148227c1",
+    "name": "Prestia Dion",
+    "team": "Richmond Tigers",
+    "number": 3,
+    "imageFileName": "6831a9ec2753892f148227c1.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148227c2",
+    "name": "Ralphsmith Hugo",
+    "team": "Richmond Tigers",
+    "number": 13,
+    "imageFileName": "6831a9ec2753892f148227c2.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148227c3",
+    "name": "Rioli Maurice",
+    "team": "Richmond Tigers",
+    "number": 17,
+    "imageFileName": "6831a9ec2753892f148227c3.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148227c4",
+    "name": "Ross Jack",
+    "team": "Richmond Tigers",
+    "number": 5,
+    "imageFileName": "6831a9ec2753892f148227c4.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148227c5",
+    "name": "Ryan Samson",
+    "team": "Richmond Tigers",
+    "number": 32,
+    "imageFileName": "6831a9ec2753892f148227c5.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148227c6",
+    "name": "Short Jayden",
+    "team": "Richmond Tigers",
+    "number": 15,
+    "imageFileName": "6831a9ec2753892f148227c6.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148227c7",
+    "name": "Sims Thomas",
+    "team": "Richmond Tigers",
+    "number": 38,
+    "imageFileName": "6831a9ec2753892f148227c7.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148227c8",
+    "name": "Smillie Josh",
+    "team": "Richmond Tigers",
+    "number": 16,
+    "imageFileName": "6831a9ec2753892f148227c8.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148227c9",
+    "name": "Smith Kaleb",
+    "team": "Richmond Tigers",
+    "number": 49,
+    "imageFileName": "6831a9ec2753892f148227c9.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148227ca",
+    "name": "Sonsie Tyler",
+    "team": "Richmond Tigers",
+    "number": 40,
+    "imageFileName": "6831a9ec2753892f148227ca.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148227cb",
+    "name": "Taranto Tim",
+    "team": "Richmond Tigers",
+    "number": 14,
+    "imageFileName": "6831a9ec2753892f148227cb.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148227cc",
+    "name": "Trainor Luke",
+    "team": "Richmond Tigers",
+    "number": 31,
+    "imageFileName": "6831a9ec2753892f148227cc.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148227cd",
+    "name": "Trezise James R",
+    "team": "Richmond Tigers",
+    "number": 36,
+    "imageFileName": "6831a9ec2753892f148227cd.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148227ce",
+    "name": "Vlastuin Nick",
+    "team": "Richmond Tigers",
+    "number": 1,
+    "imageFileName": "6831a9ec2753892f148227ce.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148227cf",
+    "name": "Young Tylar R",
+    "team": "Richmond Tigers",
+    "number": 45,
+    "imageFileName": "6831a9ec2753892f148227cf.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148227d1",
+    "name": "Armstrong Eamonn R",
+    "team": "St Kilda Saints",
+    "number": 46,
+    "imageFileName": "6831a9ec2753892f148227d1.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148227d2",
+    "name": "Barrat James",
+    "team": "St Kilda Saints",
+    "number": 28,
+    "imageFileName": "6831a9ec2753892f148227d2.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148227d3",
+    "name": "Boxshall Hugh",
+    "team": "St Kilda Saints",
+    "number": 38,
+    "imageFileName": "6831a9ec2753892f148227d3.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148227d4",
+    "name": "Boyd Harry R",
+    "team": "St Kilda Saints",
+    "number": 31,
+    "imageFileName": "6831a9ec2753892f148227d4.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148227d5",
+    "name": "Butler Daniel",
+    "team": "St Kilda Saints",
+    "number": 16,
+    "imageFileName": "6831a9ec2753892f148227d5.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148227d6",
+    "name": "Byrnes Ryan",
+    "team": "St Kilda Saints",
+    "number": 13,
+    "imageFileName": "6831a9ec2753892f148227d6.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148227d7",
+    "name": "Caminiti Anthony R",
+    "team": "St Kilda Saints",
+    "number": 47,
+    "imageFileName": "6831a9ec2753892f148227d7.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148227d8",
+    "name": "Carroll Jack",
+    "team": "St Kilda Saints",
+    "number": 18,
+    "imageFileName": "6831a9ec2753892f148227d8.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148227d9",
+    "name": "Clark Hunter",
+    "team": "St Kilda Saints",
+    "number": 11,
+    "imageFileName": "6831a9ec2753892f148227d9.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148227da",
+    "name": "Collard Lance",
+    "team": "St Kilda Saints",
+    "number": 4,
+    "imageFileName": "6831a9ec2753892f148227da.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148227db",
+    "name": "Cordy Zaine",
+    "team": "St Kilda Saints",
+    "number": 21,
+    "imageFileName": "6831a9ec2753892f148227db.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148227dc",
+    "name": "Dodson Alex",
+    "team": "St Kilda Saints",
+    "number": 30,
+    "imageFileName": "6831a9ec2753892f148227dc.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148227dd",
+    "name": "Dow Paddy",
+    "team": "St Kilda Saints",
+    "number": 15,
+    "imageFileName": "6831a9ec2753892f148227dd.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148227de",
+    "name": "Garcia Hugo",
+    "team": "St Kilda Saints",
+    "number": 34,
+    "imageFileName": "6831a9ec2753892f148227de.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148227df",
+    "name": "Hall Max R",
+    "team": "St Kilda Saints",
+    "number": 40,
+    "imageFileName": "6831a9ec2753892f148227df.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148227e0",
+    "name": "Hastie Angus",
+    "team": "St Kilda Saints",
+    "number": 24,
+    "imageFileName": "6831a9ec2753892f148227e0.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148227e1",
+    "name": "Heath Max R",
+    "team": "St Kilda Saints",
+    "number": 42,
+    "imageFileName": "6831a9ec2753892f148227e1.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148227e2",
+    "name": "Henry Liam",
+    "team": "St Kilda Saints",
+    "number": 23,
+    "imageFileName": "6831a9ec2753892f148227e2.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148227e3",
+    "name": "Higgins Jack",
+    "team": "St Kilda Saints",
+    "number": 1,
+    "imageFileName": "6831a9ec2753892f148227e3.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148227e4",
+    "name": "Hill Bradley",
+    "team": "St Kilda Saints",
+    "number": 8,
+    "imageFileName": "6831a9ec2753892f148227e4.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148227e5",
+    "name": "Howard Dougal",
+    "team": "St Kilda Saints",
+    "number": 20,
+    "imageFileName": "6831a9ec2753892f148227e5.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148227e6",
+    "name": "Jones Zak",
+    "team": "St Kilda Saints",
+    "number": 3,
+    "imageFileName": "6831a9ec2753892f148227e6.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148227e7",
+    "name": "Keeler Isaac",
+    "team": "St Kilda Saints",
+    "number": 17,
+    "imageFileName": "6831a9ec2753892f148227e7.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148227e8",
+    "name": "King Max",
+    "team": "St Kilda Saints",
+    "number": 12,
+    "imageFileName": "6831a9ec2753892f148227e8.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148227e9",
+    "name": "Macrae Jackson",
+    "team": "St Kilda Saints",
+    "number": 6,
+    "imageFileName": "6831a9ec2753892f148227e9.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148227ea",
+    "name": "Marshall Rowan",
+    "team": "St Kilda Saints",
+    "number": 19,
+    "imageFileName": "6831a9ec2753892f148227ea.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148227eb",
+    "name": "McLennan Angus R",
+    "team": "St Kilda Saints",
+    "number": 41,
+    "imageFileName": "6831a9ec2753892f148227eb.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148227ec",
+    "name": "O'Connell Liam R",
+    "team": "St Kilda Saints",
+    "number": 45,
+    "imageFileName": "6831a9ec2753892f148227ec.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148227ed",
+    "name": "Owens Mitchito",
+    "team": "St Kilda Saints",
+    "number": 10,
+    "imageFileName": "6831a9ec2753892f148227ed.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148227ee",
+    "name": "Phillipou Mattaes",
+    "team": "St Kilda Saints",
+    "number": 25,
+    "imageFileName": "6831a9ec2753892f148227ee.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148227ef",
+    "name": "Said Patrick",
+    "team": "St Kilda Saints",
+    "number": 33,
+    "imageFileName": "6831a9ec2753892f148227ef.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148227f0",
+    "name": "Schoenmaker Arie",
+    "team": "St Kilda Saints",
+    "number": 27,
+    "imageFileName": "6831a9ec2753892f148227f0.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148227f1",
+    "name": "Sharman Cooper R",
+    "team": "St Kilda Saints",
+    "number": 43,
+    "imageFileName": "6831a9ec2753892f148227f1.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148227f2",
+    "name": "Sinclair Jack",
+    "team": "St Kilda Saints",
+    "number": 35,
+    "imageFileName": "6831a9ec2753892f148227f2.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148227f3",
+    "name": "Steele Jack",
+    "team": "St Kilda Saints",
+    "number": 9,
+    "imageFileName": "6831a9ec2753892f148227f3.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148227f4",
+    "name": "Stocker Liam",
+    "team": "St Kilda Saints",
+    "number": 14,
+    "imageFileName": "6831a9ec2753892f148227f4.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148227f5",
+    "name": "Tauru Alix",
+    "team": "St Kilda Saints",
+    "number": 26,
+    "imageFileName": "6831a9ec2753892f148227f5.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148227f6",
+    "name": "Travaglia Tobie",
+    "team": "St Kilda Saints",
+    "number": 5,
+    "imageFileName": "6831a9ec2753892f148227f6.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148227f7",
+    "name": "Wanganeen-Milera Nasiah",
+    "team": "St Kilda Saints",
+    "number": 7,
+    "imageFileName": "6831a9ec2753892f148227f7.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148227f8",
+    "name": "Webster Jimmy",
+    "team": "St Kilda Saints",
+    "number": 29,
+    "imageFileName": "6831a9ec2753892f148227f8.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148227f9",
+    "name": "Wilkie Callum",
+    "team": "St Kilda Saints",
+    "number": 44,
+    "imageFileName": "6831a9ec2753892f148227f9.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148227fa",
+    "name": "Wilson Darcy",
+    "team": "St Kilda Saints",
+    "number": 22,
+    "imageFileName": "6831a9ec2753892f148227fa.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148227fb",
+    "name": "Windhager Marcus",
+    "team": "St Kilda Saints",
+    "number": 2,
+    "imageFileName": "6831a9ec2753892f148227fb.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148227fc",
+    "name": "Wood Mason",
+    "team": "St Kilda Saints",
+    "number": 32,
+    "imageFileName": "6831a9ec2753892f148227fc.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148227fe",
+    "name": "Adams, Taylor",
+    "team": "Sydney Swans",
+    "imageFileName": "6831a9ec2753892f148227fe.webp"
+  },
+  {
+    "id": "6831a9ec2753892f148227ff",
+    "name": "Amartey, Joel",
+    "team": "Sydney Swans",
+    "imageFileName": "6831a9ec2753892f148227ff.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822800",
+    "name": "Andrew, Riak",
+    "team": "Sydney Swans",
+    "imageFileName": "6831a9ec2753892f14822800.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822801",
+    "name": "Bice, Riley",
+    "team": "Sydney Swans",
+    "imageFileName": "6831a9ec2753892f14822801.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822802",
+    "name": "Blakey, Nick",
+    "team": "Sydney Swans",
+    "imageFileName": "6831a9ec2753892f14822802.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822803",
+    "name": "Bowman, Ned",
+    "team": "Sydney Swans",
+    "imageFileName": "6831a9ec2753892f14822803.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822804",
+    "name": "Buller, Jack R",
+    "team": "Sydney Swans",
+    "imageFileName": "6831a9ec2753892f14822804.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822805",
+    "name": "Campbell, Braeden",
+    "team": "Sydney Swans",
+    "imageFileName": "6831a9ec2753892f14822805.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822806",
+    "name": "Cleary, Caiden",
+    "team": "Sydney Swans",
+    "imageFileName": "6831a9ec2753892f14822806.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822807",
+    "name": "Cunningham, Harry",
+    "team": "Sydney Swans",
+    "imageFileName": "6831a9ec2753892f14822807.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822808",
+    "name": "Dattoli, Jesse",
+    "team": "Sydney Swans",
+    "imageFileName": "6831a9ec2753892f14822808.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822809",
+    "name": "Edwards, Will R",
+    "team": "Sydney Swans",
+    "imageFileName": "6831a9ec2753892f14822809.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482280a",
+    "name": "Florent, Oliver",
+    "team": "Sydney Swans",
+    "imageFileName": "6831a9ec2753892f1482280a.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482280b",
+    "name": "Fox, Robbie",
+    "team": "Sydney Swans",
+    "imageFileName": "6831a9ec2753892f1482280b.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482280c",
+    "name": "Francis, Aaron R",
+    "team": "Sydney Swans",
+    "imageFileName": "6831a9ec2753892f1482280c.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482280d",
+    "name": "Green, Will",
+    "team": "Sydney Swans",
+    "imageFileName": "6831a9ec2753892f1482280d.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482280e",
+    "name": "Grundy, Brodie",
+    "team": "Sydney Swans",
+    "imageFileName": "6831a9ec2753892f1482280e.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482280f",
+    "name": "Gulden, Errol",
+    "team": "Sydney Swans",
+    "imageFileName": "6831a9ec2753892f1482280f.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822810",
+    "name": "Hamling, Joel R",
+    "team": "Sydney Swans",
+    "imageFileName": "6831a9ec2753892f14822810.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822811",
+    "name": "Hanily, Tom R",
+    "team": "Sydney Swans",
+    "imageFileName": "6831a9ec2753892f14822811.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822812",
+    "name": "Hayward, Will",
+    "team": "Sydney Swans",
+    "imageFileName": "6831a9ec2753892f14822812.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822813",
+    "name": "Heeney, Isaac",
+    "team": "Sydney Swans",
+    "imageFileName": "6831a9ec2753892f14822813.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822814",
+    "name": "Jordon, James",
+    "team": "Sydney Swans",
+    "imageFileName": "6831a9ec2753892f14822814.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822815",
+    "name": "Kirk, Indhi R",
+    "team": "Sydney Swans",
+    "imageFileName": "6831a9ec2753892f14822815.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822816",
+    "name": "Ladhams, Peter",
+    "team": "Sydney Swans",
+    "imageFileName": "6831a9ec2753892f14822816.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822817",
+    "name": "Leidler, Blake R",
+    "team": "Sydney Swans",
+    "imageFileName": "6831a9ec2753892f14822817.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822818",
+    "name": "Lloyd, Jake",
+    "team": "Sydney Swans",
+    "imageFileName": "6831a9ec2753892f14822818.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822819",
+    "name": "McCartin, Tom",
+    "team": "Sydney Swans",
+    "imageFileName": "6831a9ec2753892f14822819.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482281a",
+    "name": "McDonald, Logan",
+    "team": "Sydney Swans",
+    "imageFileName": "6831a9ec2753892f1482281a.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482281b",
+    "name": "McInerney, Justin",
+    "team": "Sydney Swans",
+    "imageFileName": "6831a9ec2753892f1482281b.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482281c",
+    "name": "McLean, Hayden R",
+    "team": "Sydney Swans",
+    "imageFileName": "6831a9ec2753892f1482281c.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482281d",
+    "name": "Melican, Lewis",
+    "team": "Sydney Swans",
+    "imageFileName": "6831a9ec2753892f1482281d.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482281e",
+    "name": "Mills, Callum",
+    "team": "Sydney Swans",
+    "imageFileName": "6831a9ec2753892f1482281e.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482281f",
+    "name": "Mitchell, Caleb",
+    "team": "Sydney Swans",
+    "imageFileName": "6831a9ec2753892f1482281f.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822820",
+    "name": "Papley, Tom",
+    "team": "Sydney Swans",
+    "imageFileName": "6831a9ec2753892f14822820.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822821",
+    "name": "Paton, Ben R",
+    "team": "Sydney Swans",
+    "imageFileName": "6831a9ec2753892f14822821.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822822",
+    "name": "Rampe, Dane",
+    "team": "Sydney Swans",
+    "imageFileName": "6831a9ec2753892f14822822.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822823",
+    "name": "Roberts, Matthew",
+    "team": "Sydney Swans",
+    "imageFileName": "6831a9ec2753892f14822823.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822824",
+    "name": "Rowbottom, James",
+    "team": "Sydney Swans",
+    "imageFileName": "6831a9ec2753892f14822824.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822825",
+    "name": "Sheldrick, Angus",
+    "team": "Sydney Swans",
+    "imageFileName": "6831a9ec2753892f14822825.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822826",
+    "name": "Snell, Patrick",
+    "team": "Sydney Swans",
+    "imageFileName": "6831a9ec2753892f14822826.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822827",
+    "name": "Warner, Chad",
+    "team": "Sydney Swans",
+    "imageFileName": "6831a9ec2753892f14822827.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822828",
+    "name": "Warner, Corey",
+    "team": "Sydney Swans",
+    "imageFileName": "6831a9ec2753892f14822828.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822829",
+    "name": "Wicks, Sam R",
+    "team": "Sydney Swans",
+    "imageFileName": "6831a9ec2753892f14822829.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822856",
+    "name": "Allan, Bo",
+    "team": "West Coast Eagles",
+    "imageFileName": "6831a9ec2753892f14822856.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822857",
+    "name": "Allen, Oscar",
+    "team": "West Coast Eagles",
+    "imageFileName": "6831a9ec2753892f14822857.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822858",
+    "name": "Baker, Liam",
+    "team": "West Coast Eagles",
+    "imageFileName": "6831a9ec2753892f14822858.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822859",
+    "name": "Barnett, Harry",
+    "team": "West Coast Eagles",
+    "imageFileName": "6831a9ec2753892f14822859.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482285a",
+    "name": "Bazzo, Rhett",
+    "team": "West Coast Eagles",
+    "imageFileName": "6831a9ec2753892f1482285a.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482285b",
+    "name": "Brock, Sandy R",
+    "team": "West Coast Eagles",
+    "imageFileName": "6831a9ec2753892f1482285b.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482285c",
+    "name": "Brockman, Tyler",
+    "team": "West Coast Eagles",
+    "imageFileName": "6831a9ec2753892f1482285c.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482285d",
+    "name": "Champion, Malakai R",
+    "team": "West Coast Eagles",
+    "imageFileName": "6831a9ec2753892f1482285d.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482285e",
+    "name": "Chesser, Campbell",
+    "team": "West Coast Eagles",
+    "imageFileName": "6831a9ec2753892f1482285e.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482285f",
+    "name": "Cole, Tom",
+    "team": "West Coast Eagles",
+    "imageFileName": "6831a9ec2753892f1482285f.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822860",
+    "name": "Cripps, Jamie",
+    "team": "West Coast Eagles",
+    "imageFileName": "6831a9ec2753892f14822860.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822861",
+    "name": "Davis, Hamish",
+    "team": "West Coast Eagles",
+    "imageFileName": "6831a9ec2753892f14822861.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822862",
+    "name": "Dewar, Tyrell R",
+    "team": "West Coast Eagles",
+    "imageFileName": "6831a9ec2753892f14822862.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822863",
+    "name": "Duggan, Liam",
+    "team": "West Coast Eagles",
+    "imageFileName": "6831a9ec2753892f14822863.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822864",
+    "name": "Edwards, Harry",
+    "team": "West Coast Eagles",
+    "imageFileName": "6831a9ec2753892f14822864.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822865",
+    "name": "Flynn, Matthew",
+    "team": "West Coast Eagles",
+    "imageFileName": "6831a9ec2753892f14822865.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822866",
+    "name": "Ginbey, Reuben",
+    "team": "West Coast Eagles",
+    "imageFileName": "6831a9ec2753892f14822866.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822867",
+    "name": "Graham, Jack",
+    "team": "West Coast Eagles",
+    "imageFileName": "6831a9ec2753892f14822867.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822868",
+    "name": "Grego, Lucca",
+    "team": "West Coast Eagles",
+    "imageFileName": "6831a9ec2753892f14822868.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822869",
+    "name": "Gross, Tom",
+    "team": "West Coast Eagles",
+    "imageFileName": "6831a9ec2753892f14822869.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482286a",
+    "name": "Hall, Clay",
+    "team": "West Coast Eagles",
+    "imageFileName": "6831a9ec2753892f1482286a.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482286b",
+    "name": "Hewett, Elijah",
+    "team": "West Coast Eagles",
+    "imageFileName": "6831a9ec2753892f1482286b.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482286c",
+    "name": "Hough, Brady",
+    "team": "West Coast Eagles",
+    "imageFileName": "6831a9ec2753892f1482286c.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482286d",
+    "name": "Hunt, Jayden",
+    "team": "West Coast Eagles",
+    "imageFileName": "6831a9ec2753892f1482286d.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482286e",
+    "name": "Hutchinson, Jack R",
+    "team": "West Coast Eagles",
+    "imageFileName": "6831a9ec2753892f1482286e.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482286f",
+    "name": "Jamieson, Callum",
+    "team": "West Coast Eagles",
+    "imageFileName": "6831a9ec2753892f1482286f.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822870",
+    "name": "Johnston, Harvey",
+    "team": "West Coast Eagles",
+    "imageFileName": "6831a9ec2753892f14822870.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822871",
+    "name": "Kelly, Tim",
+    "team": "West Coast Eagles",
+    "imageFileName": "6831a9ec2753892f14822871.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822872",
+    "name": "Livingstone, Coen R",
+    "team": "West Coast Eagles",
+    "imageFileName": "6831a9ec2753892f14822872.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822873",
+    "name": "Long, Noah",
+    "team": "West Coast Eagles",
+    "imageFileName": "6831a9ec2753892f14822873.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822874",
+    "name": "Maric, Ryan R",
+    "team": "West Coast Eagles",
+    "imageFileName": "6831a9ec2753892f14822874.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822875",
+    "name": "McGovern, Jeremy",
+    "team": "West Coast Eagles",
+    "imageFileName": "6831a9ec2753892f14822875.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822876",
+    "name": "Owies, Matt",
+    "team": "West Coast Eagles",
+    "imageFileName": "6831a9ec2753892f14822876.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822877",
+    "name": "Petruccelle, Jack",
+    "team": "West Coast Eagles",
+    "imageFileName": "6831a9ec2753892f14822877.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822878",
+    "name": "Rawlinson, Loch R",
+    "team": "West Coast Eagles",
+    "imageFileName": "6831a9ec2753892f14822878.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822879",
+    "name": "Reid, Archer",
+    "team": "West Coast Eagles",
+    "imageFileName": "6831a9ec2753892f14822879.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482287a",
+    "name": "Reid, Harley",
+    "team": "West Coast Eagles",
+    "imageFileName": "6831a9ec2753892f1482287a.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482287b",
+    "name": "Ryan, Liam",
+    "team": "West Coast Eagles",
+    "imageFileName": "6831a9ec2753892f1482287b.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482287c",
+    "name": "Shanahan, Jobe",
+    "team": "West Coast Eagles",
+    "imageFileName": "6831a9ec2753892f1482287c.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482287d",
+    "name": "Sheed, Dominic",
+    "team": "West Coast Eagles",
+    "imageFileName": "6831a9ec2753892f1482287d.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482287e",
+    "name": "Waterman, Jake",
+    "team": "West Coast Eagles",
+    "imageFileName": "6831a9ec2753892f1482287e.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482287f",
+    "name": "Williams, Bailey J.",
+    "team": "West Coast Eagles",
+    "imageFileName": "6831a9ec2753892f1482287f.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822880",
+    "name": "Williams, Jack",
+    "team": "West Coast Eagles",
+    "imageFileName": "6831a9ec2753892f14822880.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822881",
+    "name": "Yeo, Elliot",
+    "team": "West Coast Eagles",
+    "imageFileName": "6831a9ec2753892f14822881.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482282b",
+    "name": "Baker, Oskar R",
+    "team": "Western Bulldogs",
+    "imageFileName": "6831a9ec2753892f1482282b.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482282c",
+    "name": "Bontempelli, Marcus",
+    "team": "Western Bulldogs",
+    "imageFileName": "6831a9ec2753892f1482282c.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482282d",
+    "name": "Bramble, Lachlan R",
+    "team": "Western Bulldogs",
+    "imageFileName": "6831a9ec2753892f1482282d.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482282e",
+    "name": "Busslinger, Jedd",
+    "team": "Western Bulldogs",
+    "imageFileName": "6831a9ec2753892f1482282e.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482282f",
+    "name": "Cleary, Luke",
+    "team": "Western Bulldogs",
+    "imageFileName": "6831a9ec2753892f1482282f.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822830",
+    "name": "Coffield, Nicholas",
+    "team": "Western Bulldogs",
+    "imageFileName": "6831a9ec2753892f14822830.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822831",
+    "name": "Croft, Jordan",
+    "team": "Western Bulldogs",
+    "imageFileName": "6831a9ec2753892f14822831.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822832",
+    "name": "Dale, Bailey",
+    "team": "Western Bulldogs",
+    "imageFileName": "6831a9ec2753892f14822832.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822833",
+    "name": "Darcy, Sam",
+    "team": "Western Bulldogs",
+    "imageFileName": "6831a9ec2753892f14822833.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822834",
+    "name": "Davidson, Sam",
+    "team": "Western Bulldogs",
+    "imageFileName": "6831a9ec2753892f14822834.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822835",
+    "name": "Dolan, Josh",
+    "team": "Western Bulldogs",
+    "imageFileName": "6831a9ec2753892f14822835.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822836",
+    "name": "Duryea, Taylor R",
+    "team": "Western Bulldogs",
+    "imageFileName": "6831a9ec2753892f14822836.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822837",
+    "name": "English, Timothy",
+    "team": "Western Bulldogs",
+    "imageFileName": "6831a9ec2753892f14822837.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822838",
+    "name": "Freijah, Joel",
+    "team": "Western Bulldogs",
+    "imageFileName": "6831a9ec2753892f14822838.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822839",
+    "name": "Gallagher, Harvey",
+    "team": "Western Bulldogs",
+    "imageFileName": "6831a9ec2753892f14822839.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482283a",
+    "name": "Garcia, Riley",
+    "team": "Western Bulldogs",
+    "imageFileName": "6831a9ec2753892f1482283a.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482283b",
+    "name": "Gardner, Ryan",
+    "team": "Western Bulldogs",
+    "imageFileName": "6831a9ec2753892f1482283b.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482283c",
+    "name": "Harmes, James",
+    "team": "Western Bulldogs",
+    "imageFileName": "6831a9ec2753892f1482283c.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482283d",
+    "name": "Hynes, Cooper",
+    "team": "Western Bulldogs",
+    "imageFileName": "6831a9ec2753892f1482283d.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482283e",
+    "name": "Jaques, Lachie",
+    "team": "Western Bulldogs",
+    "imageFileName": "6831a9ec2753892f1482283e.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482283f",
+    "name": "Johannisen, Jason",
+    "team": "Western Bulldogs",
+    "imageFileName": "6831a9ec2753892f1482283f.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822840",
+    "name": "Jones, Arthur",
+    "team": "Western Bulldogs",
+    "imageFileName": "6831a9ec2753892f14822840.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822841",
+    "name": "Jones, Liam",
+    "team": "Western Bulldogs",
+    "imageFileName": "6831a9ec2753892f14822841.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822842",
+    "name": "Kennedy, Luke",
+    "team": "Western Bulldogs",
+    "imageFileName": "6831a9ec2753892f14822842.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822843",
+    "name": "Kennedy, Matthew",
+    "team": "Western Bulldogs",
+    "imageFileName": "6831a9ec2753892f14822843.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822844",
+    "name": "Khamis, Buku",
+    "team": "Western Bulldogs",
+    "imageFileName": "6831a9ec2753892f14822844.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822845",
+    "name": "Liberatore, Thomas",
+    "team": "Western Bulldogs",
+    "imageFileName": "6831a9ec2753892f14822845.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822846",
+    "name": "Lobb, Rory",
+    "team": "Western Bulldogs",
+    "imageFileName": "6831a9ec2753892f14822846.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822847",
+    "name": "McNeil, Lachlan R",
+    "team": "Western Bulldogs",
+    "imageFileName": "6831a9ec2753892f14822847.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822848",
+    "name": "Naughton, Aaron",
+    "team": "Western Bulldogs",
+    "imageFileName": "6831a9ec2753892f14822848.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822849",
+    "name": "O'Donnell, James R",
+    "team": "Western Bulldogs",
+    "imageFileName": "6831a9ec2753892f14822849.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482284a",
+    "name": "Poulter, Caleb R",
+    "team": "Western Bulldogs",
+    "imageFileName": "6831a9ec2753892f1482284a.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482284b",
+    "name": "Richards, Ed",
+    "team": "Western Bulldogs",
+    "imageFileName": "6831a9ec2753892f1482284b.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482284c",
+    "name": "Sanders, Ryley",
+    "team": "Western Bulldogs",
+    "imageFileName": "6831a9ec2753892f1482284c.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482284d",
+    "name": "Scott, Anthony",
+    "team": "Western Bulldogs",
+    "imageFileName": "6831a9ec2753892f1482284d.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482284e",
+    "name": "Smith, Lachlan",
+    "team": "Western Bulldogs",
+    "imageFileName": "6831a9ec2753892f1482284e.webp"
+  },
+  {
+    "id": "6831a9ec2753892f1482284f",
+    "name": "Treloar, Adam",
+    "team": "Western Bulldogs",
+    "imageFileName": "6831a9ec2753892f1482284f.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822850",
+    "name": "Ugle-Hagan, Jamarra",
+    "team": "Western Bulldogs",
+    "imageFileName": "6831a9ec2753892f14822850.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822851",
+    "name": "Vandermeer, Laitham",
+    "team": "Western Bulldogs",
+    "imageFileName": "6831a9ec2753892f14822851.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822852",
+    "name": "Weightman, Cody",
+    "team": "Western Bulldogs",
+    "imageFileName": "6831a9ec2753892f14822852.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822853",
+    "name": "West, Rhylee",
+    "team": "Western Bulldogs",
+    "imageFileName": "6831a9ec2753892f14822853.webp"
+  },
+  {
+    "id": "6831a9ec2753892f14822854",
+    "name": "Williams, Bailey",
+    "team": "Western Bulldogs",
+    "imageFileName": "6831a9ec2753892f14822854.webp"
+  }
+]
