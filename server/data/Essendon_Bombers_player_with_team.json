@@ -514,5 +514,53 @@
     "origin": "Calder Cannons",
     "position": "Forward",
     "team": "Essendon Bombers"
+  },
+  {
+    "number": 48,
+    "name": "McMahon Liam",
+    "games": 0,
+    "age": "23yr 2mth",
+    "dob": "2002-05-02",
+    "height": "197cm",
+    "weight": "88kg",
+    "origin": "Northern Knights",
+    "position": "Forward",
+    "team": "Essendon Bombers"
+  },
+  {
+    "number": 26,
+    "name": "May Archie R",
+    "games": 4,
+    "age": "20yr 10mth",
+    "dob": "2004-08-27",
+    "height": "198cm",
+    "weight": "95kg",
+    "origin": "Subiaco",
+    "position": "Forward",
+    "team": "Essendon Bombers"
+  },
+  {
+    "number": 46,
+    "name": "Blakiston Lachlan R",
+    "games": 4,
+    "age": "26yr 10mth",
+    "dob": "1998-09-09",
+    "height": "203cm",
+    "weight": "100kg",
+    "origin": "East Fremantle",
+    "position": "Ruck",
+    "team": "Essendon Bombers"
+  },
+  {
+    "number": 47,
+    "name": "Smartt Oskar R",
+    "games": 1,
+    "age": "19yr 8mth",
+    "dob": "2005-10-26",
+    "height": "180cm",
+    "weight": "84kg",
+    "origin": "Essendon VFL",
+    "position": "Forward",
+    "team": "Essendon Bombers"
   }
 ]

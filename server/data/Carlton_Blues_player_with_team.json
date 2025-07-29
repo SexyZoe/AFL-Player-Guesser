@@ -538,17 +538,5 @@
     "origin": "Sturt",
     "position": "Defender, Forward",
     "team": "Carlton Blues"
-  },
-  {
-    "number": 45,
-    "name": "Young Flynn R",
-    "games": 3,
-    "age": "23yr 5mth",
-    "dob": "2002-02-03",
-    "height": "181cm",
-    "weight": "72kg",
-    "origin": "Werribee",
-    "position": "Forward",
-    "team": "Carlton Blues"
   }
 ]
