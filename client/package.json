@@ -17,6 +17,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "@tailwindcss/postcss": "^4.1.11",
     "axios": "^1.6.7",
     "postcss": "^8.4.35",
     "react": "^18.2.0",

@@ -229,7 +229,7 @@ const PlayerList: React.FC<PlayerListProps> = ({ players, onSelectPlayer }) => {
                   <div>
                     {filteredPlayers.map((player, index) => (
                       <div
-                        key={player.id}
+                        key={player._id || player.id || index}
                         className={`custom-dropdown-option ${
                           index === selectedIndex ? 'selected' : ''
                         }`}

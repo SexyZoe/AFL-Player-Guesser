@@ -131,6 +131,18 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
       const player = await getRandomPlayer();
       if (player) {
         setTargetPlayer(player);
+        // 添加调试日志 - 显示目标球员信息
+        console.log('🎯 目标球员信息:', {
+          name: player.name,
+          team: player.team,
+          number: player.number,
+          position: player.position,
+          age: player.age,
+          height: player.height,
+          weight: player.weight,
+          games: player.games || player.gamesPlayed,
+          origin: player.origin
+        });
         setGameState('playing');
         setGuesses(0);
         setGuessHistory([]); // 清理之前的猜测历史

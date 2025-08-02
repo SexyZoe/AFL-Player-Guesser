@@ -42,6 +42,10 @@ module.exports = {
         context: ['/socket.io'],
         target: 'http://localhost:5000',
         ws: true
+      },
+      {
+        context: ['/images'],
+        target: 'http://localhost:5000'
       }
     ]
   }

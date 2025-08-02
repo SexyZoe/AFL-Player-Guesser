@@ -1,6 +1,7 @@
 // 球员类型定义
 export interface Player {
-  id: number;
+  _id?: string; // MongoDB的_id字段
+  id?: string | number; // 兼容性字段
   name: string;
   team: string;
   age: string | number;

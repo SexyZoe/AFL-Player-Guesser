@@ -526,5 +526,18 @@
     "origin": "Barwon Heads",
     "position": "Midfield, Forward",
     "team": "Geelong Cats"
+  },
+  {
+    "_id": "6831a9ec2753892f14823005",
+    "number": 23,
+    "name": "Lennox Hoffman",
+    "games": 0,
+    "age": "18yr 11mth",
+    "dob": "2006-08-08",
+    "height": "191cm",
+    "weight": "87kg",
+    "origin": "Sandringham Dragons",
+    "position": "Defender",
+    "team": "Geelong Cats"
   }
 ]

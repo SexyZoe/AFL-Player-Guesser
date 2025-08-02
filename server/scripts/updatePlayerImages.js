@@ -5,6 +5,28 @@ const Player = require('../models/Player');
 // 加载环境变量
 dotenv.config();
 
+// 球队名称映射（数据库名称 -> 文件夹名称）
+const teamNameMapping = {
+  'Adelaide Crows': 'Adelaide Crows',
+  'Brisbane Lions': 'Brisbane Lions',
+  'Carlton Blues': 'Carlton',
+  'Collingwood Magpies': 'Collingwood',
+  'Essendon Bombers': 'Essendon',
+  'Fremantle Dockers': 'Fremantle',
+  'Geelong Cats': 'Geelong Cats',
+  'Gold Coast Suns': 'Gold Coast Suns',
+  'GWS Giants': 'GWS Giants',
+  'Hawthorn Hawks': 'Hawthorn',
+  'Melbourne Demons': 'Melbourne',
+  'North Melbourne Kangaroos': 'North Melbourne',
+  'Port Adelaide Power': 'Port Adelaide',
+  'Richmond Tigers': 'Richmond',
+  'St Kilda Saints': 'St Kilda',
+  'Sydney Swans': 'Sydney Swans',
+  'Western Bulldogs': 'Western Bulldogs',
+  'West Coast Eagles': 'West Coast Eagles'
+};
+
 // 连接到MongoDB
 async function connectDB() {
   try {
@@ -25,7 +47,11 @@ async function updatePlayerImages() {
 
     // 更新每个球员的图片URL
     for (const player of players) {
-      const imageUrl = `/images/players/${player._id}.webp`;
+      // 获取对应的文件夹名称
+      const folderName = teamNameMapping[player.team] || player.team;
+      
+      // 修复图片URL格式，使用简化的文件夹名称
+      const imageUrl = `/images/players/${folderName}/${player._id}.webp`;
       
       await Player.findByIdAndUpdate(player._id, {
         image: imageUrl

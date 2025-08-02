@@ -165,7 +165,20 @@ function generateRoomCode() {
 
 function getRandomPlayer() {
   if (players.length === 0) return null;
-  return players[Math.floor(Math.random() * players.length)];
+  const randomPlayer = players[Math.floor(Math.random() * players.length)];
+  // 添加调试日志 - 显示被选中的目标球员
+  console.log('🎯 服务端选中目标球员:', {
+    name: randomPlayer.name,
+    team: randomPlayer.team,
+    number: randomPlayer.number,
+    position: randomPlayer.position,
+    age: randomPlayer.age,
+    height: randomPlayer.height,
+    weight: randomPlayer.weight,
+    games: randomPlayer.games || randomPlayer.gamesPlayed,
+    origin: randomPlayer.origin
+  });
+  return randomPlayer;
 }
 
 function cleanupUserRooms(socketId) {
