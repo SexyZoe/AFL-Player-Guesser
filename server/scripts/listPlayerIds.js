@@ -83,7 +83,7 @@ async function listPlayerIds(useDatabase = true) {
         id: playerId,
         name: player.name,
         team: player.team,
-        number: player.number,
+        number: player.number || player.no,
         imageFileName: `${playerId}.webp`
       };
       

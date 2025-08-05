@@ -198,7 +198,12 @@ function cleanupUserRooms(socketId) {
   }
 }
 
-// 连接数据库（如果提供了MongoDB URI）
+// 强制从JSON文件加载数据（临时修复图片显示问题）
+console.log('强制从JSON文件加载球员数据');
+loadPlayersFromJSON();
+
+// 注释掉数据库连接（原代码保留供后续使用）
+/*
 if (process.env.MONGODB_URI) {
   mongoose.connect(process.env.MONGODB_URI)
     .then(() => {
@@ -214,6 +219,7 @@ if (process.env.MONGODB_URI) {
   console.log('未配置MONGODB_URI，将从JSON文件加载数据');
   loadPlayersFromJSON();
 }
+*/
 
 // 启动服务器
 const PORT = process.env.PORT || 5000;

@@ -526,5 +526,31 @@
     "origin": "East Fremantle",
     "position": "Forward",
     "team": "North Melbourne Kangaroos"
+  },
+  {
+    "_id": "6831a9ec2753892f14823008",
+    "number": 45,
+    "name": "Zac Banch",
+    "games": 3,
+    "age": "22yr",
+    "dob": "2003-07-21",
+    "height": "175cm",
+    "weight": "74kg",
+    "origin": "Werribee",
+    "position": "Forward",
+    "team": "North Melbourne Kangaroos"
+  },
+  {
+    "_id": "6831a9ec2753892f14823009",
+    "number": 47,
+    "name": "Cooper Trembath",
+    "games": 0,
+    "age": "19yr 9mth",
+    "dob": "2005-10-17",
+    "height": "193cm",
+    "weight": "90kg",
+    "origin": "North Melbourne VFL",
+    "position": "Defender",
+    "team": "North Melbourne Kangaroos"
   }
 ]

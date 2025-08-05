@@ -526,5 +526,31 @@
     "origin": "Sydney University",
     "position": "Ruck",
     "team": "Gold Coast Suns"
+  },
+  {
+    "_id": "6831a9ec2753892f14823006",
+    "number": 48,
+    "name": "Oscar Adams",
+    "games": 5,
+    "age": "22yr",
+    "dob": "2003-07-23",
+    "height": "197cm",
+    "weight": "83kg",
+    "origin": "Glenelg",
+    "position": "Defender",
+    "team": "Gold Coast Suns"
+  },
+  {
+    "_id": "6831a9ec2753892f14823007",
+    "number": 45,
+    "name": "Caleb R. Lewis",
+    "games": 0,
+    "age": "21yr 10mth",
+    "dob": "2003-09-29",
+    "height": "198cm",
+    "weight": "89kg",
+    "origin": "Casey",
+    "position": "Forward",
+    "team": "Gold Coast Suns"
   }
 ]

@@ -43,8 +43,21 @@ async function importPlayers() {
       
       console.log(`正在导入 ${file}，包含 ${teamData.length} 名球员`);
       
+      // 处理字段映射（将"no"字段映射为"number"字段）
+      const processedTeamData = teamData.map(player => {
+        const processedPlayer = { ...player };
+        
+        // 如果存在"no"字段但没有"number"字段，则进行映射
+        if (player.no !== undefined && player.number === undefined) {
+          processedPlayer.number = player.no;
+          delete processedPlayer.no; // 删除原始"no"字段
+        }
+        
+        return processedPlayer;
+      });
+      
       // 批量插入每个球队的球员数据
-      await Player.insertMany(teamData);
+      await Player.insertMany(processedTeamData);
       
       totalPlayers += teamData.length;
     }
