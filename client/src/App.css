@@ -527,7 +527,7 @@ kbd:hover {
 }
 
 .target-title {
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   font-weight: bold;
   color: #2D3748;
 }
@@ -1284,5 +1284,396 @@ kbd:hover {
   
   .player-status {
     width: 100%;
+  }
+}
+
+/* How to Play按钮样式 */
+.how-to-play-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background: linear-gradient(135deg, #667EEA 0%, #764BA2 100%);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+  margin: 0.5rem;
+}
+
+.how-to-play-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+}
+
+.how-to-play-button span {
+  font-size: 1.1rem;
+}
+
+/* 模态框样式 */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+  padding: 1rem;
+  backdrop-filter: blur(5px);
+}
+
+.modal-content {
+  background: white;
+  border-radius: 20px;
+  max-width: 800px;
+  max-height: 90vh;
+  width: 100%;
+  overflow-y: auto;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+  animation: modalSlideIn 0.3s ease-out;
+}
+
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-30px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 2rem;
+  border-bottom: 1px solid #E2E8F0;
+  background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+  border-radius: 20px 20px 0 0;
+}
+
+.modal-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #2D3748;
+  margin: 0;
+}
+
+.modal-close-button {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #E2E8F0;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-close-button:hover {
+  background: #CBD5E0;
+  transform: rotate(90deg);
+}
+
+.modal-body {
+  padding: 2rem;
+  line-height: 1.6;
+}
+
+.modal-body h3 {
+  color: #2B6CB0;
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.game-modes-section,
+.rules-section,
+.tips-section,
+.battle-section {
+  margin-bottom: 2rem;
+}
+
+.mode-item {
+  background: #F7FAFC;
+  padding: 1rem;
+  border-radius: 12px;
+  margin-bottom: 0.75rem;
+  border-left: 4px solid #3182CE;
+}
+
+.mode-item strong {
+  color: #2B6CB0;
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.mode-item p {
+  color: #4A5568;
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.rules-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.rule-item {
+  background: white;
+  padding: 1.25rem;
+  border-radius: 12px;
+  border: 2px solid #E2E8F0;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.rule-item:hover {
+  border-color: #3182CE;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.color-indicator {
+  display: block;
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.rule-item strong {
+  color: #2D3748;
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.rule-item p {
+  color: #718096;
+  font-size: 0.8rem;
+  margin: 0;
+}
+
+.direction-hints {
+  background: #EBF8FF;
+  padding: 1.5rem;
+  border-radius: 12px;
+  border-left: 4px solid #3182CE;
+}
+
+.direction-hints h4 {
+  margin-bottom: 1rem;
+  color: #2B6CB0;
+}
+
+.hint-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.direction-arrow {
+  font-size: 1.5rem;
+  background: #3182CE;
+  color: white;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hint-item p {
+  margin: 0;
+  flex: 1;
+}
+
+.tips-list {
+  list-style: none;
+  padding: 0;
+}
+
+.tips-list li {
+  background: #F0FFF4;
+  padding: 0.75rem;
+  margin-bottom: 0.5rem;
+  border-radius: 8px;
+  border-left: 3px solid #48BB78;
+  position: relative;
+  padding-left: 1.5rem;
+}
+
+.tips-list li::before {
+  content: "💡";
+  position: absolute;
+  left: 0.5rem;
+  top: 0.75rem;
+}
+
+.controls-section {
+  margin-bottom: 2rem;
+}
+
+.controls-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.control-item {
+  background: #EBF8FF;
+  padding: 1.5rem;
+  border-radius: 12px;
+  text-align: center;
+  border: 2px solid #3182CE;
+  transition: all 0.3s ease;
+}
+
+.control-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(49, 130, 206, 0.2);
+}
+
+.keyboard-key {
+  display: inline-block;
+  background: #2D3748;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace;
+  font-weight: bold;
+  font-size: 0.9rem;
+  margin-bottom: 0.75rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.control-item strong {
+  color: #2B6CB0;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.control-item p {
+  color: #4A5568;
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.battle-features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+}
+
+.feature-item {
+  background: linear-gradient(135deg, #FFF5F5 0%, #FED7E2 100%);
+  padding: 1.5rem;
+  border-radius: 12px;
+  text-align: center;
+  border: 2px solid #F56565;
+}
+
+.feature-icon {
+  font-size: 2rem;
+  display: block;
+  margin-bottom: 0.75rem;
+}
+
+.feature-item strong {
+  color: #C53030;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.feature-item p {
+  color: #742A2A;
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.modal-footer {
+  padding: 1.5rem 2rem;
+  border-top: 1px solid #E2E8F0;
+  background: #F7FAFC;
+  border-radius: 0 0 20px 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.modal-confirm-button {
+  background: linear-gradient(135deg, #48BB78 0%, #38A169 100%);
+  color: white;
+  border: none;
+  padding: 0.75rem 2rem;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(72, 187, 120, 0.3);
+}
+
+.modal-confirm-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(72, 187, 120, 0.4);
+}
+
+/* How to Play按钮的响应式设计 */
+@media (max-width: 768px) {
+  .modal-content {
+    margin: 0.5rem;
+    max-height: 95vh;
+  }
+
+  .modal-header,
+  .modal-body,
+  .modal-footer {
+    padding: 1rem;
+  }
+
+  .modal-title {
+    font-size: 1.25rem;
+  }
+
+  .rules-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .battle-features {
+    grid-template-columns: 1fr;
+  }
+
+  .controls-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hint-item {
+    flex-direction: column;
+    text-align: center;
+    gap: 0.5rem;
+  }
+
+  .how-to-play-button {
+    font-size: 0.8rem;
+    padding: 0.5rem 1rem;
   }
 } 

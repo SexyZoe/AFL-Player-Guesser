@@ -190,10 +190,10 @@ const PlayerList: React.FC<PlayerListProps> = ({ players, onSelectPlayer }) => {
       {/* 搜索区域 */}
       <div className="search-wrapper">
         <div className="mb-8 text-center">
-          <h2 className="text-5xl font-bold text-gray-800 mb-3 bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent">
+          <h2 className="text-3xl font-bold text-gray-800 mb-3 bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent">
             Select Player
           </h2>
-          <p className="text-gray-600 text-xl font-medium">Type a player's name to search and select</p>
+          <p className="text-gray-600 text-lg font-medium">Type a player's name to search and select</p>
         </div>
 
         <div className="relative w-full max-w-2xl mx-auto" ref={searchRef}>
@@ -273,26 +273,7 @@ const PlayerList: React.FC<PlayerListProps> = ({ players, onSelectPlayer }) => {
           </div>
         </div>
 
-        {/* 搜索提示 */}
-        {!searchTerm && (
-          <div className="mt-6 text-center text-gray-500 text-sm space-y-2">
-            <div className="flex items-center justify-center gap-2">
-              <span className="text-lg">💡</span>
-              <span>Click the dropdown to start searching for players</span>
-            </div>
-            <div className="text-xs flex items-center justify-center gap-4 bg-gray-50 rounded-lg py-2 px-4 max-w-md mx-auto">
-              <span className="flex items-center gap-1">
-                <kbd>Tab</kbd> autocomplete
-              </span>
-              <span className="flex items-center gap-1">
-                <kbd>↑↓</kbd> navigate
-              </span>
-              <span className="flex items-center gap-1">
-                <kbd>Enter</kbd> select
-              </span>
-            </div>
-          </div>
-        )}
+
       </div>
     </div>
   );

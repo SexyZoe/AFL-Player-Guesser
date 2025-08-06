@@ -8,6 +8,7 @@ import GameResult from './components/GameResult';
 import GuessHistory from './components/GuessHistory';
 import BattleStatus from './components/BattleStatus';
 import BattleEffects from './components/BattleEffects';
+import HowToPlay from './components/HowToPlay';
 import './App.css';
 
 const App: React.FC = () => {
@@ -69,6 +70,7 @@ const App: React.FC = () => {
       <header className="app-header w-full py-6 px-4 text-center">
         <h1 className="app-title text-4xl font-bold">AFL Guess Who</h1>
         <p className="app-subtitle text-xl">Guess the mystery AFL player!</p>
+        <HowToPlay />
       </header>
 
       <main className="app-main w-full px-4 py-6">
@@ -142,17 +144,7 @@ const App: React.FC = () => {
               )}
             </div>
             
-            {/* 游戏规则说明 */}
-            <div className="game-rules mb-6">
-              <h3 className="text-lg font-bold mb-2">Game Rules</h3>
-              <ul className="text-sm">
-                <li>🟩 Green = Exact Match</li>
-                <li>🟧 Orange = Close Match</li>
-                <li>⬜ Blank = Not a Match</li>
-                <li>↑ Target value is higher</li>
-                <li>↓ Target value is lower</li>
-              </ul>
-            </div>
+
             
             {/* 玩家选择区域 */}
             <div className="player-list-container">
