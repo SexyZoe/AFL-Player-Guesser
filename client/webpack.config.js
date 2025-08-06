@@ -36,16 +36,16 @@ module.exports = {
     proxy: [
       {
         context: ['/api'],
-        target: 'http://localhost:5000'
+        target: 'http://localhost:3002'
       },
       {
         context: ['/socket.io'],
-        target: 'http://localhost:5000',
+        target: 'http://localhost:3002',
         ws: true
       },
       {
         context: ['/images'],
-        target: 'http://localhost:5000'
+        target: 'http://localhost:3002'
       }
     ]
   }

@@ -98,6 +98,8 @@ app.get('/api/random-player', async (req, res) => {
 
 // Socket.IO 逻辑
 const rooms = {};
+const matchmakingQueue = [];
+const matchingRooms = {}; // 存储等待ack确认的房间
 
 io.on('connection', (socket) => {
   console.log('新用户连接:', socket.id);
@@ -130,22 +132,187 @@ io.on('connection', (socket) => {
     }
   });
 
-  // 猜测球员
+  // 加入随机匹配队列
+  socket.on('joinMatchmaking', () => {
+    console.log('📥 [服务器] 收到 joinMatchmaking 事件，来自:', socket.id);
+    
+    // 检查是否已经在队列中
+    if (matchmakingQueue.includes(socket.id)) {
+      console.log('⚠️ [服务器] 玩家已在匹配队列中:', socket.id);
+      return;
+    }
+
+    // 将玩家添加到匹配队列
+    matchmakingQueue.push(socket.id);
+    socket.emit('matchmakingJoined');
+    console.log('✅ [服务器] 玩家已加入匹配队列:', socket.id, '队列长度:', matchmakingQueue.length);
+
+    // 检查是否有足够的玩家进行匹配
+    if (matchmakingQueue.length >= 2) {
+      // 匹配前两个玩家
+      const player1Id = matchmakingQueue.shift();
+      const player2Id = matchmakingQueue.shift();
+      
+      const roomCode = generateRoomCode();
+      const targetPlayer = getRandomPlayer();
+      
+      // 创建等待ack确认的临时房间
+      matchingRooms[roomCode] = {
+        players: [player1Id, player2Id],
+        targetPlayer: targetPlayer,
+        acksReceived: [],  // 存储已收到ack的玩家ID
+        gameStarted: false
+      };
+
+      // 发送匹配成功事件（但不立即开始游戏）
+      io.to(player1Id).emit('matchFound', { 
+        roomCode: roomCode,
+        targetPlayer: targetPlayer,
+        opponentId: player2Id
+      });
+      
+      io.to(player2Id).emit('matchFound', { 
+        roomCode: roomCode,
+        targetPlayer: targetPlayer,
+        opponentId: player1Id
+      });
+
+      console.log('🎉 [服务器] 匹配成功，等待ACK确认! 房间:', roomCode, '玩家:', player1Id, 'vs', player2Id);
+    }
+  });
+
+  // 离开随机匹配队列
+  socket.on('leaveMatchmaking', () => {
+    const index = matchmakingQueue.indexOf(socket.id);
+    if (index !== -1) {
+      matchmakingQueue.splice(index, 1);
+      socket.emit('matchmakingLeft');
+      console.log('📤 [服务器] 玩家离开匹配队列:', socket.id);
+    }
+  });
+
+  // 处理匹配确认 - 核心ACK机制
+  socket.on('matchFoundAck', ({ roomCode }) => {
+    console.log('📝 [服务器] 收到匹配确认:', socket.id, '房间:', roomCode);
+    
+    if (matchingRooms[roomCode]) {
+      const room = matchingRooms[roomCode];
+      
+      // 添加ack确认
+      if (!room.acksReceived.includes(socket.id)) {
+        room.acksReceived.push(socket.id);
+        console.log('✅ [服务器] ACK确认已记录:', socket.id, '已确认:', room.acksReceived.length, '/2');
+      }
+      
+      // 如果双方都确认了，才真正开始游戏
+      if (room.acksReceived.length === 2 && !room.gameStarted) {
+        room.gameStarted = true;
+        
+        // 创建正式的游戏房间
+        rooms[roomCode] = {
+          players: room.players,
+          targetPlayer: room.targetPlayer,
+          gameState: 'playing',
+          playersStatus: {
+            [room.players[0]]: {
+              socketId: room.players[0],
+              guesses: 0,
+              isFinished: false,
+              isWinner: false
+            },
+            [room.players[1]]: {
+              socketId: room.players[1],
+              guesses: 0,
+              isFinished: false,
+              isWinner: false
+            }
+          }
+        };
+
+        // 让玩家加入房间
+        room.players.forEach(playerId => {
+          const playerSocket = io.sockets.sockets.get(playerId);
+          if (playerSocket) {
+            playerSocket.join(roomCode);
+          }
+        });
+
+        // 发送初始对战状态更新
+        io.to(roomCode).emit('battleStatusUpdate', {
+          playersStatus: rooms[roomCode].playersStatus
+        });
+        
+        // 删除临时匹配房间
+        delete matchingRooms[roomCode];
+        
+        console.log('🚀 [服务器] 双方ACK确认完成，游戏正式开始:', roomCode);
+      }
+    }
+  });
+
+  // 猜测球员（支持实时对战状态同步）
   socket.on('guessPlayer', ({ roomCode, playerId }) => {
     if (rooms[roomCode] && rooms[roomCode].gameState === 'playing') {
-      const isCorrect = playerId === rooms[roomCode].targetPlayer.id;
+      const room = rooms[roomCode];
+      const isCorrect = playerId === room.targetPlayer.id || playerId === room.targetPlayer._id;
+      
+      // 更新玩家状态
+      if (room.playersStatus && room.playersStatus[socket.id]) {
+        room.playersStatus[socket.id].guesses++;
+        
+        console.log('🎯 [服务器] 玩家猜测:', socket.id, '猜测次数:', room.playersStatus[socket.id].guesses, '是否正确:', isCorrect);
+        
+        // 实时广播对战状态更新
+        io.to(roomCode).emit('battleStatusUpdate', {
+          playersStatus: room.playersStatus
+        });
+
+        if (isCorrect) {
+          // 标记获胜者
+          room.playersStatus[socket.id].isFinished = true;
+          room.playersStatus[socket.id].isWinner = true;
+          
+          // 找到失败者
+          const loserId = room.players.find(id => id !== socket.id);
+          if (loserId && room.playersStatus[loserId]) {
+            room.playersStatus[loserId].isFinished = true;
+            room.playersStatus[loserId].isWinner = false;
+          }
+
+          room.gameState = 'finished';
+
+          // 发送对战游戏结束事件
+          io.to(roomCode).emit('battleGameOver', {
+            winner: room.playersStatus[socket.id],
+            loser: room.playersStatus[loserId] || null,
+            targetPlayer: room.targetPlayer
+          });
+
+          console.log('🏆 [服务器] 对战游戏结束! 获胜者:', socket.id, '失败者:', loserId);
+        }
+      }
       
       socket.emit('guessResult', { 
         isCorrect,
         playerId
       });
-
-      if (isCorrect) {
-        io.to(roomCode).emit('gameOver', { 
-          winner: socket.id,
-          targetPlayer: rooms[roomCode].targetPlayer
+    } else {
+      // 处理单人游戏或私人房间的猜测
+      if (rooms[roomCode] && rooms[roomCode].gameState === 'playing') {
+        const isCorrect = playerId === rooms[roomCode].targetPlayer.id || playerId === rooms[roomCode].targetPlayer._id;
+        
+        socket.emit('guessResult', { 
+          isCorrect,
+          playerId
         });
-        rooms[roomCode].gameState = 'finished';
+
+        if (isCorrect) {
+          io.to(roomCode).emit('gameOver', { 
+            winner: socket.id,
+            targetPlayer: rooms[roomCode].targetPlayer
+          });
+          rooms[roomCode].gameState = 'finished';
+        }
       }
     }
   });
@@ -153,6 +320,27 @@ io.on('connection', (socket) => {
   // 断开连接
   socket.on('disconnect', () => {
     console.log('用户断开连接:', socket.id);
+    
+    // 从匹配队列中移除
+    const queueIndex = matchmakingQueue.indexOf(socket.id);
+    if (queueIndex !== -1) {
+      matchmakingQueue.splice(queueIndex, 1);
+      console.log('📤 [服务器] 从匹配队列中移除玩家:', socket.id);
+    }
+    
+    // 清理等待ack确认的房间
+    for (const [roomCode, room] of Object.entries(matchingRooms)) {
+      if (room.players.includes(socket.id)) {
+        console.log('🧹 [服务器] 清理等待ACK的房间:', roomCode);
+        delete matchingRooms[roomCode];
+        // 通知对方玩家匹配失败
+        const opponentId = room.players.find(id => id !== socket.id);
+        if (opponentId) {
+          io.to(opponentId).emit('matchmakingTimeout');
+        }
+      }
+    }
+    
     // 清理用户所在的房间
     cleanupUserRooms(socket.id);
   });
@@ -222,7 +410,24 @@ if (process.env.MONGODB_URI) {
 */
 
 // 启动服务器
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 3002;
 server.listen(PORT, () => {
   console.log(`服务器运行在端口 ${PORT}`);
+});
+
+// 优雅退出处理
+process.on('SIGINT', () => {
+  console.log('\n收到退出信号，正在关闭服务器...');
+  server.close(() => {
+    console.log('服务器已关闭');
+    process.exit(0);
+  });
+});
+
+process.on('SIGTERM', () => {
+  console.log('\n收到终止信号，正在关闭服务器...');
+  server.close(() => {
+    console.log('服务器已关闭');
+    process.exit(0);
+  });
 }); 

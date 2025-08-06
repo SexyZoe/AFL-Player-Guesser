@@ -27,7 +27,10 @@ const GameModeSelector: React.FC<GameModeSelectorProps> = ({ selectedMode, onSel
         {/* ⚔️ Random Match */}
         <div 
           className={`afl-card cursor-pointer ${selectedMode === 'random' ? 'ring-4 ring-afl-blue' : ''}`}
-          onClick={() => onSelectMode('random')}
+          onClick={() => {
+            console.log('🎯 Random Match card clicked!');
+            onSelectMode('random');
+          }}
         >
           <div className="text-center w-full">
             <div className="text-3xl mb-2">⚔️</div>

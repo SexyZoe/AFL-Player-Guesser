@@ -1054,4 +1054,235 @@ kbd:hover {
 .unified-text-muted {
     color: #718096;
     font-weight: 400;
+}
+
+/* 匹配状态样式 */
+.matchmaking-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 60vh;
+  width: 100%;
+}
+
+.matchmaking-content {
+  background: white;
+  border-radius: 20px;
+  padding: 3rem 2rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  text-align: center;
+  max-width: 500px;
+  width: 100%;
+}
+
+.matchmaking-content h2 {
+  color: #2B6CB0;
+  margin-bottom: 1.5rem;
+}
+
+.cancel-button {
+  background: #E53E3E !important;
+  color: white !important;
+  border: none;
+  padding: 0.75rem 2rem;
+  border-radius: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.cancel-button:hover {
+  background: #C53030 !important;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(197, 48, 48, 0.3);
+}
+
+/* 对战状态样式 */
+.battle-status-container {
+  background: white;
+  border-radius: 16px;
+  padding: 1.5rem;
+  margin: 1rem 0;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  border: 2px solid #E2E8F0;
+}
+
+.battle-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.battle-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #2D3748;
+  margin: 0;
+}
+
+.battle-result {
+  font-size: 1.1rem;
+  font-weight: bold;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  animation: resultPulse 1s ease-in-out;
+}
+
+.battle-result.win {
+  background: linear-gradient(135deg, #48BB78 0%, #38A169 100%);
+  color: white;
+  box-shadow: 0 4px 15px rgba(72, 187, 120, 0.4);
+}
+
+.battle-result.lose {
+  background: linear-gradient(135deg, #F56565 0%, #E53E3E 100%);
+  color: white;
+  box-shadow: 0 4px 15px rgba(245, 101, 101, 0.4);
+}
+
+@keyframes resultPulse {
+  0% { transform: scale(0.8); opacity: 0; }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.battle-players {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.player-status {
+  flex: 1;
+  background: #F7FAFC;
+  border-radius: 12px;
+  padding: 1rem;
+  text-align: center;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.player-status.current {
+  background: linear-gradient(135deg, #EBF8FF 0%, #BEE3F8 100%);
+  border-color: #3182CE;
+}
+
+.player-status.opponent {
+  background: linear-gradient(135deg, #FFF5F5 0%, #FED7D7 100%);
+  border-color: #E53E3E;
+}
+
+.player-status.winner {
+  background: linear-gradient(135deg, #F0FFF4 0%, #C6F6D5 100%);
+  border-color: #38A169;
+  animation: winnerGlow 2s ease-in-out infinite alternate;
+}
+
+.player-status.loser {
+  background: linear-gradient(135deg, #FFFAF0 0%, #FEEBC8 100%);
+  border-color: #DD6B20;
+  opacity: 0.8;
+}
+
+@keyframes winnerGlow {
+  from { box-shadow: 0 0 10px rgba(56, 161, 105, 0.3); }
+  to { box-shadow: 0 0 20px rgba(56, 161, 105, 0.6); }
+}
+
+.player-label {
+  font-size: 1rem;
+  font-weight: bold;
+  margin-bottom: 0.75rem;
+  color: #2D3748;
+}
+
+.guesses-count {
+  font-size: 0.9rem;
+  color: #4A5568;
+  margin-bottom: 0.5rem;
+}
+
+.count-number {
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: #2B6CB0;
+}
+
+.player-state {
+  font-size: 0.8rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 16px;
+  font-weight: 600;
+  display: inline-block;
+}
+
+.player-state.playing {
+  background: #4299E1;
+  color: white;
+  animation: playingPulse 1.5s ease-in-out infinite;
+}
+
+.player-state.finished {
+  background: #48BB78;
+  color: white;
+}
+
+@keyframes playingPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+.vs-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, #667EEA 0%, #764BA2 100%);
+  border-radius: 50%;
+  color: white;
+  font-weight: bold;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+.vs-text {
+  font-size: 1rem;
+  letter-spacing: 1px;
+}
+
+.battle-hint {
+  margin-top: 1rem;
+  text-align: center;
+  padding: 0.75rem;
+  background: linear-gradient(135deg, #FFF5F5 0%, #FED7E2 100%);
+  border-radius: 8px;
+  border-left: 4px solid #F56565;
+}
+
+.battle-hint p {
+  margin: 0;
+  color: #742A2A;
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .battle-players {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .vs-divider {
+    transform: rotate(90deg);
+    width: 50px;
+    height: 50px;
+  }
+  
+  .player-status {
+    width: 100%;
+  }
 } 

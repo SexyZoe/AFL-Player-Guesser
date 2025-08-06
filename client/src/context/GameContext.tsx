@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
-import { Player, GameMode, GameState, GuessHistoryItem, ComparisonResult, ComparisonDirection } from '../types';
+import { Player, GameMode, GameState, GuessHistoryItem, ComparisonResult, ComparisonDirection, PlayerStatus } from '../types';
 import { getAllPlayers, getRandomPlayer } from '../services/api';
 import * as socketService from '../services/socket';
 
@@ -15,12 +15,18 @@ interface GameContextType {
   maxGuesses: number;
   guessHistory: GuessHistoryItem[];
   isGameWon: boolean;
+  // 对战模式相关状态
+  battleStatus: { [socketId: string]: PlayerStatus } | null;
+  currentSocketId: string | null;
+  opponentStatus: PlayerStatus | null;
+  battleResult: 'win' | 'lose' | null;
   setGameMode: (mode: GameMode) => void;
   startGame: () => void;
   createRoom: () => void;
   joinRoom: (code: string) => void;
   guessPlayer: (player: Player) => void;
   resetGame: () => void;
+  cancelMatchmaking: () => void;
 }
 
 const GameContext = createContext<GameContextType | undefined>(undefined);
@@ -49,6 +55,17 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
   const [maxGuesses] = useState<number>(8); // 最大猜测次数
   const [guessHistory, setGuessHistory] = useState<GuessHistoryItem[]>([]);
   const [isGameWon, setIsGameWon] = useState<boolean>(false);
+  
+  // 对战模式相关状态
+  const [battleStatus, setBattleStatus] = useState<{ [socketId: string]: PlayerStatus } | null>(null);
+  const [currentSocketId, setCurrentSocketId] = useState<string | null>(null);
+  const [opponentStatus, setOpponentStatus] = useState<PlayerStatus | null>(null);
+  const [battleResult, setBattleResult] = useState<'win' | 'lose' | null>(null);
+
+  // 调试: 监控gameMode变化
+  useEffect(() => {
+    console.log('🎮 Game mode changed to:', gameMode);
+  }, [gameMode]);
 
   // 加载所有球员数据
   useEffect(() => {
@@ -73,7 +90,9 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
   useEffect(() => {
     // 连接成功回调
     socketService.connectSocket(() => {
-      console.log('Socket连接成功');
+      console.log('🔌 [客户端] Socket连接成功！');
+      // 保存当前socketId
+      setCurrentSocketId(socketService.getCurrentSocketId());
     });
 
     // 房间创建回调
@@ -116,6 +135,81 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
     socketService.onPlayerLeft(() => {
       setError('对方玩家已离开');
       console.log('对方玩家已离开');
+    });
+
+    // 匹配队列加入成功回调
+    socketService.onMatchmakingJoined(() => {
+      console.log('📥 [客户端] 收到 matchmakingJoined 事件，切换到匹配状态');
+      setGameState('matchmaking');
+      console.log('✅ [客户端] 已加入匹配队列，当前状态: matchmaking');
+    });
+
+    // 匹配队列离开成功回调
+    socketService.onMatchmakingLeft(() => {
+      setGameState('waiting');
+      console.log('已离开匹配队列');
+    });
+
+    // 匹配成功回调
+    socketService.onMatchFound((data) => {
+      console.log('🎉 [客户端] 收到 matchFound 事件:', data);
+      console.log('🏠 [客户端] 房间代码:', data.roomCode);
+      console.log('🎯 [客户端] 目标球员:', data.targetPlayer.name);
+      console.log('🔗 [客户端] Socket连接状态:', socketService.getCurrentSocketId() ? '已连接' : '未连接');
+      
+      // 先保存房间信息和目标球员，但不改变游戏状态
+      setRoomCode(data.roomCode);
+      setTargetPlayer(data.targetPlayer);
+      
+      // 立即发送确认收到事件
+      socketService.emitMatchFoundAck(data.roomCode);
+      
+      console.log('✅ [客户端] 已发送ACK确认信号，等待服务器确认双方准备就绪');
+      // 注意：不在这里设置gameState='playing'，等待服务器发送battleStatusUpdate
+    });
+
+    // 匹配超时回调
+    socketService.onMatchmakingTimeout(() => {
+      setGameState('waiting');
+      setError('匹配超时，请重试');
+      console.log('匹配超时');
+    });
+
+    // 对战状态更新回调
+    socketService.onBattleStatusUpdate((data) => {
+      console.log('⚔️ [客户端] 收到对战状态更新:', data);
+      
+      // 使用函数形式的setState来访问最新的状态
+      setBattleStatus((prevBattleStatus) => {
+        // 如果之前没有battleStatus，说明这是第一次收到，游戏正式开始
+        if (!prevBattleStatus) {
+          console.log('🚀 [客户端] 双方ACK确认完成，游戏正式开始！');
+          setGameState('playing');
+        }
+        return data.playersStatus;
+      });
+      
+      // 获取当前Socket ID
+      const currentId = socketService.getCurrentSocketId();
+      setCurrentSocketId(currentId);
+      
+      // 找到对手状态
+      const opponentId = Object.keys(data.playersStatus).find(id => id !== currentId);
+      if (opponentId) {
+        setOpponentStatus(data.playersStatus[opponentId]);
+      }
+    });
+
+    // 对战游戏结束回调
+    socketService.onBattleGameOver((data) => {
+      console.log('🏆 [客户端] 对战游戏结束:', data);
+      setGameState('finished');
+      setTargetPlayer(data.targetPlayer);
+      
+      // 判断当前玩家是胜利还是失败
+      const currentId = socketService.getCurrentSocketId();
+      setBattleResult(data.winner.socketId === currentId ? 'win' : 'lose');
+      setIsGameWon(data.winner.socketId === currentId);
     });
 
     // 清理函数
@@ -257,41 +351,72 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
   const guessPlayer = (player: Player) => {
     if (!targetPlayer) return;
     
-    setGuesses((prev) => prev + 1);
-    
-    // 生成比较结果
-    const comparisonResult = comparePlayer(player, targetPlayer);
-    
-    // 添加到猜测历史
-    setGuessHistory((prev) => [...prev, comparisonResult]);
-    
-    // 检查是否猜对
-    const isCorrect = player.name === targetPlayer.name;
-    
-    // 检查是否达到最大猜测次数
-    const isMaxGuesses = guesses + 1 >= maxGuesses;
-    
-    if (isCorrect) {
-      setIsGameWon(true);
-      setGameState('finished');
-    } else if (isMaxGuesses) {
-      setIsGameWon(false);
-      setGameState('finished');
+    // 对于多人游戏（随机匹配和私人房间），发送猜测到服务器
+    if (gameMode === 'random' || gameMode === 'private') {
+      if (roomCode) {
+        console.log('🎮 [客户端] 发送猜测到服务器:', player.name, '房间:', roomCode);
+        const playerId = player.id || player._id || 0;
+        socketService.guessPlayer(roomCode, playerId as number);
+      }
+      
+      // 生成本地比较结果用于UI显示
+      const comparisonResult = comparePlayer(player, targetPlayer);
+      setGuessHistory((prev) => [...prev, comparisonResult]);
+      
+      // 注意：对战模式下不在这里更新状态，等待服务器通知
+    } else {
+      // 单人游戏的本地处理
+      setGuesses((prev) => prev + 1);
+      
+      // 生成比较结果
+      const comparisonResult = comparePlayer(player, targetPlayer);
+      
+      // 添加到猜测历史
+      setGuessHistory((prev) => [...prev, comparisonResult]);
+      
+      // 检查是否猜对
+      const isCorrect = player.name === targetPlayer.name;
+      
+      // 检查是否达到最大猜测次数
+      const isMaxGuesses = guesses + 1 >= maxGuesses;
+      
+      if (isCorrect) {
+        setIsGameWon(true);
+        setGameState('finished');
+      } else if (isMaxGuesses) {
+        setIsGameWon(false);
+        setGameState('finished');
+      }
     }
   };
 
   // 开始游戏
   const startGame = () => {
+    console.log('🚀 startGame called! Current gameMode:', gameMode);
     if (gameMode === 'solo') {
+      console.log('🎯 Starting solo game...');
       startSoloGame();
     } else if (gameMode === 'random') {
-      // 随机匹配逻辑（简化为创建房间）
-      createRoom();
+      console.log('⚔️ Starting random match... Joining matchmaking queue');
+      // 随机匹配逻辑 - 加入匹配队列
+      socketService.joinMatchmaking();
+      setError(''); // 清除之前的错误
     }
+  };
+
+  // 取消匹配
+  const cancelMatchmaking = () => {
+    socketService.leaveMatchmaking();
+    setError(''); // 清除错误
   };
 
   // 重置游戏
   const resetGame = () => {
+    // 如果正在匹配中，先离开匹配队列
+    if (gameState === 'matchmaking') {
+      socketService.leaveMatchmaking();
+    }
+    
     setGameState('waiting');
     setTargetPlayer(null);
     setRoomCode('');
@@ -299,6 +424,12 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
     setGuessHistory([]); // 清理猜测历史
     setIsGameWon(false);
     setError('');
+    
+    // 重置对战相关状态
+    setBattleStatus(null);
+    setCurrentSocketId(null);
+    setOpponentStatus(null);
+    setBattleResult(null);
   };
 
   const value = {
@@ -313,12 +444,17 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
     maxGuesses,
     guessHistory,
     isGameWon,
+    battleStatus,
+    currentSocketId,
+    opponentStatus,
+    battleResult,
     setGameMode,
     startGame,
     createRoom,
     joinRoom,
     guessPlayer,
-    resetGame
+    resetGame,
+    cancelMatchmaking
   };
 
   return <GameContext.Provider value={value}>{children}</GameContext.Provider>;

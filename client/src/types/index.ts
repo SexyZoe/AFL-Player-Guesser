@@ -19,7 +19,7 @@ export interface Player {
 export type GameMode = 'solo' | 'random' | 'private';
 
 // 游戏状态类型
-export type GameState = 'waiting' | 'playing' | 'finished';
+export type GameState = 'waiting' | 'playing' | 'finished' | 'matchmaking';
 
 // 房间类型
 export interface Room {
@@ -66,4 +66,31 @@ export interface GuessHistoryItem {
     weight: ComparisonDirection;
     gamesPlayed: ComparisonDirection;
   };
+}
+
+// 玩家状态类型（对战模式）
+export interface PlayerStatus {
+  socketId: string;
+  guesses: number;
+  isFinished: boolean;
+  isWinner: boolean;
+}
+
+// 匹配成功类型
+export interface MatchFound {
+  roomCode: string;
+  targetPlayer: Player;
+  opponentId: string;
+}
+
+// 对战状态更新类型
+export interface BattleStatusUpdate {
+  playersStatus: { [socketId: string]: PlayerStatus };
+}
+
+// 对战游戏结束类型
+export interface BattleGameOver {
+  winner: PlayerStatus;
+  loser: PlayerStatus;
+  targetPlayer: Player;
 } 
