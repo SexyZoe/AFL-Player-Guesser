@@ -9,6 +9,7 @@ import GuessHistory from './components/GuessHistory';
 import BattleStatus from './components/BattleStatus';
 import BattleEffects from './components/BattleEffects';
 import HowToPlay from './components/HowToPlay';
+import AnswerModal from './components/AnswerModal';
 import './App.css';
 
 const App: React.FC = () => {
@@ -28,13 +29,16 @@ const App: React.FC = () => {
     currentSocketId,
     opponentStatus,
     battleResult,
+    showAnswerModal,
+    gameEndReason,
     setGameMode,
     startGame,
     createRoom,
     joinRoom,
     guessPlayer,
     resetGame,
-    cancelMatchmaking
+    cancelMatchmaking,
+    closeAnswerModal
   } = useGame();
 
   // 加载状态
@@ -122,40 +126,63 @@ const App: React.FC = () => {
 
         {gameState === 'playing' && (
           <div className="game-container">
-            {/* 对战模式状态显示 */}
-            {gameMode !== 'solo' && battleStatus && currentSocketId && (
-              <BattleStatus
-                currentPlayer={battleStatus[currentSocketId] || null}
-                opponent={opponentStatus}
-                battleResult={battleResult}
-              />
-            )}
-            
-            {/* 游戏状态信息 */}
-            <div className="target-header">
-              <h2 className="target-title">
-                {gameMode === 'solo' ? 'AFL Player Guessing Game' : '⚔️ 对战猜球员'}
-              </h2>
-              {gameMode === 'solo' && (
-                <div className="guesses-counter">
-                  <span className="guesses-label">Guesses: </span>
-                  <span className="guesses-value">{guesses}/{maxGuesses}</span>
+            {gameMode === 'solo' ? (
+              /* 单人模式 - 保持原有布局 */
+              <>
+                {/* 游戏状态信息 */}
+                <div className="target-header">
+                  <h2 className="target-title">AFL Player Guessing Game</h2>
+                  <div className="guesses-counter">
+                    <span className="guesses-label">Guesses: </span>
+                    <span className="guesses-value">{guesses}/{maxGuesses}</span>
+                  </div>
                 </div>
-              )}
-            </div>
-            
+                
+                {/* 玩家选择区域 */}
+                <div className="player-list-container">
+                  <PlayerList 
+                    players={players} 
+                    onSelectPlayer={(player) => guessPlayer(player)} 
+                  />
+                </div>
+                
+                {/* 显示猜测历史 */}
+                <GuessHistory guessHistory={guessHistory} />
+              </>
+            ) : (
+              /* 对战模式 - 新的左右并排布局 */
+              <div className="battle-layout">
+                {/* 左侧主游戏区域 (70%) */}
+                <div className="main-game-area">
+                  {/* 游戏状态信息 */}
+                  <div className="target-header">
+                    <h2 className="target-title">⚔️ Battle Guess Player</h2>
+                  </div>
+                  
+                  {/* 玩家选择区域 */}
+                  <div className="player-list-container">
+                    <PlayerList 
+                      players={players} 
+                      onSelectPlayer={(player) => guessPlayer(player)} 
+                    />
+                  </div>
+                  
+                  {/* 显示猜测历史 */}
+                  <GuessHistory guessHistory={guessHistory} />
+                </div>
 
-            
-            {/* 玩家选择区域 */}
-            <div className="player-list-container">
-              <PlayerList 
-                players={players} 
-                onSelectPlayer={(player) => guessPlayer(player)} 
-              />
-            </div>
-            
-            {/* 显示猜测历史 */}
-            <GuessHistory guessHistory={guessHistory} />
+                {/* 右侧对战状态区域 (30%) */}
+                <div className="battle-sidebar">
+                  {battleStatus && currentSocketId && (
+                    <BattleStatus
+                      currentPlayer={battleStatus[currentSocketId] || null}
+                      opponent={opponentStatus}
+                      battleResult={battleResult}
+                    />
+                  )}
+                </div>
+              </div>
+            )}
           </div>
         )}
 
@@ -189,6 +216,19 @@ const App: React.FC = () => {
       <footer className="app-footer w-full py-4 px-4 text-center">
         <p>&copy; {new Date().getFullYear()} AFL Guessing Game | For entertainment purposes only</p>
       </footer>
+      
+      {/* 答案模态框 */}
+      {showAnswerModal && targetPlayer && (
+        <AnswerModal
+          isOpen={showAnswerModal}
+          targetPlayer={targetPlayer}
+          onClose={closeAnswerModal}
+          gameEndReason={gameEndReason}
+          isWinner={battleResult === 'win' || (gameMode === 'solo' && isGameWon)}
+          totalGuesses={gameMode === 'solo' ? guesses : (battleStatus && currentSocketId ? battleStatus[currentSocketId]?.guesses || 0 : 0)}
+          maxGuesses={maxGuesses}
+        />
+      )}
       
       {/* 对战特效 */}
       <BattleEffects 

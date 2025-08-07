@@ -4,11 +4,11 @@ import { Player, GuessResult, GameOver, MatchFound, BattleStatusUpdate, BattleGa
 // 创建socket连接 - 直接指定服务端地址
 const socket: Socket = io('http://localhost:3002', {
   transports: ['websocket', 'polling'],
-  timeout: 5000,
+  timeout: 10000,
   reconnection: true,
   reconnectionDelay: 1000,
-  reconnectionAttempts: 3,
-  forceNew: true
+  reconnectionAttempts: 5,
+  autoConnect: true
 });
 
 // 添加连接状态调试
@@ -90,30 +90,46 @@ export const onPlayerLeft = (callback: (data: { socketId: string }) => void): vo
 };
 
 // 加入随机匹配队列
-export const joinMatchmaking = (): void => {
-  console.log('📤 [客户端Socket] 发送 joinMatchmaking 事件');
-  console.log('🔗 [客户端Socket] 当前连接状态:', socket.connected);
-  console.log('🆔 [客户端Socket] Socket ID:', socket.id);
-  
-  // 强制检查连接状态
-  if (!socket.connected) {
-    console.warn('⚠️ [客户端Socket] Socket显示未连接，尝试强制连接...');
-    socket.connect();
+export const joinMatchmaking = (): Promise<void> => {
+  return new Promise((resolve, reject) => {
+    console.log('📤 [客户端Socket] 发送 joinMatchmaking 事件');
+    console.log('🔗 [客户端Socket] 当前连接状态:', socket.connected);
+    console.log('🆔 [客户端Socket] Socket ID:', socket.id);
     
-    // 等待一小段时间让连接建立
-    setTimeout(() => {
-      console.log('🔄 [客户端Socket] 重新检查连接状态:', socket.connected);
-      if (socket.connected) {
+    // 如果socket未连接，等待连接
+    if (!socket.connected) {
+      console.warn('⚠️ [客户端Socket] Socket未连接，等待连接...');
+      
+      // 监听连接成功事件
+      const onConnect = () => {
         console.log('✅ [客户端Socket] 连接已建立，发送事件');
         socket.emit('joinMatchmaking');
-      } else {
-        console.error('❌ [客户端Socket] 连接失败');
+        socket.off('connect', onConnect); // 清理监听器
+        resolve();
+      };
+      
+      // 监听连接失败事件
+      const onError = (error: Error) => {
+        console.error('❌ [客户端Socket] 连接失败:', error);
+        socket.off('connect', onConnect); // 清理监听器
+        socket.off('connect_error', onError);
+        reject(error);
+      };
+      
+      socket.on('connect', onConnect);
+      socket.on('connect_error', onError);
+      
+      // 如果还没有连接，尝试连接
+      if (!socket.connected) {
+        socket.connect();
       }
-    }, 1000);
-    return;
-  }
-  
-  socket.emit('joinMatchmaking');
+      return;
+    }
+    
+    // 直接发送事件
+    socket.emit('joinMatchmaking');
+    resolve();
+  });
 };
 
 // 离开随机匹配队列
@@ -165,7 +181,29 @@ export const emitMatchFoundAck = (roomCode: string): void => {
   console.log('📝 [客户端Socket] 已发送 matchFoundAck 确认信号');
 };
 
+// 清理所有事件监听器
+export const clearAllListeners = (): void => {
+  socket.off('connect');
+  socket.off('disconnect');
+  socket.off('connect_error');
+  socket.off('reconnect_attempt');
+  socket.off('reconnect_failed');
+  socket.off('roomCreated');
+  socket.off('roomError');
+  socket.off('gameStart');
+  socket.off('guessResult');
+  socket.off('gameOver');
+  socket.off('playerLeft');
+  socket.off('matchmakingJoined');
+  socket.off('matchmakingLeft');
+  socket.off('matchFound');
+  socket.off('matchmakingTimeout');
+  socket.off('battleStatusUpdate');
+  socket.off('battleGameOver');
+};
+
 // 断开连接
 export const disconnectSocket = (): void => {
+  clearAllListeners();
   socket.disconnect();
 }; 

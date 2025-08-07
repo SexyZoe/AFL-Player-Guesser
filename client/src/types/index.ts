@@ -90,7 +90,9 @@ export interface BattleStatusUpdate {
 
 // 对战游戏结束类型
 export interface BattleGameOver {
-  winner: PlayerStatus;
-  loser: PlayerStatus;
+  winner?: PlayerStatus;
+  loser?: PlayerStatus;
   targetPlayer: Player;
+  gameEndReason: 'CORRECT_GUESS' | 'ALL_GUESSES_USED' | 'PLAYER_DISCONNECTED';
+  playersStatus?: { [socketId: string]: PlayerStatus };
 } 

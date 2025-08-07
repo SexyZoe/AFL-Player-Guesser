@@ -161,7 +161,8 @@ io.on('connection', (socket) => {
         players: [player1Id, player2Id],
         targetPlayer: targetPlayer,
         acksReceived: [],  // 存储已收到ack的玩家ID
-        gameStarted: false
+        gameStarted: false,
+        createdAt: Date.now() // 添加创建时间用于超时检查
       };
 
       // 发送匹配成功事件（但不立即开始游戏）
@@ -254,47 +255,92 @@ io.on('connection', (socket) => {
   socket.on('guessPlayer', ({ roomCode, playerId }) => {
     if (rooms[roomCode] && rooms[roomCode].gameState === 'playing') {
       const room = rooms[roomCode];
+      const MAX_GUESSES = 8;
+      const currentPlayer = room.playersStatus[socket.id];
+      
+      // 检查玩家是否已经达到猜测次数上限或已完成游戏
+      if (!currentPlayer || currentPlayer.guesses >= MAX_GUESSES || currentPlayer.isFinished) {
+        socket.emit('guessResult', { 
+          isCorrect: false,
+          playerId,
+          error: 'GUESS_LIMIT_REACHED'
+        });
+        return;
+      }
+      
       const isCorrect = playerId === room.targetPlayer.id || playerId === room.targetPlayer._id;
       
       // 更新玩家状态
-      if (room.playersStatus && room.playersStatus[socket.id]) {
-        room.playersStatus[socket.id].guesses++;
+      room.playersStatus[socket.id].guesses++;
+      
+      console.log('🎯 [服务器] 玩家猜测:', socket.id, '猜测次数:', room.playersStatus[socket.id].guesses, '是否正确:', isCorrect);
+      
+      // 实时广播对战状态更新
+      io.to(roomCode).emit('battleStatusUpdate', {
+        playersStatus: room.playersStatus
+      });
+
+      if (isCorrect) {
+        // 猜对了，标记获胜者
+        room.playersStatus[socket.id].isFinished = true;
+        room.playersStatus[socket.id].isWinner = true;
         
-        console.log('🎯 [服务器] 玩家猜测:', socket.id, '猜测次数:', room.playersStatus[socket.id].guesses, '是否正确:', isCorrect);
-        
-        // 实时广播对战状态更新
-        io.to(roomCode).emit('battleStatusUpdate', {
-          playersStatus: room.playersStatus
+        // 找到失败者
+        const loserId = room.players.find(id => id !== socket.id);
+        if (loserId && room.playersStatus[loserId]) {
+          room.playersStatus[loserId].isFinished = true;
+          room.playersStatus[loserId].isWinner = false;
+        }
+
+        room.gameState = 'finished';
+
+        // 发送对战游戏结束事件
+        io.to(roomCode).emit('battleGameOver', {
+          winner: { ...room.playersStatus[socket.id], socketId: socket.id },
+          loser: loserId ? { ...room.playersStatus[loserId], socketId: loserId } : null,
+          targetPlayer: room.targetPlayer,
+          gameEndReason: 'CORRECT_GUESS'
         });
 
-        if (isCorrect) {
-          // 标记获胜者
-          room.playersStatus[socket.id].isFinished = true;
-          room.playersStatus[socket.id].isWinner = true;
-          
-          // 找到失败者
-          const loserId = room.players.find(id => id !== socket.id);
-          if (loserId && room.playersStatus[loserId]) {
-            room.playersStatus[loserId].isFinished = true;
-            room.playersStatus[loserId].isWinner = false;
-          }
-
+        console.log('🏆 [Server] Battle game over! Winner:', socket.id, 'Loser:', loserId);
+      } else if (room.playersStatus[socket.id].guesses >= MAX_GUESSES) {
+        // Player used all guesses
+        room.playersStatus[socket.id].isFinished = true;
+        
+        // 检查是否所有玩家都已完成或用完次数
+        const allPlayersFinished = Object.values(room.playersStatus).every(player => 
+          player.isFinished || player.guesses >= MAX_GUESSES
+        );
+        
+        if (allPlayersFinished) {
+          // 所有玩家都用完次数且没人猜对，游戏结束
           room.gameState = 'finished';
-
-          // 发送对战游戏结束事件
+          
+          // 发送对战游戏结束事件（平局或都失败）
           io.to(roomCode).emit('battleGameOver', {
-            winner: room.playersStatus[socket.id],
-            loser: room.playersStatus[loserId] || null,
-            targetPlayer: room.targetPlayer
+            winner: null,
+            loser: null,
+            targetPlayer: room.targetPlayer,
+            gameEndReason: 'ALL_GUESSES_USED',
+            playersStatus: room.playersStatus
           });
-
-          console.log('🏆 [服务器] 对战游戏结束! 获胜者:', socket.id, '失败者:', loserId);
+          
+          console.log('⏰ [Server] Battle game over! All players used all their guesses');
+        } else {
+          // 广播状态更新，让其他玩家知道这个玩家已完成
+          io.to(roomCode).emit('battleStatusUpdate', {
+            playersStatus: room.playersStatus
+          });
+          
+          console.log('⏱️ [Server] Player', socket.id, 'used all guesses, waiting for others');
         }
       }
       
       socket.emit('guessResult', { 
         isCorrect,
-        playerId
+        playerId,
+        guessesUsed: room.playersStatus[socket.id].guesses,
+        maxGuesses: MAX_GUESSES
       });
     } else {
       // 处理单人游戏或私人房间的猜测
@@ -372,6 +418,7 @@ function getRandomPlayer() {
 function cleanupUserRooms(socketId) {
   for (const [roomCode, room] of Object.entries(rooms)) {
     if (room.players.includes(socketId)) {
+      // 通知房间内其他玩家有人离开
       io.to(roomCode).emit('playerLeft', { socketId });
       
       // 如果房间中只有一个玩家，则删除房间
@@ -381,10 +428,43 @@ function cleanupUserRooms(socketId) {
       } else {
         // 从房间中移除玩家
         room.players = room.players.filter(id => id !== socketId);
+        
+        // 如果游戏正在进行中，通知其他玩家游戏结束
+        if (room.gameState === 'playing') {
+          room.gameState = 'finished';
+          io.to(roomCode).emit('battleGameOver', {
+            winner: null,
+            loser: null,
+            targetPlayer: room.targetPlayer,
+            gameEndReason: 'PLAYER_DISCONNECTED',
+            playersStatus: room.playersStatus
+          });
+          console.log(`[Server] Game ended due to player disconnect: ${socketId}`);
+        }
       }
     }
   }
 }
+
+// 定期检查匹配超时（每30秒检查一次）
+setInterval(() => {
+  const now = Date.now();
+  const timeout = 30000; // 30秒超时
+  
+  for (const [roomCode, room] of Object.entries(matchingRooms)) {
+    if (now - room.createdAt > timeout) {
+      console.log(`⏰ [服务器] 匹配超时，清理房间: ${roomCode}`);
+      
+      // 通知玩家匹配超时
+      room.players.forEach(playerId => {
+        io.to(playerId).emit('matchmakingTimeout');
+      });
+      
+      // 删除超时的房间
+      delete matchingRooms[roomCode];
+    }
+  }
+}, 30000);
 
 // 强制从JSON文件加载数据（临时修复图片显示问题）
 console.log('强制从JSON文件加载球员数据');

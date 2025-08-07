@@ -19,42 +19,42 @@ const BattleStatus: React.FC<BattleStatusProps> = ({
   return (
     <div className="battle-status-container">
       <div className="battle-header">
-        <h3 className="battle-title">⚔️ 对战模式</h3>
+        <h3 className="battle-title">⚔️ Battle Mode</h3>
         {battleResult && (
           <div className={`battle-result ${battleResult}`}>
-            {battleResult === 'win' ? '🏆 胜利!' : '💔 失败!'}
+            {battleResult === 'win' ? '🏆 Victory!' : '💔 Defeat!'}
           </div>
         )}
       </div>
       
-      <div className="battle-players">
+      <div className="battle-players-vertical">
         {/* 当前玩家状态 */}
-        <div className={`player-status current ${battleResult === 'win' ? 'winner' : battleResult === 'lose' ? 'loser' : ''}`}>
-          <div className="player-label">👤 你</div>
-          <div className="player-stats">
-            <div className="guesses-count">
-              猜测次数: <span className="count-number">{currentPlayer.guesses}</span>
+        <div className={`player-status-vertical current ${battleResult === 'win' ? 'winner' : battleResult === 'lose' ? 'loser' : ''}`}>
+          <div className="player-label-vertical">👤 You</div>
+          <div className="player-stats-vertical">
+            <div className="guesses-count-vertical">
+              Guesses: <span className="count-number">{currentPlayer.guesses}</span>
             </div>
             <div className={`player-state ${currentPlayer.isFinished ? 'finished' : 'playing'}`}>
-              {currentPlayer.isFinished ? '已完成' : '游戏中'}
+              {currentPlayer.isFinished ? 'Finished' : 'Playing'}
             </div>
           </div>
         </div>
 
-        {/* VS 分隔符 */}
-        <div className="vs-divider">
+        {/* VS 分隔符 - 垂直版本 */}
+        <div className="vs-divider-vertical">
           <span className="vs-text">VS</span>
         </div>
 
         {/* 对手状态 */}
-        <div className={`player-status opponent ${battleResult === 'lose' ? 'winner' : battleResult === 'win' ? 'loser' : ''}`}>
-          <div className="player-label">🎭 对手</div>
-          <div className="player-stats">
-            <div className="guesses-count">
-              猜测次数: <span className="count-number">{opponent.guesses}</span>
+        <div className={`player-status-vertical opponent ${battleResult === 'lose' ? 'winner' : battleResult === 'win' ? 'loser' : ''}`}>
+          <div className="player-label-vertical">🎭 Opponent</div>
+          <div className="player-stats-vertical">
+            <div className="guesses-count-vertical">
+              Guesses: <span className="count-number">{opponent.guesses}</span>
             </div>
             <div className={`player-state ${opponent.isFinished ? 'finished' : 'playing'}`}>
-              {opponent.isFinished ? '已完成' : '游戏中'}
+              {opponent.isFinished ? 'Finished' : 'Playing'}
             </div>
           </div>
         </div>
@@ -63,7 +63,7 @@ const BattleStatus: React.FC<BattleStatusProps> = ({
       {/* 对战提示 */}
       {!battleResult && (
         <div className="battle-hint">
-          <p>🔥 争分夺秒！看谁能更快猜中球员！</p>
+          <p>🔥 Race against time! See who can guess the player first!</p>
         </div>
       )}
     </div>

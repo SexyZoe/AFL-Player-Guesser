@@ -1098,14 +1098,32 @@ kbd:hover {
   box-shadow: 0 8px 20px rgba(197, 48, 48, 0.3);
 }
 
+/* 对战布局样式 */
+.battle-layout {
+  display: flex;
+  gap: 1.5rem;
+  align-items: flex-start;
+}
+
+.main-game-area {
+  flex: 0 0 70%;
+}
+
+.battle-sidebar {
+  flex: 0 0 30%;
+  min-height: 100vh;
+  position: sticky;
+  top: 1rem;
+}
+
 /* 对战状态样式 */
 .battle-status-container {
   background: white;
   border-radius: 16px;
   padding: 1.5rem;
-  margin: 1rem 0;
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
   border: 2px solid #E2E8F0;
+  height: fit-content;
 }
 
 .battle-header {
@@ -1155,6 +1173,14 @@ kbd:hover {
   gap: 1rem;
 }
 
+/* 垂直排列的对战玩家样式 */
+.battle-players-vertical {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  align-items: center;
+}
+
 .player-status {
   flex: 1;
   background: #F7FAFC;
@@ -1185,6 +1211,57 @@ kbd:hover {
   background: linear-gradient(135deg, #FFFAF0 0%, #FEEBC8 100%);
   border-color: #DD6B20;
   opacity: 0.8;
+}
+
+/* 垂直版本的玩家状态样式 */
+.player-status-vertical {
+  width: 100%;
+  background: #F7FAFC;
+  border-radius: 12px;
+  padding: 1.25rem;
+  text-align: center;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.player-status-vertical.current {
+  background: linear-gradient(135deg, #EBF8FF 0%, #BEE3F8 100%);
+  border-color: #3182CE;
+}
+
+.player-status-vertical.opponent {
+  background: linear-gradient(135deg, #FFF5F5 0%, #FED7D7 100%);
+  border-color: #E53E3E;
+}
+
+.player-status-vertical.winner {
+  background: linear-gradient(135deg, #F0FFF4 0%, #C6F6D5 100%);
+  border-color: #38A169;
+  animation: winnerGlow 2s ease-in-out infinite alternate;
+}
+
+.player-status-vertical.loser {
+  background: linear-gradient(135deg, #FFFAF0 0%, #FEEBC8 100%);
+  border-color: #DD6B20;
+  opacity: 0.8;
+}
+
+.player-label-vertical {
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-bottom: 0.75rem;
+  color: #2D3748;
+}
+
+.player-stats-vertical {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.guesses-count-vertical {
+  font-size: 0.9rem;
+  color: #4A5568;
 }
 
 @keyframes winnerGlow {
@@ -1248,6 +1325,21 @@ kbd:hover {
   box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
 }
 
+/* 垂直版本的VS分隔符 */
+.vs-divider-vertical {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(135deg, #667EEA 0%, #764BA2 100%);
+  border-radius: 50%;
+  color: white;
+  font-weight: bold;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+  align-self: center;
+}
+
 .vs-text {
   font-size: 1rem;
   letter-spacing: 1px;
@@ -1284,6 +1376,33 @@ kbd:hover {
   
   .player-status {
     width: 100%;
+  }
+
+  /* 移动端：对战布局改为垂直堆叠 */
+  .battle-layout {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .main-game-area {
+    flex: none;
+    width: 100%;
+  }
+
+  .battle-sidebar {
+    flex: none;
+    width: 100%;
+    min-height: auto;
+    position: static;
+    order: -1; /* 在移动端将对战状态显示在顶部 */
+  }
+
+  .battle-status-container {
+    padding: 1rem;
+  }
+
+  .player-status-vertical {
+    padding: 1rem;
   }
 }
 
@@ -1576,6 +1695,255 @@ kbd:hover {
   color: #4A5568;
   font-size: 0.9rem;
   margin: 0;
+}
+
+/* 答案模态框样式 */
+.answer-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10001;
+  padding: 1rem;
+  backdrop-filter: blur(8px);
+}
+
+.answer-modal-content {
+  background: white;
+  border-radius: 24px;
+  max-width: 600px;
+  max-height: 90vh;
+  width: 100%;
+  overflow-y: auto;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+  animation: answerModalSlideIn 0.4s ease-out;
+  border: 3px solid #E2E8F0;
+}
+
+@keyframes answerModalSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-50px) scale(0.9);
+    filter: blur(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+.answer-modal-header {
+  padding: 2rem;
+  text-align: center;
+  border-radius: 24px 24px 0 0;
+  position: relative;
+  border-bottom: 1px solid #E2E8F0;
+}
+
+.answer-modal-title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 0.75rem;
+  animation: titlePulse 0.6s ease-out;
+}
+
+@keyframes titlePulse {
+  0% { transform: scale(0.8); opacity: 0; }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.answer-modal-subtitle {
+  font-size: 1.1rem;
+  color: #4A5568;
+  margin: 0;
+  animation: slideInUp 0.6s ease-out 0.2s both;
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.answer-modal-close-button {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.9);
+  border: 2px solid #E2E8F0;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #4A5568;
+}
+
+.answer-modal-close-button:hover {
+  background: #F56565;
+  color: white;
+  border-color: #F56565;
+  transform: rotate(90deg) scale(1.1);
+}
+
+.answer-modal-body {
+  padding: 2rem;
+}
+
+.answer-reveal {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.reveal-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #2B6CB0;
+  margin-bottom: 1.5rem;
+  animation: slideInUp 0.6s ease-out 0.4s both;
+}
+
+.player-card-container {
+  animation: cardReveal 0.8s ease-out 0.6s both;
+  transform-origin: center;
+}
+
+@keyframes cardReveal {
+  0% {
+    opacity: 0;
+    transform: scale(0.8) rotateY(90deg);
+    filter: blur(5px);
+  }
+  50% {
+    transform: scale(1.05) rotateY(45deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotateY(0deg);
+    filter: blur(0);
+  }
+}
+
+.game-stats {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 2rem;
+  animation: slideInUp 0.6s ease-out 0.8s both;
+}
+
+.stat-item {
+  text-align: center;
+  background: #F7FAFC;
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  border: 2px solid #E2E8F0;
+  min-width: 120px;
+}
+
+.stat-label {
+  display: block;
+  font-size: 0.9rem;
+  color: #718096;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.stat-value {
+  display: block;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #2B6CB0;
+}
+
+.answer-modal-footer {
+  padding: 1.5rem 2rem;
+  border-top: 1px solid #E2E8F0;
+  background: #F7FAFC;
+  border-radius: 0 0 24px 24px;
+  display: flex;
+  justify-content: center;
+}
+
+.answer-modal-play-again-button {
+  background: linear-gradient(135deg, #48BB78 0%, #38A169 100%);
+  color: white;
+  border: none;
+  padding: 0.75rem 2rem;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(72, 187, 120, 0.3);
+  animation: slideInUp 0.6s ease-out 1s both;
+}
+
+.answer-modal-play-again-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(72, 187, 120, 0.4);
+}
+
+/* 答案模态框响应式设计 */
+@media (max-width: 768px) {
+  .answer-modal-content {
+    margin: 0.5rem;
+    max-height: 95vh;
+    border-radius: 16px;
+  }
+
+  .answer-modal-header {
+    padding: 1.5rem;
+    border-radius: 16px 16px 0 0;
+  }
+
+  .answer-modal-title {
+    font-size: 1.5rem;
+  }
+
+  .answer-modal-subtitle {
+    font-size: 1rem;
+  }
+
+  .answer-modal-body {
+    padding: 1.5rem;
+  }
+
+  .reveal-title {
+    font-size: 1.25rem;
+  }
+
+  .game-stats {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  .stat-item {
+    width: 100%;
+    max-width: 200px;
+  }
+
+  .answer-modal-footer {
+    padding: 1.5rem;
+    border-radius: 0 0 16px 16px;
+  }
 }
 
 .battle-features {
