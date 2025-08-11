@@ -1,12 +1,12 @@
 import React from 'react';
-import { Player } from '../types';
+import { Player, GameEndReason } from '../types';
 import PlayerCard from './PlayerCard';
 
 interface AnswerModalProps {
   isOpen: boolean;
   targetPlayer: Player;
   onClose: () => void;
-  gameEndReason?: 'CORRECT_GUESS' | 'ALL_GUESSES_USED' | 'MAX_GUESSES_REACHED';
+  gameEndReason?: GameEndReason;
   isWinner?: boolean;
   totalGuesses?: number;
   maxGuesses?: number;

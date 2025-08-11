@@ -1,8 +1,10 @@
 import { io, Socket } from 'socket.io-client';
-import { Player, GuessResult, GameOver, MatchFound, BattleStatusUpdate, BattleGameOver } from '../types';
+import { Player, GuessResult, GameOver, MatchFound, BattleStatusUpdate, BattleGameOver, RoomPlayersUpdate } from '../types';
 
-// 创建socket连接 - 直接指定服务端地址
-const socket: Socket = io('http://localhost:3002', {
+// 创建socket连接 - 通过同源相对路径 + devServer 代理
+// 使用相对路径，避免不同主机名/端口导致的WS失败
+const socket: Socket = io('/', {
+  path: '/socket.io',
   transports: ['websocket', 'polling'],
   timeout: 10000,
   reconnection: true,
@@ -24,7 +26,11 @@ socket.on('disconnect', (reason) => {
 socket.on('connect_error', (error) => {
   console.error('❌ [Socket] 连接错误:', error);
   console.error('🔍 [Socket] 错误详情:', error.message);
-  console.error('📍 [Socket] 错误类型:', error.type);
+  // 某些环境下 error 可能没有 type 字段
+  const errorType = (error as unknown as { type?: string })?.type;
+  if (errorType) {
+    console.error('📍 [Socket] 错误类型:', errorType);
+  }
 });
 
 socket.on('reconnect_attempt', (attemptNumber) => {
@@ -37,7 +43,6 @@ socket.on('reconnect_failed', () => {
 
 // 立即检查连接状态
 console.log('🏁 [Socket] 初始化完成，连接状态:', socket.connected);
-console.log('🌐 [Socket] 连接URL:', socket.io.uri);
 
 // 监听socket连接
 export const connectSocket = (callback: () => void): void => {
@@ -45,8 +50,17 @@ export const connectSocket = (callback: () => void): void => {
 };
 
 // 创建房间
-export const createRoom = (): void => {
-  socket.emit('createRoom');
+export const createRoom = (seriesBestOf?: 3 | 5 | 7): void => {
+  if (!socket.connected) {
+    const onConnect = () => {
+      socket.emit('createRoom', { seriesBestOf });
+      socket.off('connect', onConnect);
+    };
+    socket.on('connect', onConnect);
+    socket.connect();
+    return;
+  }
+  socket.emit('createRoom', { seriesBestOf });
 };
 
 // 监听房间创建
@@ -56,7 +70,30 @@ export const onRoomCreated = (callback: (data: { roomCode: string }) => void): v
 
 // 加入房间
 export const joinRoom = (roomCode: string): void => {
+  if (!socket.connected) {
+    const onConnect = () => {
+      socket.emit('joinRoom', { roomCode });
+      socket.off('connect', onConnect);
+    };
+    socket.on('connect', onConnect);
+    socket.connect();
+    return;
+  }
   socket.emit('joinRoom', { roomCode });
+};
+
+// 开始私房游戏（仅房间waiting且人数>=2时服务端会接受）
+export const startPrivateGame = (roomCode: string): void => {
+  if (!socket.connected) {
+    const onConnect = () => {
+      socket.emit('startPrivateGame', { roomCode });
+      socket.off('connect', onConnect);
+    };
+    socket.on('connect', onConnect);
+    socket.connect();
+    return;
+  }
+  socket.emit('startPrivateGame', { roomCode });
 };
 
 // 监听房间错误
@@ -84,9 +121,26 @@ export const onGameOver = (callback: (data: GameOver) => void): void => {
   socket.on('gameOver', callback);
 };
 
+// 监听系列赛回合倒计时
+export const onRoundCountdown = (callback: (data: { seconds: number; nextRound: number; series?: any }) => void): void => {
+  socket.on('roundCountdown', callback);
+};
+
 // 监听玩家离开
 export const onPlayerLeft = (callback: (data: { socketId: string }) => void): void => {
   socket.on('playerLeft', callback);
+};
+
+// 设置本局显示名称
+export const setDisplayName = (displayName: string): void => {
+  socket.emit('setDisplayName', { displayName });
+};
+
+// 监听房间玩家列表更新
+export const onRoomPlayersUpdate = (
+  callback: (data: RoomPlayersUpdate) => void
+): void => {
+  socket.on('roomPlayersUpdate', callback);
 };
 
 // 加入随机匹配队列
@@ -194,6 +248,7 @@ export const clearAllListeners = (): void => {
   socket.off('guessResult');
   socket.off('gameOver');
   socket.off('playerLeft');
+  socket.off('roomPlayersUpdate');
   socket.off('matchmakingJoined');
   socket.off('matchmakingLeft');
   socket.off('matchFound');
@@ -202,8 +257,8 @@ export const clearAllListeners = (): void => {
   socket.off('battleGameOver');
 };
 
-// 断开连接
+// 断开连接（开发场景下避免过早断开导致的初始化失败，这里仅清理监听，不主动断开）
 export const disconnectSocket = (): void => {
   clearAllListeners();
-  socket.disconnect();
-}; 
+  // 保持连接，以免在React StrictMode双调用下过早断开
+};

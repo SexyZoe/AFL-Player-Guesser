@@ -7,9 +7,11 @@ import PlayerCard from './components/PlayerCard';
 import GameResult from './components/GameResult';
 import GuessHistory from './components/GuessHistory';
 import BattleStatus from './components/BattleStatus';
+import RoomSidebar from './components/RoomSidebar';
 import BattleEffects from './components/BattleEffects';
 import HowToPlay from './components/HowToPlay';
 import AnswerModal from './components/AnswerModal';
+import type { GameEndReason } from './types';
 import './App.css';
 
 const App: React.FC = () => {
@@ -29,12 +31,19 @@ const App: React.FC = () => {
     currentSocketId,
     opponentStatus,
     battleResult,
+    roomPlayers,
+    roomHostId,
+    // 由于上下文未暴露 seriesWins，这里通过本地状态从 battleStatus 推导暂不显示胜场，
+    // 后续在 gameOver 系列赛事件中已更新 context 内部seriesWins，将在此传入占位 {}
+    // 暂不直接暴露 hostId，先在面板中仅用是否可开始逻辑控制
+    roundCountdown,
     showAnswerModal,
     gameEndReason,
     setGameMode,
     startGame,
     createRoom,
     joinRoom,
+    startPrivateRoomGame,
     guessPlayer,
     resetGame,
     cancelMatchmaking,
@@ -87,6 +96,11 @@ const App: React.FC = () => {
                 roomCode={roomCode}
                 onCreateRoom={createRoom}
                 onJoinRoom={joinRoom}
+                onStartGame={startPrivateRoomGame}
+                  players={roomPlayers}
+                  playersStatus={battleStatus}
+                  currentSocketId={currentSocketId}
+                hostId={roomHostId}
               />
             ) : (
               <div className="start-button-container">
@@ -126,6 +140,8 @@ const App: React.FC = () => {
 
         {gameState === 'playing' && (
           <div className="game-container">
+            {/* 系列赛回合倒计时（简单占位，可后续美化） */}
+            {/* TODO: 可移动到更合适的区域或组件化 */}
             {gameMode === 'solo' ? (
               /* 单人模式 - 保持原有布局 */
               <>
@@ -173,13 +189,12 @@ const App: React.FC = () => {
 
                 {/* 右侧对战状态区域 (30%) */}
                 <div className="battle-sidebar">
-                  {battleStatus && currentSocketId && (
-                    <BattleStatus
-                      currentPlayer={battleStatus[currentSocketId] || null}
-                      opponent={opponentStatus}
-                      battleResult={battleResult}
-                    />
-                  )}
+                  <RoomSidebar
+                    players={roomPlayers}
+                    playersStatus={battleStatus}
+                    currentSocketId={currentSocketId}
+                    seriesWins={{}}
+                  />
                 </div>
               </div>
             )}
@@ -223,7 +238,7 @@ const App: React.FC = () => {
           isOpen={showAnswerModal}
           targetPlayer={targetPlayer}
           onClose={closeAnswerModal}
-          gameEndReason={gameEndReason}
+          gameEndReason={gameEndReason as GameEndReason}
           isWinner={battleResult === 'win' || (gameMode === 'solo' && isGameWon)}
           totalGuesses={gameMode === 'solo' ? guesses : (battleStatus && currentSocketId ? battleStatus[currentSocketId]?.guesses || 0 : 0)}
           maxGuesses={maxGuesses}

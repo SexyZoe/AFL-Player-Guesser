@@ -27,9 +27,8 @@ body {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   padding: 1rem;
   transition: transform 0.2s;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  /* 让卡片作为普通容器，不强制子元素居中，避免内容重叠 */
+  display: block;
 }
 
 .afl-card:hover {
@@ -46,6 +45,10 @@ body {
   border: none;
   cursor: pointer;
   transition: background-color 0.2s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
 }
 
 .afl-button:hover {

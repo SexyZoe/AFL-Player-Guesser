@@ -1109,12 +1109,130 @@ kbd:hover {
   flex: 0 0 70%;
 }
 
+
+/* 右侧对战面板：在所有断点下固定在右侧始终可见（精简为“小球”列） */
 .battle-sidebar {
-  flex: 0 0 30%;
-  min-height: 100vh;
-  position: sticky;
-  top: 1rem;
+  flex: none;
+  position: fixed;
+  right: calc(2px + env(safe-area-inset-right));
+  top: 84px;
+  width: var(--sidebar-width, 76px);
+  max-height: calc(100vh - 112px);
+  overflow-y: visible;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  padding: 0;
+  z-index: 100;
+  pointer-events: none; /* 不阻挡主界面操作 */
 }
+
+/* 桌面端：右侧悬浮固定，随页面滚动始终可见 */
+@media (min-width: 768px) {
+  .battle-sidebar { right: calc(4px + env(safe-area-inset-right)); top: 92px; --sidebar-width: 84px; }
+}
+
+@media (min-width: 1024px) {
+  .battle-layout {
+    align-items: flex-start;
+  }
+
+  .main-game-area {
+    flex: 1 1 auto; /* 占据剩余空间 */
+    margin-right: calc(96px + 24px); /* 为小球列预留空间 */
+  }
+
+  .battle-sidebar {
+    right: calc(8px + env(safe-area-inset-right));
+    top: 96px; /* 让出顶部标题区域 */
+    --sidebar-width: 92px;
+    max-height: calc(100vh - 140px);
+    background: transparent;
+  }
+}
+
+@media (min-width: 1280px) {
+  .battle-sidebar { right: calc(10px + env(safe-area-inset-right)); --sidebar-width: 104px; }
+  .main-game-area { margin-right: calc(112px + 28px); }
+}
+
+@media (min-width: 1536px) {
+  .battle-sidebar { right: calc(12px + env(safe-area-inset-right)); --sidebar-width: 116px; }
+  .main-game-area { margin-right: calc(128px + 32px); }
+}
+
+/* 新侧栏样式 */
+.room-sidebar { --sidebar-width: clamp(60px, 8vw, 116px); --sidebar-gap: 12px; --circle-size: clamp(36px, 6vw, 48px); }
+.room-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: center;
+  pointer-events: auto; /* 允许点击滚动 */
+}
+
+.sidebar-slot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  background: transparent;
+  border: none;
+  padding: 0.25rem 0;
+}
+
+ .sidebar-slot .circle {
+  position: relative;
+  width: var(--circle-size, 50px);
+  height: var(--circle-size, 50px);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #EBF8FF;
+  color: #2B6CB0;
+  font-weight: 800;
+  border: 2px solid #90CDF4;
+}
+
+.sidebar-slot .nickname {
+  font-weight: 700;
+  color: #2D3748;
+  font-size: 12px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;
+  max-width: 100%;
+}
+
+.sidebar-slot .badge {
+  position: absolute;
+  right: -6px;
+  top: -6px;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 4px;
+  border-radius: 9999px;
+  background: #F6E05E;
+  color: #744210;
+  border: 2px solid #fff;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 状态色彩 */
+.sidebar-slot.active .circle { background: #EBF8FF; border-color: #90CDF4; color: #2B6CB0; }
+.sidebar-slot.finished .circle { background: #EDF2F7; border-color: #CBD5E0; color: #4A5568; }
+.sidebar-slot.winner .circle { background: #C6F6D5; border-color: #68D391; color: #22543D; }
+.sidebar-slot.offline .circle { background: #FFF5F5; border-color: #FEB2B2; color: #742A2A; }
+
+.sidebar-slot.placeholder { opacity: 0.45; }
+.sidebar-slot.placeholder .circle { background: #F7FAFC; border-color: #E2E8F0; color: #A0AEC0; }
+.sidebar-slot.placeholder .nickname { color: #A0AEC0; font-weight: 600; }
 
 /* 对战状态样式 */
 .battle-status-container {
@@ -1389,13 +1507,8 @@ kbd:hover {
     width: 100%;
   }
 
-  .battle-sidebar {
-    flex: none;
-    width: 100%;
-    min-height: auto;
-    position: static;
-    order: -1; /* 在移动端将对战状态显示在顶部 */
-  }
+  /* 移动端保持固定在右侧，确保始终可见 */
+  .battle-sidebar { order: initial; }
 
   .battle-status-container {
     padding: 1rem;

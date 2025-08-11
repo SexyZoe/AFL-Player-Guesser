@@ -21,6 +21,9 @@ export type GameMode = 'solo' | 'random' | 'private';
 // 游戏状态类型
 export type GameState = 'waiting' | 'playing' | 'finished' | 'matchmaking';
 
+// 游戏结束原因
+export type GameEndReason = 'CORRECT_GUESS' | 'ALL_GUESSES_USED' | 'MAX_GUESSES_REACHED' | 'PLAYER_DISCONNECTED';
+
 // 房间类型
 export interface Room {
   roomCode: string;
@@ -96,3 +99,15 @@ export interface BattleGameOver {
   gameEndReason: 'CORRECT_GUESS' | 'ALL_GUESSES_USED' | 'PLAYER_DISCONNECTED';
   playersStatus?: { [socketId: string]: PlayerStatus };
 } 
+
+// 房间内玩家（用于显示昵称）
+export interface RoomPlayer {
+  socketId: string;
+  displayName: string;
+}
+
+// 私房房间玩家更新事件
+export interface RoomPlayersUpdate {
+  players: RoomPlayer[];
+  hostId?: string;
+}
