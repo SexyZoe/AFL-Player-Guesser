@@ -37,6 +37,7 @@ const App: React.FC = () => {
     // 后续在 gameOver 系列赛事件中已更新 context 内部seriesWins，将在此传入占位 {}
     // 暂不直接暴露 hostId，先在面板中仅用是否可开始逻辑控制
     roundCountdown,
+    winnerName,
     showAnswerModal,
     gameEndReason,
     setGameMode,
@@ -242,6 +243,7 @@ const App: React.FC = () => {
           isWinner={battleResult === 'win' || (gameMode === 'solo' && isGameWon)}
           totalGuesses={gameMode === 'solo' ? guesses : (battleStatus && currentSocketId ? battleStatus[currentSocketId]?.guesses || 0 : 0)}
           maxGuesses={maxGuesses}
+          winnerName={battleResult === 'lose' ? (winnerName || undefined) : undefined}
         />
       )}
       

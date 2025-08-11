@@ -21,6 +21,10 @@ interface GameContextType {
   currentSocketId: string | null;
   opponentStatus: PlayerStatus | null;
   battleResult: 'win' | 'lose' | null;
+  // 胜者显示名（用于模态框展示给失败方）
+  winnerName?: string | null;
+  // 胜者ID（socketId）
+  winnerId?: string | null;
   // 私房玩家列表
   roomPlayers: RoomPlayer[];
   roomHostId: string | null;
@@ -77,6 +81,11 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
   const [roomPlayers, setRoomPlayers] = useState<RoomPlayer[]>([]);
   const [roomHostId, setRoomHostId] = useState<string | null>(null);
   const [seriesWins, setSeriesWins] = useState<Record<string, number>>({});
+  // 记录胜者信息（仅用于展示）
+  const [winnerName, setWinnerName] = useState<string | null>(null);
+  const [winnerId, setWinnerId] = useState<string | null>(null);
+  // 最新的房间玩家引用，避免socket回调拿到旧值
+  const roomPlayersRef = useRef<RoomPlayer[]>([]);
   
   // 答案模态框状态
   const [showAnswerModal, setShowAnswerModal] = useState<boolean>(false);
@@ -172,6 +181,7 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
     // 私房房间玩家更新
     socketService.onRoomPlayersUpdate((data: RoomPlayersUpdate) => {
       setRoomPlayers(data.players || []);
+      roomPlayersRef.current = data.players || [];
       if (data.hostId) setRoomHostId(data.hostId);
       // 不在这里强制弹窗，等待进入playing时触发
     });
@@ -314,6 +324,17 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
         setBattleResult(isWinner ? 'win' : 'lose');
         setIsGameWon(isWinner);
         setGameEndReason('CORRECT_GUESS');
+        // 记录胜者名字，供失败方显示
+        try {
+          const wId = data.winner.socketId;
+          const found = roomPlayersRef.current.find(p => p.socketId === wId);
+          // 仅接受玩家手动输入的显示名；无名则保持为 null，不回退到 socketId
+          setWinnerName(found && found.displayName ? found.displayName : null);
+          setWinnerId(wId);
+        } catch (e) {
+          setWinnerName(null);
+          setWinnerId(data.winner.socketId || null);
+        }
       }
       
       // 显示答案模态框
@@ -596,6 +617,8 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
     setCurrentSocketId(null);
     setOpponentStatus(null);
     setBattleResult(null);
+    setWinnerName(null);
+    setWinnerId(null);
     
     // 重置答案模态框状态
     setShowAnswerModal(false);
@@ -621,6 +644,8 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
     battleResult,
     roomPlayers,
     roomHostId,
+    winnerName,
+    winnerId,
     // 将 seriesWins 暂不暴露在类型中，直接用于 RoomSidebar 传参由 App 控制
     roundCountdown,
     currentRound,

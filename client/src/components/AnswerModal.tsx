@@ -10,6 +10,7 @@ interface AnswerModalProps {
   isWinner?: boolean;
   totalGuesses?: number;
   maxGuesses?: number;
+  winnerName?: string | null;
 }
 
 const AnswerModal: React.FC<AnswerModalProps> = ({ 
@@ -19,7 +20,8 @@ const AnswerModal: React.FC<AnswerModalProps> = ({
   gameEndReason = 'CORRECT_GUESS',
   isWinner = false,
   totalGuesses = 0,
-  maxGuesses = 8
+  maxGuesses = 8,
+  winnerName = null
 }) => {
   if (!isOpen) return null;
 
@@ -40,7 +42,7 @@ const AnswerModal: React.FC<AnswerModalProps> = ({
     if (gameEndReason === 'CORRECT_GUESS') {
       return isWinner 
         ? `Amazing! You found the answer in just ${totalGuesses} ${totalGuesses === 1 ? 'guess' : 'guesses'}!` 
-        : 'Your opponent got the correct answer first!';
+        : (winnerName ? `${winnerName} got the correct answer first!` : 'Opponent got the correct answer first!');
     } else if (gameEndReason === 'ALL_GUESSES_USED') {
       return 'Both players used all their guesses. Let\'s reveal the correct answer!';
     } else if (gameEndReason === 'MAX_GUESSES_REACHED') {
