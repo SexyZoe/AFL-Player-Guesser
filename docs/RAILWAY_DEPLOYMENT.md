@@ -60,4 +60,5 @@ npm run build
 - ✅ Socket.io支持
 - ✅ MongoDB数据库
 - ✅ 球员图片显示
-- ✅ 响应式设计 
+- ✅ 响应式设计
+

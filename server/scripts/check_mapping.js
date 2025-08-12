@@ -3,7 +3,7 @@ const path = require('path');
 
 // 读取CSV文件
 function readCSVMapping() {
-    const csvPath = path.join(__dirname, 'server/player_image_mapping.csv');
+    const csvPath = path.join(__dirname, '../player_image_mapping.csv');
     const csvContent = fs.readFileSync(csvPath, 'utf8');
     const lines = csvContent.split('\n').slice(1); // 跳过标题行
     
@@ -25,7 +25,7 @@ function readCSVMapping() {
 
 // 获取所有实际存在的图片文件
 function getActualImageFiles() {
-    const playersDir = path.join(__dirname, 'server/public/images/players');
+    const playersDir = path.join(__dirname, '../public/images/players');
     const actualFiles = new Set();
     
     try {
@@ -134,3 +134,4 @@ function analyzeMapping() {
 
 // 运行分析
 const result = analyzeMapping();
+

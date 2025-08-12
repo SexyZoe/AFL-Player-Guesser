@@ -1,160 +1,129 @@
-# AFL-Player-Guesser
-AFL player guessing game with solo and multiplayer modes
+## AFL Guess Who 🎯
 
-# AFL Guess Who 🎯
-
-**AFL Guess Who** is an interactive web-based guessing game based on Australian Football League (AFL) players from the 2024–25 season. Players are challenged to guess a mystery player using a series of progressively revealed hints.
+An AFL player guessing game based on the 2024–25 season. Supports solo play and multiplayer (random 1v1 and private rooms).
 
 ---
 
 ## 🎮 Game Modes
 
-- **🎯 Solo Mode**: Try to guess the mystery AFL player in as few attempts as possible.
-- **⚔️ 1v1 Random Match**: Match with a random player online and race to guess correctly.
-- **👥 Private Room Multiplayer**: Invite friends and play together in a shared room using a code.
+- **Solo**: Play locally by yourself.
+- **1v1 Random Match**: Online matchmaking with per-round max 8 guesses. Supports series BO3/BO5/BO7. A display name is required before queueing (socket.id is not allowed).
+- **Private Room**: Play with friends via a room code. Supports series and live status updates.
 
 ---
 
 ## 🔧 Tech Stack
 
-| Layer       | Technology                            |
-|-------------|----------------------------------------|
-| Frontend    | React, TypeScript, Tailwind CSS        |
-| Backend     | Node.js, Express.js, Socket.IO         |
-| Database    | MongoDB (via MongoDB Atlas)            |
-| Deployment  | Vercel (frontend), Render (backend)    |
-| Realtime    | WebSockets (via Socket.IO)             |
-| Automation  | GitHub Actions (for data updates)      |
+- Frontend: React + TypeScript + Tailwind (Webpack Dev Server)
+- Backend: Node.js + Express + Socket.IO
+- Data: Local `server/data/players.json` (default); MongoDB optional
+- Deployment: Railway (`railway.json`, see `docs/RAILWAY_DEPLOYMENT.md`)
 
 ---
 
 ## 🗂 Project Structure
 
+```
 afl-guess-game/
-├── client/ # React frontend
-├── server/ # Express backend
-│ ├── index.js # Main backend entry point
-│ ├── data/ # Player data JSON
-│ └── scraper/ # One-time + auto-update scraper
-├── .github/workflows/ # GitHub Actions automation
+├── client/                      # React frontend
+├── server/                      # Express backend
+│   ├── index.js
+│   ├── data/players.json        # Runtime data source (default)
+│   └── scripts/                 # Maintenance scripts (import/verify/update images)
+├── docs/                        # Guides (images / Railway deployment)
+├── railway.json
 └── README.md
-
-yaml
-
+```
 
 ---
 
 ## 🚀 Getting Started
 
-### 1. Clone the repository
+### Prerequisites
+- Node.js 18+
+- npm 9+
 
+### Install
 ```bash
-git clone https://github.com/YOUR_USERNAME/afl-guess-game.git
-cd afl-guess-game
-2. Install Frontend
-bash
+npm run install:all
+```
 
-cd client
-npm install
+### Start (development)
+```bash
 npm start
-3. Install Backend
-bash
-
-cd ../server
-npm install
-node index.js
-🔐 Make sure to create a .env file if using MongoDB:
-
-ini
-
-MONGODB_URI=your_mongodb_connection_string
-🔄 Player Data: One-Time Scraping + Weekly Auto-Update
-This project uses official AFL player data as the basis for all game logic.
-
-✅ A one-time web scraper (scrapePlayers.js) fetches AFL player data from the AFL official site.
-
-✅ The data is saved to server/data/players.json.
-
-✅ The backend loads this JSON at runtime — no remote calls, fast and stable.
-
-Why This Approach?
-Benefit	Description
-🔄 Controlled updates	Avoids scraper breakage due to layout changes
-⚡ Speed	No live fetching — all local reads
-💡 Maintainability	Easy to re-run scraper when needed
-🛡 No IP bans	Low-frequency scrape, safe from rate limits
-
-🔧 GitHub Actions: Weekly Auto-Update
-This repo includes a GitHub Actions workflow that:
-
-Runs every Monday at 2:00 AM UTC
-
-Executes the scrapePlayers.js script
-
-Commits the updated players.json to the repo
-
-📁 Workflow file: .github/workflows/scrape.yml
-
-You can also trigger it manually from the GitHub Actions tab.
-
-Want to refresh manually? Just run:
-
-bash
-
-cd server
-node scraper/scrapePlayers.js
-📌 TODO Features
- Hint-based filtering (age, team, position, etc.)
-
- Responsive UI for mobile players
-
- User authentication + high score tracking
-
- Leaderboard and statistics
-
- Add player photos and bios
-
-🤝 Contributing
-Pull requests are welcome. For major changes, please open an issue first to discuss the proposal.
-
-📄 License
-This project is licensed under the MIT License.
-
-## 安装说明
-
-克隆仓库后，按照以下步骤安装依赖并运行项目：
-
-1. 安装根目录依赖：
-```bash
-npm install
+# Frontend: http://localhost:3000
+# Backend:  http://localhost:3002
 ```
 
-2. 安装客户端依赖：
+Frontend dev server proxies `/api`, `/socket.io`, and `/images` to `http://localhost:3002` (see `client/webpack.config.js`).
+
+### Build frontend
 ```bash
-cd client
-npm install
-cd ..
+npm run build
 ```
 
-3. 安装服务器依赖：
+### Backend only (dev)
 ```bash
-cd server
-npm install
-cd ..
+npm run start:dev
 ```
 
-4. 导入球员数据到MongoDB（确保MongoDB已安装并运行）：
-```bash
-# 首先在server目录下创建.env文件并添加MongoDB连接字符串
-# MONGODB_URI=mongodb://localhost:27017/afl-player-database
+---
 
-# 然后运行导入脚本
+## 📦 Data Source
+
+- Default: the server loads players directly from `server/data/players.json` — no DB required.
+- Optional MongoDB: if you prefer DB storage/import, set `MONGODB_URI` in `server/.env`, then run:
+```bash
 npm run import
 ```
 
-5. 启动应用程序：
-```bash
-npm start
-```
+---
 
-应用将在 http://localhost:3000 运行。
+## 🔌 API & Static Assets
+
+- `GET /api/players` — all players
+- `GET /api/random-player` — a random player
+- Static images: `/images/players/<Team>/*.webp`
+
+Image paths are pre-written in `server/data/players.json`. For maintenance, see `docs/PLAYER_IMAGES_GUIDE.md`.
+
+---
+
+## ⚔️ Random Match Workflow
+
+- Client must set a display name before joining the queue; the server rejects empty names or `socket.id`.
+- After `matchFound`, both clients send an ACK. The server starts the game only after receiving both ACKs and then emits `battleStatusUpdate`.
+- Series supports BO3/BO5/BO7; each round has a max of 8 guesses.
+
+---
+
+## 🚀 Deployment (Railway)
+
+The project is built and started using `railway.json`. See `docs/RAILWAY_DEPLOYMENT.md` for details.
+
+---
+
+## 🖼 Image Maintenance
+
+Useful scripts (run from repo root):
+```bash
+npm run list-players
+npm run update-images
+npm run update-images-by-name
+npm run update-images-by-number
+npm run verify-images
+```
+Images live in `server/public/images/players/<Team>/`. See `docs/PLAYER_IMAGES_GUIDE.md` for best practices.
+
+---
+
+## ℹ️ Notes
+
+- On the error screen, the Restart button calls `resetGame` and then forces a page reload to avoid stale state.
+- For entertainment purposes only.
+
+---
+
+## License
+
+MIT
