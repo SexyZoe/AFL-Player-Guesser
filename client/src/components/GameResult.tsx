@@ -58,7 +58,7 @@ const GameResult: React.FC<GameResultProps> = ({
               ? `🏆 Series Winner: ${seriesWinnerName}`
               : `✅ Round Winner: ${roundWinnerName}`)
           : (isMultiplayer
-              ? (battleResult === 'win' ? '🎉 恭喜获胜！' : '💔 很遗憾败北！')
+              ? (battleResult === 'win' ? '🎉 Victory!' : '💔 Defeat!')
               : (isGameWon ? '🎉 Congratulations! You Guessed Correctly! 🎉' : '😔 Game Over! You Ran Out of Guesses!'))}
       </h2>
 
@@ -93,8 +93,8 @@ const GameResult: React.FC<GameResultProps> = ({
                 : `🔔 Round finished. Winner: ${roundWinnerName}.`)
             : (isMultiplayer && battleResult
                 ? (battleResult === 'win'
-                    ? `🎯 你用了 ${guesses} 次猜测就找到了答案！\n⚡ 对手用了 ${opponentGuesses} 次猜测。`
-                    : `😔 对手用了 ${opponentGuesses} 次猜测抢先找到了答案！\n🎯 你用了 ${guesses} 次猜测。`)
+                    ? `🎯 You found the answer in ${guesses} guesses!\n⚡ Opponent used ${opponentGuesses} guesses.`
+                    : `😔 Opponent found the answer first in ${opponentGuesses} guesses.\n🎯 You used ${guesses} guesses.`)
                 : (isMultiplayer 
                     ? (isWinner 
                         ? `You correctly guessed the player in ${guesses} attempts!`
@@ -109,13 +109,13 @@ const GameResult: React.FC<GameResultProps> = ({
             <p className="font-semibold text-base">
               {battleResult === 'win'
                 ? guesses <= 3
-                  ? '🌟 完美表现！你是AFL专家！'
+                  ? '🌟 Perfect performance! You are an AFL expert!'
                   : guesses <= 6
-                  ? '👏 出色发挥！你的AFL知识很丰富！'
-                  : '💪 不错的成绩！继续保持！'
+                  ? '👏 Great performance! Your AFL knowledge is strong!'
+                  : '💪 Nice job! Keep it up!'
                 : opponentGuesses <= 3
-                  ? '😅 对手表现太出色了！下次再来挑战！'
-                  : '💯 势均力敌的对战！再来一局！'
+                  ? '😅 Your opponent did great! Try again next time!'
+                  : '💯 A close battle! Go for another round!'
               }
             </p>
           </div>

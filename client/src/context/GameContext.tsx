@@ -212,7 +212,7 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
 
     // 房间错误回调（非致命错误，避免全屏错误遮挡UI）
     socketService.onRoomError((data) => {
-      console.error('房间错误:', data.message);
+      console.error('Room error:', data.message);
       if (typeof window !== 'undefined' && window.alert) {
         window.alert(data.message);
       }
@@ -862,6 +862,7 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
       <NameModal
         isOpen={isNameModalOpen}
         initialName={gameMode === 'private' ? privateDisplayName : randomDisplayName}
+        onClose={() => setIsNameModalOpen(false)}
         onConfirm={(name) => {
           if (gameModeRef.current === 'private') {
             setPrivateDisplayName(name);

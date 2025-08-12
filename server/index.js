@@ -156,7 +156,7 @@ io.on('connection', (socket) => {
         hostId: rooms[roomCode].hostId
       });
     } else {
-      socket.emit('roomError', { message: '房间不存在或已满' });
+      socket.emit('roomError', { message: 'Room does not exist or is full' });
     }
   });
 
@@ -164,21 +164,21 @@ io.on('connection', (socket) => {
   socket.on('startPrivateGame', ({ roomCode }) => {
     const room = rooms[roomCode];
     if (!room) {
-      socket.emit('roomError', { message: '房间不存在' });
+      socket.emit('roomError', { message: 'Room does not exist' });
       return;
     }
     // 只有房主可以开始游戏
     if (room.hostId && socket.id !== room.hostId) {
-      socket.emit('roomError', { message: '只有房主可以开始游戏' });
+      socket.emit('roomError', { message: 'Only the host can start the game' });
       return;
     }
     // 仅在 waiting 状态且 2-4 人时可开始
     if (room.gameState !== 'waiting') {
-      socket.emit('roomError', { message: '房间已开始或已结束' });
+      socket.emit('roomError', { message: 'Room has already started or finished' });
       return;
     }
     if (!room.players || room.players.length < 2) {
-      socket.emit('roomError', { message: '至少需要2名玩家才能开始' });
+      socket.emit('roomError', { message: 'At least 2 players are required to start' });
       return;
     }
 

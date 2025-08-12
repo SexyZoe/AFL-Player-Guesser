@@ -134,17 +134,17 @@ const App: React.FC = () => {
         {gameState === 'matchmaking' && (
           <div className="matchmaking-container">
             <div className="matchmaking-content">
-              <h2 className="text-2xl font-bold mb-4 text-center">🔍 寻找对手中...</h2>
+              <h2 className="text-2xl font-bold mb-4 text-center">🔍 Finding Opponent...</h2>
               <div className="loading-spinner mx-auto mb-6"></div>
               <p className="text-center text-gray-600 mb-6">
-                请稍等，我们正在为您寻找合适的对手
+                Please wait while we find a suitable opponent for you
               </p>
               <div className="text-center">
                 <button
                   onClick={cancelMatchmaking}
                   className="afl-button cancel-button"
                 >
-                  取消匹配
+                  Cancel
                 </button>
               </div>
             </div>

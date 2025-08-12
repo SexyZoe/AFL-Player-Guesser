@@ -4,9 +4,10 @@ interface NameModalProps {
   isOpen: boolean;
   initialName?: string;
   onConfirm: (name: string) => void;
+  onClose?: () => void;
 }
 
-const NameModal: React.FC<NameModalProps> = ({ isOpen, initialName = '', onConfirm }) => {
+const NameModal: React.FC<NameModalProps> = ({ isOpen, initialName = '', onConfirm, onClose }) => {
   const [name, setName] = useState<string>(initialName);
 
   useEffect(() => {
@@ -23,24 +24,28 @@ const NameModal: React.FC<NameModalProps> = ({ isOpen, initialName = '', onConfi
   };
 
   return (
-    <div className="modal-overlay">
-      <div className="modal-content" role="dialog" aria-modal="true" aria-label="Set Name">
+    <div className="modal-overlay" onClick={onClose}>
+      <div className="modal-content" role="dialog" aria-modal="true" aria-label="Set Display Name" onClick={(e) => e.stopPropagation()}>
         <div className="modal-header">
-          <h3 className="modal-title">设置本局昵称</h3>
+          <h3 className="modal-title">Set Display Name</h3>
+          <button type="button" className="modal-close-button" aria-label="Close" onClick={onClose}>✕</button>
         </div>
         <div className="modal-body">
           <form onSubmit={handleSubmit}>
-            <label className="block mb-2 text-gray-700">请输入一个让朋友能识别你的昵称（最多20字符）</label>
+            <label className="block mb-2 text-gray-700">Please enter a nickname your friends can recognize (max 20 characters)</label>
             <input
               type="text"
               className="afl-input w-full mb-4"
               value={name}
               onChange={(e) => setName(e.target.value)}
               maxLength={20}
-              placeholder="如：Alex、小李、队长…"
+              placeholder="e.g., Alex, Sam, Captain…"
               autoFocus
             />
-            <button type="submit" className="afl-button w-full">确认</button>
+            <button type="submit" className="afl-button w-full" aria-label="Confirm">Confirm</button>
+            {onClose && (
+              <button type="button" className="afl-button w-full mt-2" onClick={onClose}>Exit</button>
+            )}
           </form>
         </div>
       </div>
