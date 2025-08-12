@@ -119,6 +119,8 @@ const AnswerModal: React.FC<AnswerModalProps> = ({
                 showResult={true}
               />
             </div>
+            {/* 系列赛提示（仅在非最终局的回合结束时显示） */}
+            <p className="text-sm text-gray-600 mt-3">If a series is active, next round will start automatically after countdown.</p>
           </div>
 
           {/* 游戏统计 */}
@@ -138,13 +140,6 @@ const AnswerModal: React.FC<AnswerModalProps> = ({
 
         {/* 模态框底部 */}
         <div className="answer-modal-footer">
-          <button 
-            onClick={onClose}
-            className="answer-modal-play-again-button"
-            type="button"
-          >
-            {gameEndReason === 'CORRECT_GUESS' && isWinner ? '🎉 Play Again' : '🔄 New Game'}
-          </button>
         </div>
       </div>
     </div>

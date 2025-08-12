@@ -31,9 +31,25 @@ interface GameContextType {
   // 系列赛回合倒计时与轮次
   roundCountdown: number | null;
   currentRound: number;
+  // 系列赛信息与胜场（用于最终结果 UI）
+  seriesWins?: Record<string, number>;
+  seriesBestOf?: number | null;
+  seriesTargetWins?: number | null;
+  isSeriesFinal?: boolean;
   // 答案模态框相关状态
   showAnswerModal: boolean;
   gameEndReason: 'CORRECT_GUESS' | 'ALL_GUESSES_USED' | 'MAX_GUESSES_REACHED' | 'PLAYER_DISCONNECTED';
+  // 随机匹配的系列赛局数设置（BO3/5/7）
+  randomMatchBestOf: 3 | 5 | 7;
+  setRandomMatchBestOf: (value: 3 | 5 | 7) => void;
+  // 模式独立的昵称
+  randomDisplayName: string;
+  setRandomDisplayName: (name: string) => void;
+  privateDisplayName: string;
+  setPrivateDisplayName: (name: string) => void;
+  // 模式独立的房间玩家列表
+  randomRoomPlayers: RoomPlayer[];
+  privateRoomPlayers: RoomPlayer[];
   setGameMode: (mode: GameMode) => void;
   startGame: () => void;
   createRoom: (seriesBestOf?: 3 | 5 | 7) => void;
@@ -63,8 +79,13 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
   const [players, setPlayers] = useState<Player[]>([]);
   const [targetPlayer, setTargetPlayer] = useState<Player | null>(null);
   const [gameMode, setGameMode] = useState<GameMode>('solo');
+  const [randomMatchBestOf, setRandomMatchBestOf] = useState<3 | 5 | 7>(3);
   const [gameState, setGameState] = useState<GameState>('waiting');
-  const [roomCode, setRoomCode] = useState<string>('');
+  // 模式独立的房间码
+  const [randomRoomCode, setRandomRoomCode] = useState<string>('');
+  const [privateRoomCode, setPrivateRoomCode] = useState<string>('');
+  // 兼容旧代码使用的roomCode（按当前模式读取）
+  const roomCode = gameMode === 'private' ? privateRoomCode : randomRoomCode;
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string>('');
   const [guesses, setGuesses] = useState<number>(0);
@@ -77,15 +98,19 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
   const [currentSocketId, setCurrentSocketId] = useState<string | null>(null);
   const [opponentStatus, setOpponentStatus] = useState<PlayerStatus | null>(null);
   const [battleResult, setBattleResult] = useState<'win' | 'lose' | null>(null);
-  // 私房玩家列表
-  const [roomPlayers, setRoomPlayers] = useState<RoomPlayer[]>([]);
+  // 模式独立的玩家列表
+  const [randomRoomPlayers, setRandomRoomPlayers] = useState<RoomPlayer[]>([]);
+  const [privateRoomPlayers, setPrivateRoomPlayers] = useState<RoomPlayer[]>([]);
+  // 兼容旧代码使用的roomPlayers（按当前模式读取）
+  const roomPlayers = gameMode === 'private' ? privateRoomPlayers : randomRoomPlayers;
   const [roomHostId, setRoomHostId] = useState<string | null>(null);
   const [seriesWins, setSeriesWins] = useState<Record<string, number>>({});
   // 记录胜者信息（仅用于展示）
   const [winnerName, setWinnerName] = useState<string | null>(null);
   const [winnerId, setWinnerId] = useState<string | null>(null);
   // 最新的房间玩家引用，避免socket回调拿到旧值
-  const roomPlayersRef = useRef<RoomPlayer[]>([]);
+  const randomRoomPlayersRef = useRef<RoomPlayer[]>([]);
+  const privateRoomPlayersRef = useRef<RoomPlayer[]>([]);
   
   // 答案模态框状态
   const [showAnswerModal, setShowAnswerModal] = useState<boolean>(false);
@@ -93,26 +118,52 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
   // 系列赛回合倒计时
   const [roundCountdown, setRoundCountdown] = useState<number | null>(null);
   const [currentRound, setCurrentRound] = useState<number>(1);
+  const [isSeriesFinal, setIsSeriesFinal] = useState<boolean>(false);
+  const [seriesBestOf, setSeriesBestOf] = useState<number | null>(null);
+  const [seriesTargetWins, setSeriesTargetWins] = useState<number | null>(null);
   
   // 防止重复操作的状态
   const [isJoiningMatchmaking, setIsJoiningMatchmaking] = useState(false);
-  // 私房昵称设置
+  // 模式独立的昵称
   const [isNameModalOpen, setIsNameModalOpen] = useState<boolean>(false);
-  const [displayName, setDisplayName] = useState<string>('');
+  const [randomDisplayName, setRandomDisplayName] = useState<string>('');
+  const [privateDisplayName, setPrivateDisplayName] = useState<string>('');
+  // 兼容旧代码引用
+  const displayName = gameMode === 'private' ? privateDisplayName : randomDisplayName;
   const [hasAskedNameThisGame, setHasAskedNameThisGame] = useState<boolean>(false);
+  // 待执行动作：用于在填写昵称后继续原本操作（创建房间/加入房间/加入匹配队列）
+  const [pendingAction, setPendingAction] = useState<
+    | { type: 'createRoom'; seriesBestOf?: 3 | 5 | 7 }
+    | { type: 'joinRoom'; code: string }
+    | { type: 'joinMatchmaking' }
+    | null
+  >(null);
 
   // 引用保持最新值，避免socket回调闭包中拿到旧值
   const gameModeRef = useRef<GameMode>(gameMode);
-  const displayNameRef = useRef<string>(displayName);
+  const randomDisplayNameRef = useRef<string>(randomDisplayName);
+  const privateDisplayNameRef = useRef<string>(privateDisplayName);
   const hasAskedRef = useRef<boolean>(hasAskedNameThisGame);
 
   useEffect(() => { gameModeRef.current = gameMode; }, [gameMode]);
-  useEffect(() => { displayNameRef.current = displayName; }, [displayName]);
+  useEffect(() => { randomDisplayNameRef.current = randomDisplayName; }, [randomDisplayName]);
+  useEffect(() => { privateDisplayNameRef.current = privateDisplayName; }, [privateDisplayName]);
   useEffect(() => { hasAskedRef.current = hasAskedNameThisGame; }, [hasAskedNameThisGame]);
+  // 记录关键状态的引用，防止异步事件在已返回首页时误触发错误UI
+  const roomCodeRef = useRef<string>('');
+  const gameStateRef = useRef<GameState>(gameState);
+  useEffect(() => { roomCodeRef.current = roomCode; }, [roomCode]);
+  useEffect(() => { gameStateRef.current = gameState; }, [gameState]);
 
   // 调试: 监控gameMode变化
   useEffect(() => {
     console.log('🎮 Game mode changed to:', gameMode);
+    // 切换模式时，清理对方模式的临时UI数据，避免等待界面残留
+    if (gameMode === 'private') {
+      setRandomRoomPlayers([]);
+    } else if (gameMode === 'random') {
+      setPrivateRoomPlayers([]);
+    }
   }, [gameMode]);
 
   // 加载所有球员数据
@@ -148,8 +199,15 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
 
     // 房间创建回调
     socketService.onRoomCreated((data) => {
-      setRoomCode(data.roomCode);
+      setPrivateRoomCode(data.roomCode);
       console.log('房间已创建:', data.roomCode);
+      // 创建成功后，立刻把本地昵称同步到房间（之前可能在未入房时已填写）
+      try {
+        const name = privateDisplayNameRef.current;
+        if (name) {
+          socketService.setDisplayName(name);
+        }
+      } catch {}
     });
 
     // 房间错误回调（非致命错误，避免全屏错误遮挡UI）
@@ -168,21 +226,44 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
       setGuesses(0);
       setGuessHistory([]);
       setIsGameWon(false);
+      // 若上一局弹窗仍开着，开局时立即关闭，避免显示“下一题的答案”
+      setShowAnswerModal(false);
+      setBattleResult(null);
+      setWinnerName(null);
+      setRoundCountdown(null);
+      // 清除最终胜利标记（若有）
+      setIsSeriesFinal(false);
       console.log('游戏开始，目标球员:', data.targetPlayer.name);
-      // 进入私房对战后，弹出昵称设置框（兜底触发点）
-      if (gameModeRef.current === 'private' && !displayNameRef.current && !hasAskedRef.current) {
-        console.log('[NameModal] trigger on gameStart');
-        setIsNameModalOpen(true);
-        setHasAskedNameThisGame(true);
-        hasAskedRef.current = true;
-      }
+      // 名称采集已前置到创建/加入房间或匹配前，这里不再强制弹出
     });
 
-    // 私房房间玩家更新
+    // 房间玩家更新（私房与随机匹配均使用此事件）
     socketService.onRoomPlayersUpdate((data: RoomPlayersUpdate) => {
-      setRoomPlayers(data.players || []);
-      roomPlayersRef.current = data.players || [];
-      if (data.hostId) setRoomHostId(data.hostId);
+      if (gameModeRef.current === 'private') {
+        setPrivateRoomPlayers(data.players || []);
+        privateRoomPlayersRef.current = data.players || [];
+        if (data.hostId) setRoomHostId(data.hostId);
+        // 如果当前玩家在名单中但没有名称，则补发一次昵称到服务器
+        try {
+          const myId = socketService.getCurrentSocketId();
+          const me = (data.players || []).find(p => p.socketId === myId);
+          if (me && !me.displayName && privateDisplayNameRef.current) {
+            socketService.setDisplayName(privateDisplayNameRef.current);
+          }
+        } catch {}
+      } else if (gameModeRef.current === 'random') {
+        // 随机匹配：只保留双方玩家列表并同步昵称
+        const players = (data.players || []).slice(0, 2);
+        setRandomRoomPlayers(players);
+        randomRoomPlayersRef.current = players;
+        try {
+          const myId = socketService.getCurrentSocketId();
+          const me = players.find(p => p.socketId === myId);
+          if (me && !me.displayName && randomDisplayNameRef.current) {
+            socketService.setDisplayName(randomDisplayNameRef.current);
+          }
+        } catch {}
+      }
       // 不在这里强制弹窗，等待进入playing时触发
     });
 
@@ -202,11 +283,33 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
       if (series?.enabled) {
         // 更新系列赛胜场显示
         if (series.wins) setSeriesWins(series.wins);
+        if (typeof series.bestOf === 'number') setSeriesBestOf(series.bestOf);
+        if (typeof series.targetWins === 'number') setSeriesTargetWins(series.targetWins);
         // 如果已有最终胜者则结束系列赛，否则等待下一局开始
+        const currentId = socketService.getCurrentSocketId();
+        const winnerId = data?.winner as string | null;
+        // 设置回合胜负用于弹窗
+        if (winnerId && currentId) {
+          const isWinner = winnerId === currentId;
+          setBattleResult(isWinner ? 'win' : 'lose');
+          setIsGameWon(isWinner);
+          // 记录胜者名称（若可用）
+          try {
+            const listRef = gameModeRef.current === 'private' ? privateRoomPlayersRef : randomRoomPlayersRef;
+            const found = listRef.current.find(p => p.socketId === winnerId);
+            setWinnerName(found?.displayName || null);
+          } catch {}
+        } else {
+          setBattleResult(null);
+          setIsGameWon(false);
+        }
+        setGameEndReason('CORRECT_GUESS');
+        setShowAnswerModal(true);
+        setIsSeriesFinal(Boolean(series.finalWinner));
         if (series.finalWinner) {
           setGameState('finished');
         } else {
-          // 仍保持 playing，服务端会很快推送下一局 gameStart
+          // 保持 playing，等待下一局
         }
       } else {
         setGameState('finished');
@@ -216,8 +319,13 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
     });
 
     // 玩家离开回调
-    socketService.onPlayerLeft(() => {
-      setError('对方玩家已离开');
+    socketService.onPlayerLeft(({ socketId }: { socketId: string }) => {
+      // 仅在仍处于房间且不在等待状态时，才展示“对方离开”的提示
+      const myId = socketService.getCurrentSocketId();
+      const shouldNotify = !!roomCodeRef.current && gameStateRef.current !== 'waiting' && socketId !== myId;
+      if (shouldNotify) {
+        setError('对方玩家已离开');
+      }
       console.log('对方玩家已离开');
     });
 
@@ -236,6 +344,16 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
       console.log('已离开匹配队列');
     });
 
+    // 匹配错误（如未提供昵称）
+    socketService.onMatchmakingError((err) => {
+      console.warn('⚠️ [客户端] 匹配错误:', err);
+      setIsJoiningMatchmaking(false);
+      setGameState('waiting');
+      if (!randomDisplayNameRef.current) {
+        setIsNameModalOpen(true);
+      }
+    });
+
     // 匹配成功回调
     socketService.onMatchFound((data) => {
       console.log('🎉 [客户端] 收到 matchFound 事件:', data);
@@ -244,7 +362,7 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
       console.log('🔗 [客户端] Socket连接状态:', socketService.getCurrentSocketId() ? '已连接' : '未连接');
       
       // 先保存房间信息和目标球员，但不改变游戏状态
-      setRoomCode(data.roomCode);
+      setRandomRoomCode(data.roomCode);
       setTargetPlayer(data.targetPlayer);
       
       // 立即发送确认收到事件
@@ -264,6 +382,10 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
 
     // 对战状态更新回调
     socketService.onBattleStatusUpdate((data) => {
+      if (!data || !data.playersStatus) {
+        console.warn('⚠️ [客户端] 收到无效的对战状态更新，忽略');
+        return;
+      }
       console.log('⚔️ [客户端] 收到对战状态更新:', data);
       
       // 获取当前Socket ID
@@ -280,13 +402,7 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
           console.log('🚀 [客户端] 双方ACK确认完成，游戏正式开始！');
           setGameState('playing');
           setIsJoiningMatchmaking(false); // 确保重置匹配状态
-          // 私房进入playing时，首次弹出昵称设置框
-          if (gameModeRef.current === 'private' && !displayNameRef.current && !hasAskedRef.current) {
-            console.log('[NameModal] trigger on first battleStatusUpdate');
-            setIsNameModalOpen(true);
-            setHasAskedNameThisGame(true);
-            hasAskedRef.current = true;
-          }
+          // 名称采集已前置到创建/加入房间或匹配前，这里不再弹出
         }
         return data.playersStatus;
       });
@@ -294,10 +410,31 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
       setCurrentSocketId(currentId);
       
       // 找到对手状态
-      const opponentId = Object.keys(data.playersStatus).find(id => id !== currentId);
+      const opponentId = data.playersStatus ? Object.keys(data.playersStatus).find(id => id !== currentId) : undefined;
       if (opponentId) {
         setOpponentStatus(data.playersStatus[opponentId]);
       }
+
+      // 随机匹配房：根据对战状态补齐右侧玩家列表（保证只显示双方）
+      try {
+        const existing = randomRoomPlayersRef.current || [];
+        const selfExisting = existing.find(p => p.socketId === currentId);
+        const oppExisting = opponentId ? existing.find(p => p.socketId === opponentId) : undefined;
+        const newPlayers = [
+          {
+            socketId: currentId,
+            displayName: (selfExisting && selfExisting.displayName) || (randomDisplayNameRef.current || '')
+          },
+          ...(opponentId ? [{ socketId: opponentId, displayName: (oppExisting && oppExisting.displayName) || '' }] : [])
+        ];
+        // 仅当玩家列表不同或为空时更新
+        const shouldUpdate = existing.length !== newPlayers.length || newPlayers.some((p, i) => !existing[i] || existing[i].socketId !== p.socketId || existing[i].displayName !== p.displayName);
+        if (shouldUpdate) {
+          setRandomRoomPlayers(newPlayers);
+          randomRoomPlayersRef.current = newPlayers;
+        }
+
+      } catch {}
     });
 
     // 对战游戏结束回调
@@ -327,7 +464,8 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
         // 记录胜者名字，供失败方显示
         try {
           const wId = data.winner.socketId;
-          const found = roomPlayersRef.current.find(p => p.socketId === wId);
+          const listRef = gameModeRef.current === 'private' ? privateRoomPlayersRef : randomRoomPlayersRef;
+          const found = listRef.current.find(p => p.socketId === wId);
           // 仅接受玩家手动输入的显示名；无名则保持为 null，不回退到 socketId
           setWinnerName(found && found.displayName ? found.displayName : null);
           setWinnerId(wId);
@@ -343,18 +481,17 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
 
     // 系列赛回合倒计时
     socketService.onRoundCountdown((data) => {
-      setRoundCountdown(data.seconds);
+      const secs = Number(data?.seconds) || 8;
+      setRoundCountdown(secs);
       if (typeof data.nextRound === 'number') setCurrentRound(data.nextRound);
-      // 每秒减少一次倒计时（前端可视化）
+      // 可视化倒计时：确保只创建一个定时器
+      let remaining = secs;
       const interval = setInterval(() => {
-        setRoundCountdown((prev) => {
-          if (prev === null) return prev;
-          if (prev <= 1) {
-            clearInterval(interval);
-            return null;
-          }
-          return prev - 1;
-        });
+        remaining -= 1;
+        setRoundCountdown((prev) => (remaining >= 0 ? remaining : null));
+        if (remaining <= 0) {
+          clearInterval(interval);
+        }
       }, 1000);
     });
 
@@ -401,6 +538,12 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
 
   // 创建多人游戏房间
   const createRoom = (seriesBestOf?: 3 | 5 | 7) => {
+    // 若未设置昵称，先弹出，待确认后再继续
+    if (!privateDisplayNameRef.current) {
+      setPendingAction({ type: 'createRoom', seriesBestOf });
+      setIsNameModalOpen(true);
+      return;
+    }
     socketService.createRoom(seriesBestOf);
     setGameState('waiting');
     setGuesses(0);
@@ -410,8 +553,13 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
 
   // 加入多人游戏房间
   const joinRoom = (code: string) => {
+    if (!privateDisplayNameRef.current) {
+      setPendingAction({ type: 'joinRoom', code });
+      setIsNameModalOpen(true);
+      return;
+    }
     socketService.joinRoom(code);
-    setRoomCode(code);
+    setPrivateRoomCode(code);
   };
 
   // 开始私房游戏（等待 -> 开始）
@@ -568,10 +716,21 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
       }
       
       console.log('⚔️ Starting random match... Joining matchmaking queue');
-      setIsJoiningMatchmaking(true);
       
-      // 随机匹配逻辑 - 加入匹配队列
-      socketService.joinMatchmaking()
+      // 使用全局状态的 bestOf（默认3）
+      const bestOf = randomMatchBestOf;
+      
+      // 随机匹配逻辑 - 需要昵称后才能加入匹配队列
+      if (!randomDisplayNameRef.current) {
+        setPendingAction({ type: 'joinMatchmaking' });
+        setIsNameModalOpen(true);
+        return;
+      }
+      
+      // 已有昵称，开始加入匹配队列并防重
+      setIsJoiningMatchmaking(true);
+
+      socketService.joinMatchmaking(bestOf, randomDisplayNameRef.current)
         .then(() => {
           setError(''); // 清除之前的错误
           console.log('✅ [客户端] 成功加入匹配队列');
@@ -599,14 +758,30 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
 
   // 重置游戏
   const resetGame = () => {
+    // 通知服务器主动离开当前游戏/房间（适用于随机匹配或私房）
+    try {
+      socketService.leaveCurrentGame(roomCode);
+    } catch {}
+    
     // 如果正在匹配中，先离开匹配队列
     if (gameState === 'matchmaking') {
       socketService.leaveMatchmaking();
     }
     
+    // 先立刻同步引用，避免异步socket事件在返回首页后又设置错误状态
+    roomCodeRef.current = '';
+    gameStateRef.current = 'waiting';
+    // 清空引用型玩家列表，避免后续事件读取到旧名单
+    randomRoomPlayersRef.current = [];
+    privateRoomPlayersRef.current = [];
+
     setGameState('waiting');
     setTargetPlayer(null);
-    setRoomCode('');
+    // 清空两种模式的房间码与玩家列表，避免UI残留
+    setRandomRoomCode('');
+    setPrivateRoomCode('');
+    setRandomRoomPlayers([]);
+    setPrivateRoomPlayers([]);
     setGuesses(0);
     setGuessHistory([]); // 清理猜测历史
     setIsGameWon(false);
@@ -619,6 +794,13 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
     setBattleResult(null);
     setWinnerName(null);
     setWinnerId(null);
+    // 系列赛/回合/倒计时清理
+    setSeriesWins({});
+    setSeriesBestOf(null);
+    setSeriesTargetWins(null);
+    setIsSeriesFinal(false);
+    setCurrentRound(1);
+    setRoundCountdown(null);
     
     // 重置答案模态框状态
     setShowAnswerModal(false);
@@ -646,7 +828,10 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
     roomHostId,
     winnerName,
     winnerId,
-    // 将 seriesWins 暂不暴露在类型中，直接用于 RoomSidebar 传参由 App 控制
+    seriesWins,
+    seriesBestOf,
+    seriesTargetWins,
+    isSeriesFinal,
     roundCountdown,
     currentRound,
     showAnswerModal,
@@ -659,7 +844,16 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
     guessPlayer,
     resetGame,
     cancelMatchmaking,
-    closeAnswerModal
+    closeAnswerModal,
+    randomMatchBestOf,
+    setRandomMatchBestOf,
+    // 新增：模式独立字段暴露
+    randomDisplayName,
+    setRandomDisplayName,
+    privateDisplayName,
+    setPrivateDisplayName,
+    randomRoomPlayers,
+    privateRoomPlayers
   };
 
   return (
@@ -667,12 +861,32 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
       {children}
       <NameModal
         isOpen={isNameModalOpen}
-        initialName={displayName}
+        initialName={gameMode === 'private' ? privateDisplayName : randomDisplayName}
         onConfirm={(name) => {
-          setDisplayName(name);
+          if (gameModeRef.current === 'private') {
+            setPrivateDisplayName(name);
+            // 私房：入房即同步服务端
+            socketService.setDisplayName(name);
+          } else if (gameModeRef.current === 'random') {
+            setRandomDisplayName(name);
+            // 随机匹配：立即同步服务端，确保昵称正确显示
+            socketService.setDisplayName(name);
+          } else {
+            // 其他模式保留
+          }
           setIsNameModalOpen(false);
-          // 发送到服务器
-          socketService.setDisplayName(name);
+          // 执行等待中的动作
+          if (pendingAction) {
+            const action = pendingAction;
+            setPendingAction(null);
+            if (action.type === 'createRoom') {
+              createRoom(action.seriesBestOf);
+            } else if (action.type === 'joinRoom') {
+              joinRoom(action.code);
+            } else if (action.type === 'joinMatchmaking') {
+              startGame();
+            }
+          }
         }}
       />
     </GameContext.Provider>

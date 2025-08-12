@@ -1,5 +1,5 @@
 import React from 'react';
-import { Player } from '../types';
+import { Player, PlayerStatus, RoomPlayer } from '../types';
 import PlayerCard from './PlayerCard';
 
 interface GameResultProps {
@@ -8,9 +8,16 @@ interface GameResultProps {
   isMultiplayer?: boolean;
   isWinner?: boolean;
   isGameWon?: boolean;
-  onPlayAgain: () => void;
   battleResult?: 'win' | 'lose' | null;
   opponentGuesses?: number;
+  // 多人/系列赛结果扩展
+  roomPlayers?: RoomPlayer[];
+  playersStatus?: { [socketId: string]: PlayerStatus } | null;
+  seriesWins?: Record<string, number>;
+  seriesBestOf?: number | null;
+  seriesTargetWins?: number | null;
+  winnerName?: string | null;
+  isSeriesFinal?: boolean;
 }
 
 const GameResult: React.FC<GameResultProps> = ({
@@ -19,39 +26,82 @@ const GameResult: React.FC<GameResultProps> = ({
   isMultiplayer = false,
   isWinner = true,
   isGameWon = true,
-  onPlayAgain,
   battleResult = null,
   opponentGuesses = 0,
+  roomPlayers = [],
+  playersStatus = null,
+  seriesWins = {},
+  seriesBestOf = null,
+  seriesTargetWins = null,
+  winnerName = null,
+  isSeriesFinal = false,
 }) => {
+  const entries = Object.entries(playersStatus || {});
+  const enriched = entries.map(([socketId, status]) => {
+    const name = roomPlayers.find(p => p.socketId === socketId)?.displayName || `P-${socketId.slice(-4)}`;
+    const wins = (seriesWins && seriesWins[socketId]) || 0;
+    return { socketId, name, wins, guesses: status.guesses, isWinner: status.isWinner };
+  }).sort((a,b) => (b.wins - a.wins) || (a.name.localeCompare(b.name)));
+
+  const isSeries = !!seriesBestOf;
+
+  const maxWins = enriched.reduce((m, p) => Math.max(m, p.wins), 0);
+  const seriesLeaders = enriched.filter(p => p.wins === maxWins);
+  const seriesWinnerName = seriesLeaders.length ? seriesLeaders.map(p => p.name).join(', ') : (winnerName || 'Winner');
+  const roundWinnerName = winnerName || enriched.find(p => p.isWinner)?.name || 'Winner';
+
   return (
     <div className="w-full max-w-xl mx-auto text-center">
       <h2 className="text-2xl font-bold mb-4">
-        {isMultiplayer && battleResult
-          ? battleResult === 'win'
-            ? '🏆 恭喜获胜！ 🏆'
-            : '💔 很遗憾败北！'
-          : isMultiplayer
-            ? isWinner
-              ? '🎉 You Won! 🎉'
-              : 'Sorry, You Lost!'
-            : isGameWon
-              ? '🎉 Congratulations! You Guessed Correctly! 🎉'
-              : '😔 Game Over! You Ran Out of Guesses!'}
+        {isMultiplayer && isSeries
+          ? (isSeriesFinal
+              ? `🏆 Series Winner: ${seriesWinnerName}`
+              : `✅ Round Winner: ${roundWinnerName}`)
+          : (isMultiplayer
+              ? (battleResult === 'win' ? '🎉 恭喜获胜！' : '💔 很遗憾败北！')
+              : (isGameWon ? '🎉 Congratulations! You Guessed Correctly! 🎉' : '😔 Game Over! You Ran Out of Guesses!'))}
       </h2>
+
+      {isMultiplayer && isSeries && (
+        <div className="mb-5 text-sm text-gray-600">
+          Series Result: Best of {seriesBestOf} (Target {seriesTargetWins})
+        </div>
+      )}
+
+      {isMultiplayer && isSeries && enriched.length > 0 && (
+        <div className="mb-6 text-left bg-white/80 rounded-xl border border-gray-200 shadow p-4">
+          <h3 className="font-semibold mb-2">Series Standings</h3>
+          <div className="space-y-2">
+            {enriched.map((p, idx) => (
+              <div key={p.socketId} className={`flex items-center justify-between px-3 py-2 rounded-lg ${p.wins===maxWins && maxWins>0 ? 'bg-green-50 border border-green-200' : 'bg-gray-50'}`}>
+                <div className="flex items-center gap-3">
+                  <div className="w-7 h-7 text-sm font-bold rounded-full bg-indigo-600 text-white flex items-center justify-center">{p.wins}</div>
+                  <div className="font-semibold flex items-center gap-2">{p.name} {isSeriesFinal && p.wins===maxWins && maxWins>0 && p.wins >= (seriesTargetWins || 0) && <span title="Series Champion">🏆</span>}</div>
+                </div>
+                <div className="text-sm font-semibold text-gray-800">{p.wins}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
 
       <div className="mb-6">
         <p className="text-lg mb-2">
-          {isMultiplayer && battleResult
-            ? battleResult === 'win'
-              ? `🎯 你用了 ${guesses} 次猜测就找到了答案！\n⚡ 对手用了 ${opponentGuesses} 次猜测。`
-              : `😔 对手用了 ${opponentGuesses} 次猜测抢先找到了答案！\n🎯 你用了 ${guesses} 次猜测。`
-            : isMultiplayer 
-              ? isWinner 
-                ? `You correctly guessed the player in ${guesses} attempts!` 
-                : 'The other player guessed correctly first.'
-              : isGameWon
-                ? `You took ${guesses} attempts to find the correct answer.`
-                : `You used all ${guesses} attempts but didn't guess correctly.`}
+          {isMultiplayer && isSeries
+            ? (isSeriesFinal
+                ? `🏁 Series finished. ${seriesWinnerName} reached ${seriesTargetWins} wins.`
+                : `🔔 Round finished. Winner: ${roundWinnerName}.`)
+            : (isMultiplayer && battleResult
+                ? (battleResult === 'win'
+                    ? `🎯 你用了 ${guesses} 次猜测就找到了答案！\n⚡ 对手用了 ${opponentGuesses} 次猜测。`
+                    : `😔 对手用了 ${opponentGuesses} 次猜测抢先找到了答案！\n🎯 你用了 ${guesses} 次猜测。`)
+                : (isMultiplayer 
+                    ? (isWinner 
+                        ? `You correctly guessed the player in ${guesses} attempts!`
+                        : 'The other player guessed correctly first.')
+                    : (isGameWon
+                        ? `You took ${guesses} attempts to find the correct answer.`
+                        : `You used all ${guesses} attempts but didn't guess correctly.`)))}
         </p>
         {/* 对战模式的评价 */}
         {isMultiplayer && battleResult && (
@@ -96,9 +146,7 @@ const GameResult: React.FC<GameResultProps> = ({
         </div>
       </div>
 
-      <button className="afl-button" onClick={onPlayAgain}>
-        Play Again
-      </button>
+
     </div>
   );
 };

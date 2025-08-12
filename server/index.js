@@ -98,8 +98,11 @@ app.get('/api/random-player', async (req, res) => {
 
 // Socket.IO 逻辑
 const rooms = {};
-const matchmakingQueue = [];
+// 随机匹配按系列赛模式分队列
+const matchmakingQueues = { 3: [], 5: [], 7: [] };
 const matchingRooms = {}; // 存储等待ack确认的房间
+// 全局记录每个 socket 的显示昵称（用于随机匹配在房间创建前的校验与初始化）
+const displayNames = {};
 
 io.on('connection', (socket) => {
   console.log('新用户连接:', socket.id);
@@ -211,25 +214,36 @@ io.on('connection', (socket) => {
   });
 
   // 加入随机匹配队列
-  socket.on('joinMatchmaking', () => {
-    console.log('📥 [服务器] 收到 joinMatchmaking 事件，来自:', socket.id);
+  socket.on('joinMatchmaking', ({ seriesBestOf, displayName } = {}) => {
+    const bestOf = [3,5,7].includes(Number(seriesBestOf)) ? Number(seriesBestOf) : 3;
+    console.log('📥 [服务器] 收到 joinMatchmaking 事件，来自:', socket.id, 'bestOf:', bestOf);
     
-    // 检查是否已经在队列中
-    if (matchmakingQueue.includes(socket.id)) {
+    const queue = matchmakingQueues[bestOf];
+    // 基础校验：要求传入有效昵称，禁止使用 socket.id 作为昵称
+    const name = typeof displayName === 'string' ? displayName.trim().slice(0, 20) : '';
+    if (!name || name === socket.id) {
+      socket.emit('matchmakingError', { code: 'NAME_REQUIRED', message: '请先设置昵称后再加入匹配' });
+      console.warn('❌ [服务器] 拒绝加入匹配：未提供有效昵称或昵称非法。socket:', socket.id);
+      return;
+    }
+    // 记录昵称，供匹配成功后初始化房间玩家名称
+    displayNames[socket.id] = name;
+    // 检查是否已经在该队列中
+    if (queue.includes(socket.id)) {
       console.log('⚠️ [服务器] 玩家已在匹配队列中:', socket.id);
       return;
     }
 
     // 将玩家添加到匹配队列
-    matchmakingQueue.push(socket.id);
+    queue.push(socket.id);
     socket.emit('matchmakingJoined');
-    console.log('✅ [服务器] 玩家已加入匹配队列:', socket.id, '队列长度:', matchmakingQueue.length);
+    console.log('✅ [服务器] 玩家已加入匹配队列:', socket.id, 'bestOf:', bestOf, '队列长度:', queue.length);
 
     // 检查是否有足够的玩家进行匹配
-    if (matchmakingQueue.length >= 2) {
+    if (queue.length >= 2) {
       // 匹配前两个玩家
-      const player1Id = matchmakingQueue.shift();
-      const player2Id = matchmakingQueue.shift();
+      const player1Id = queue.shift();
+      const player2Id = queue.shift();
       
       const roomCode = generateRoomCode();
       const targetPlayer = getRandomPlayer();
@@ -240,7 +254,8 @@ io.on('connection', (socket) => {
         targetPlayer: targetPlayer,
         acksReceived: [],  // 存储已收到ack的玩家ID
         gameStarted: false,
-        createdAt: Date.now() // 添加创建时间用于超时检查
+        createdAt: Date.now(), // 添加创建时间用于超时检查
+        seriesBestOf: bestOf
       };
 
       // 发送匹配成功事件（但不立即开始游戏）
@@ -262,11 +277,43 @@ io.on('connection', (socket) => {
 
   // 离开随机匹配队列
   socket.on('leaveMatchmaking', () => {
-    const index = matchmakingQueue.indexOf(socket.id);
-    if (index !== -1) {
-      matchmakingQueue.splice(index, 1);
+    let removed = false;
+    [3,5,7].forEach(k => {
+      const q = matchmakingQueues[k];
+      const idx = q.indexOf(socket.id);
+      if (idx !== -1) { q.splice(idx, 1); removed = true; }
+    });
+    if (removed) {
       socket.emit('matchmakingLeft');
       console.log('📤 [服务器] 玩家离开匹配队列:', socket.id);
+    }
+  });
+
+  // 主动离开当前游戏/房间（用于随机匹配或私房在客户端点击返回主页时）
+  socket.on('leaveCurrentGame', ({ roomCode } = {}) => {
+    try {
+      // 1) 如果在等待匹配，先从所有匹配队列移除
+      let removed = false;
+      [3,5,7].forEach(k => {
+        const q = matchmakingQueues[k];
+        const idx = q.indexOf(socket.id);
+        if (idx !== -1) { q.splice(idx, 1); removed = true; }
+      });
+      if (removed) {
+        socket.emit('matchmakingLeft');
+        console.log('📤 [服务器] 玩家从匹配队列中主动离开:', socket.id);
+      }
+
+      // 2) 如果传入房间号且在房间中，按断线逻辑清理并通知对手
+      if (roomCode && rooms[roomCode] && rooms[roomCode].players.includes(socket.id)) {
+        console.log('🚪 [服务器] 玩家主动离开房间:', roomCode, socket.id);
+        // 确保Socket离开socket.io房间，避免后续广播误触发
+        try { socket.leave(roomCode); } catch {}
+        // 复用断线清理逻辑
+        cleanupUserRooms(socket.id);
+      }
+    } catch (err) {
+      console.error('leaveCurrentGame error:', err);
     }
   });
 
@@ -292,6 +339,13 @@ io.on('connection', (socket) => {
           players: room.players,
           targetPlayer: room.targetPlayer,
           gameState: 'playing',
+          // 随机匹配的系列赛配置（与私房独立）
+          series: room.seriesBestOf ? { enabled: true, bestOf: room.seriesBestOf, targetWins: Math.ceil(room.seriesBestOf/2), wins: {}, currentRound: 1 } : undefined,
+          // 初始化玩家显示名称（来自 joinMatchmaking 时上报的昵称）
+          playersNames: {
+            [room.players[0]]: displayNames[room.players[0]] || '',
+            [room.players[1]]: displayNames[room.players[1]] || ''
+          },
           playersStatus: {
             [room.players[0]]: {
               socketId: room.players[0],
@@ -315,6 +369,13 @@ io.on('connection', (socket) => {
             playerSocket.join(roomCode);
           }
         });
+
+        // 同步双方玩家列表与昵称，确保客户端侧边栏能立即显示
+        try {
+          io.to(roomCode).emit('roomPlayersUpdate', {
+            players: rooms[roomCode].players.map(id => ({ socketId: id, displayName: (rooms[roomCode].playersNames && rooms[roomCode].playersNames[id]) || '' }))
+          });
+        } catch {}
 
         // 发送初始对战状态更新
         io.to(roomCode).emit('battleStatusUpdate', {
@@ -359,30 +420,89 @@ io.on('connection', (socket) => {
         playersStatus: room.playersStatus
       });
 
-      if (isCorrect) {
-        // 猜对了，标记获胜者
-        room.playersStatus[socket.id].isFinished = true;
-        room.playersStatus[socket.id].isWinner = true;
-        
-        // 找到失败者
-        const loserId = room.players.find(id => id !== socket.id);
-        if (loserId && room.playersStatus[loserId]) {
-          room.playersStatus[loserId].isFinished = true;
-          room.playersStatus[loserId].isWinner = false;
-        }
+        if (isCorrect) {
+          // 私房/随机对战：若开启系列赛则使用系列赛流程，否则直接结束一局
+          if (room.series && room.series.enabled) {
+            // 累加胜场
+            if (!room.series.wins) room.series.wins = {};
+            room.series.wins[socket.id] = (room.series.wins[socket.id] || 0) + 1;
 
-        room.gameState = 'finished';
+            // 标记当局胜负并广播
+            Object.keys(room.playersStatus || {}).forEach(pid => {
+              room.playersStatus[pid].isFinished = true;
+              room.playersStatus[pid].isWinner = pid === socket.id;
+            });
+            io.to(roomCode).emit('battleStatusUpdate', {
+              playersStatus: room.playersStatus
+            });
 
-        // 发送对战游戏结束事件
-        io.to(roomCode).emit('battleGameOver', {
-          winner: { ...room.playersStatus[socket.id], socketId: socket.id },
-          loser: loserId ? { ...room.playersStatus[loserId], socketId: loserId } : null,
-          targetPlayer: room.targetPlayer,
-          gameEndReason: 'CORRECT_GUESS'
-        });
+            const targetWins = room.series.targetWins || Math.ceil((room.series.bestOf || 3) / 2);
+            const winnerWins = room.series.wins[socket.id] || 0;
+            const finalReached = winnerWins >= targetWins;
 
-        console.log('🏆 [Server] Battle game over! Winner:', socket.id, 'Loser:', loserId);
-      } else if (room.playersStatus[socket.id].guesses >= MAX_GUESSES) {
+            // 广播当局结果（含系列赛数据）
+            io.to(roomCode).emit('gameOver', {
+              winner: socket.id,
+              targetPlayer: room.targetPlayer,
+              series: {
+                enabled: true,
+                bestOf: room.series.bestOf,
+                targetWins,
+                wins: room.series.wins,
+                finalWinner: finalReached ? socket.id : null
+              }
+            });
+
+            if (finalReached) {
+              room.gameState = 'finished';
+              console.log(`🏁 [Server] 系列赛结束 房间:${roomCode} 最终胜者:${socket.id}`);
+            } else {
+              // 5秒倒计时后自动开启下一局
+              room.roundPendingStart = true;
+              const nextRound = (room.series.currentRound || 1) + 1;
+              const countdownSeconds = 8;
+              io.to(roomCode).emit('roundCountdown', {
+                seconds: countdownSeconds,
+                nextRound,
+                series: {
+                  enabled: true,
+                  bestOf: room.series.bestOf,
+                  targetWins,
+                  wins: room.series.wins
+                }
+              });
+
+              setTimeout(() => {
+                room.series.currentRound = nextRound;
+                room.targetPlayer = getRandomPlayer();
+                room.roundPendingStart = false;
+                room.playersStatus = room.players.reduce((acc, pid) => {
+                  acc[pid] = { socketId: pid, guesses: 0, isFinished: false, isWinner: false };
+                  return acc;
+                }, {});
+                io.to(roomCode).emit('battleStatusUpdate', { playersStatus: room.playersStatus });
+                io.to(roomCode).emit('gameStart', { targetPlayer: room.targetPlayer });
+              }, countdownSeconds * 1000);
+            }
+          } else {
+            // 非系列赛：直接结束
+            room.playersStatus[socket.id].isFinished = true;
+            room.playersStatus[socket.id].isWinner = true;
+            const loserId = room.players.find(id => id !== socket.id);
+            if (loserId && room.playersStatus[loserId]) {
+              room.playersStatus[loserId].isFinished = true;
+              room.playersStatus[loserId].isWinner = false;
+            }
+            room.gameState = 'finished';
+            io.to(roomCode).emit('battleGameOver', {
+              winner: { ...room.playersStatus[socket.id], socketId: socket.id },
+              loser: loserId ? { ...room.playersStatus[loserId], socketId: loserId } : null,
+              targetPlayer: room.targetPlayer,
+              gameEndReason: 'CORRECT_GUESS'
+            });
+            console.log('🏆 [Server] Battle game over! Winner:', socket.id, 'Loser:', loserId);
+          }
+        } else if (room.playersStatus[socket.id].guesses >= MAX_GUESSES) {
         // Player used all guesses
         room.playersStatus[socket.id].isFinished = true;
         
@@ -490,7 +610,7 @@ io.on('connection', (socket) => {
               // 进入下一局前：广播5秒倒计时给所有玩家
               room.roundPendingStart = true;
               const nextRound = (room.series.currentRound || 1) + 1;
-              const countdownSeconds = 5;
+              const countdownSeconds = 8;
               io.to(roomCode).emit('roundCountdown', {
                 seconds: countdownSeconds,
                 nextRound,
@@ -543,12 +663,17 @@ io.on('connection', (socket) => {
   socket.on('disconnect', () => {
     console.log('用户断开连接:', socket.id);
     
-    // 从匹配队列中移除
-    const queueIndex = matchmakingQueue.indexOf(socket.id);
-    if (queueIndex !== -1) {
-      matchmakingQueue.splice(queueIndex, 1);
-      console.log('📤 [服务器] 从匹配队列中移除玩家:', socket.id);
-    }
+    // 从所有匹配队列中移除
+    let removedFromQueue = false;
+    [3,5,7].forEach(k => {
+      const q = matchmakingQueues[k];
+      const idx = q.indexOf(socket.id);
+      if (idx !== -1) { 
+        q.splice(idx, 1); 
+        removedFromQueue = true;
+        console.log('📤 [服务器] 从BO' + k + '匹配队列中移除玩家:', socket.id);
+      }
+    });
     
     // 清理等待ack确认的房间
     for (const [roomCode, room] of Object.entries(matchingRooms)) {
@@ -565,6 +690,8 @@ io.on('connection', (socket) => {
     
     // 清理用户所在的房间
     cleanupUserRooms(socket.id);
+    // 清理全局昵称映射
+    try { delete displayNames[socket.id]; } catch {}
   });
 });
 
@@ -594,8 +721,23 @@ function getRandomPlayer() {
 function cleanupUserRooms(socketId) {
   for (const [roomCode, room] of Object.entries(rooms)) {
     if (room.players.includes(socketId)) {
-      // 通知房间内其他玩家有人离开
-      io.to(roomCode).emit('playerLeft', { socketId });
+      // 通知房间内其他玩家有人离开（排除离开者本身）
+      try {
+        const leavingSocket = io.sockets.sockets.get(socketId);
+        if (leavingSocket) {
+          leavingSocket.to(roomCode).emit('playerLeft', { socketId });
+        } else {
+          // 兜底：逐个通知剩余玩家
+          room.players.filter(id => id !== socketId).forEach(id => {
+            io.to(id).emit('playerLeft', { socketId });
+          });
+        }
+      } catch (e) {
+        // 兜底：逐个通知剩余玩家
+        room.players.filter(id => id !== socketId).forEach(id => {
+          io.to(id).emit('playerLeft', { socketId });
+        });
+      }
       
       // 如果房间中只有一个玩家，则删除房间
       if (room.players.length <= 1) {
@@ -627,14 +769,17 @@ function cleanupUserRooms(socketId) {
             });
             console.log(`[Server] Series ended due to disconnect, final winner: ${solePlayerId}`);
           } else {
-            // 非系列赛或人数仍≥2：按对战断线处理（仅对战房有效）
+            // 非系列赛或人数仍≥2：按对战断线处理（仅通知仍在房间的玩家，不通知离开者）
             room.gameState = 'finished';
-            io.to(roomCode).emit('battleGameOver', {
-              winner: null,
-              loser: null,
-              targetPlayer: room.targetPlayer,
-              gameEndReason: 'PLAYER_DISCONNECTED',
-              playersStatus: room.playersStatus
+            const remainingPlayers = room.players.filter(id => id !== socketId);
+            remainingPlayers.forEach(pid => {
+              io.to(pid).emit('battleGameOver', {
+                winner: null,
+                loser: null,
+                targetPlayer: room.targetPlayer,
+                gameEndReason: 'PLAYER_DISCONNECTED',
+                playersStatus: room.playersStatus
+              });
             });
             console.log(`[Server] Game ended due to player disconnect: ${socketId}`);
           }
@@ -656,7 +801,10 @@ io.on('connection', (socket) => {
     if (!roomEntry) return;
     const [roomCode, room] = roomEntry;
     if (!room.playersNames) room.playersNames = {};
-    room.playersNames[socket.id] = String(displayName || '').slice(0, 20);
+    const trimmed = String(displayName || '').trim().slice(0, 20);
+    room.playersNames[socket.id] = trimmed;
+    // 同步到全局，便于后续房间或随机匹配使用
+    displayNames[socket.id] = trimmed;
 
     io.to(roomCode).emit('roomPlayersUpdate', {
       players: room.players.map(id => ({ socketId: id, displayName: room.playersNames[id] || '' }))

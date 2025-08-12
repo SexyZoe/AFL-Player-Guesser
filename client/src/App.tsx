@@ -29,10 +29,14 @@ const App: React.FC = () => {
     isGameWon,
     battleStatus,
     currentSocketId,
-    opponentStatus,
+     opponentStatus,
     battleResult,
     roomPlayers,
     roomHostId,
+     seriesWins,
+     seriesBestOf,
+     seriesTargetWins,
+     isSeriesFinal,
     // 由于上下文未暴露 seriesWins，这里通过本地状态从 battleStatus 推导暂不显示胜场，
     // 后续在 gameOver 系列赛事件中已更新 context 内部seriesWins，将在此传入占位 {}
     // 暂不直接暴露 hostId，先在面板中仅用是否可开始逻辑控制
@@ -71,7 +75,15 @@ const App: React.FC = () => {
           <div className="error-icon">⚠️</div>
           <h2 className="error-title">Error</h2>
           <p>{error}</p>
-          <button onClick={resetGame} className="afl-button error-button">
+          <button
+            onClick={() => {
+              try { resetGame(); } catch {}
+              if (typeof window !== 'undefined' && window.location) {
+                window.location.reload();
+              }
+            }}
+            className="afl-button error-button"
+          >
             Restart
           </button>
         </div>
@@ -149,9 +161,18 @@ const App: React.FC = () => {
                 {/* 游戏状态信息 */}
                 <div className="target-header">
                   <h2 className="target-title">AFL Player Guessing Game</h2>
-                  <div className="guesses-counter">
-                    <span className="guesses-label">Guesses: </span>
-                    <span className="guesses-value">{guesses}/{maxGuesses}</span>
+                  <div className="header-controls">
+                    <div className="guesses-counter">
+                      <span className="guesses-label">Guesses: </span>
+                      <span className="guesses-value">{guesses}/{maxGuesses}</span>
+                    </div>
+                    <button
+                      onClick={resetGame}
+                      className="home-button-small"
+                      title="Return to Home"
+                    >
+                      🏠
+                    </button>
                   </div>
                 </div>
                 
@@ -174,6 +195,13 @@ const App: React.FC = () => {
                   {/* 游戏状态信息 */}
                   <div className="target-header">
                     <h2 className="target-title">⚔️ Battle Guess Player</h2>
+                    <button
+                      onClick={resetGame}
+                      className="home-button-small"
+                      title="Return to Home"
+                    >
+                      🏠
+                    </button>
                   </div>
                   
                   {/* 玩家选择区域 */}
@@ -195,6 +223,7 @@ const App: React.FC = () => {
                     playersStatus={battleStatus}
                     currentSocketId={currentSocketId}
                     seriesWins={{}}
+                    maxSlots={gameMode === 'random' ? 2 : 4}
                   />
                 </div>
               </div>
@@ -204,27 +233,35 @@ const App: React.FC = () => {
 
         {gameState === 'finished' && targetPlayer && (
           <div className="result-container w-full max-w-7xl mx-auto">
-            {/* 对战模式最终状态显示 */}
-            {gameMode !== 'solo' && battleStatus && currentSocketId && (
-              <BattleStatus
-                currentPlayer={battleStatus[currentSocketId] || null}
-                opponent={opponentStatus}
-                battleResult={battleResult}
-              />
-            )}
-            
+      {/* 多人模式：移除 1v1 Battle Mode 展示，仅展示系列赛总榜 */}
             <GameResult
               targetPlayer={targetPlayer}
               guesses={gameMode === 'solo' ? guesses : (battleStatus && currentSocketId ? battleStatus[currentSocketId]?.guesses || 0 : 0)}
               isMultiplayer={gameMode !== 'solo'}
               isGameWon={isGameWon}
-              onPlayAgain={resetGame}
               battleResult={battleResult}
               opponentGuesses={opponentStatus?.guesses}
+              roomPlayers={roomPlayers}
+              playersStatus={battleStatus || null}
+              seriesWins={seriesWins}
+              seriesBestOf={seriesBestOf}
+              seriesTargetWins={seriesTargetWins}
+              winnerName={winnerName}
+              isSeriesFinal={Boolean(isSeriesFinal)}
             />
             
             {/* 显示最终猜测历史 */}
             <GuessHistory guessHistory={guessHistory} />
+            
+            {/* 返回主页按钮 */}
+            <div className="text-center mt-6">
+              <button
+                onClick={resetGame}
+                className="afl-button home-button"
+              >
+                🏠 Return to Home
+              </button>
+            </div>
           </div>
         )}
       </main>
@@ -233,6 +270,13 @@ const App: React.FC = () => {
         <p>&copy; {new Date().getFullYear()} AFL Guessing Game | For entertainment purposes only</p>
       </footer>
       
+      {/* 回合倒计时横幅 */}
+      {roundCountdown !== null && roundCountdown > 0 && gameState === 'playing' && (
+        <div className="round-countdown-banner">
+          Next round starts in {roundCountdown}s
+        </div>
+      )}
+
       {/* 答案模态框 */}
       {showAnswerModal && targetPlayer && (
         <AnswerModal

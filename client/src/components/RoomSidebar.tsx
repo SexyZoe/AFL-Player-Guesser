@@ -49,8 +49,8 @@ const RoomSidebar: React.FC<RoomSidebarProps> = ({
           <span className="count">{guesses}</span>
           {wins > 0 && <span className="badge" title="Series wins">{wins}</span>}
         </div>
-        <div className="nickname" title={player.displayName || 'Player'}>
-          {player.displayName || 'Player'}{isYou ? ' (You)' : ''}
+        <div className="nickname" title={player.displayName || player.socketId}>
+          {player.displayName || player.socketId}{isYou ? ' (You)' : ''}
         </div>
       </div>
     );

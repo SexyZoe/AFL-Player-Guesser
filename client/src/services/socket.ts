@@ -144,7 +144,7 @@ export const onRoomPlayersUpdate = (
 };
 
 // 加入随机匹配队列
-export const joinMatchmaking = (): Promise<void> => {
+export const joinMatchmaking = (seriesBestOf?: 3 | 5 | 7, displayName?: string): Promise<void> => {
   return new Promise((resolve, reject) => {
     console.log('📤 [客户端Socket] 发送 joinMatchmaking 事件');
     console.log('🔗 [客户端Socket] 当前连接状态:', socket.connected);
@@ -157,7 +157,7 @@ export const joinMatchmaking = (): Promise<void> => {
       // 监听连接成功事件
       const onConnect = () => {
         console.log('✅ [客户端Socket] 连接已建立，发送事件');
-        socket.emit('joinMatchmaking');
+        socket.emit('joinMatchmaking', { seriesBestOf, displayName });
         socket.off('connect', onConnect); // 清理监听器
         resolve();
       };
@@ -181,7 +181,7 @@ export const joinMatchmaking = (): Promise<void> => {
     }
     
     // 直接发送事件
-    socket.emit('joinMatchmaking');
+    socket.emit('joinMatchmaking', { seriesBestOf, displayName });
     resolve();
   });
 };
@@ -189,6 +189,11 @@ export const joinMatchmaking = (): Promise<void> => {
 // 离开随机匹配队列
 export const leaveMatchmaking = (): void => {
   socket.emit('leaveMatchmaking');
+};
+
+// 主动离开当前游戏/房间
+export const leaveCurrentGame = (roomCode?: string): void => {
+  socket.emit('leaveCurrentGame', { roomCode });
 };
 
 // 监听匹配队列加入成功
@@ -209,6 +214,11 @@ export const onMatchFound = (callback: (data: MatchFound) => void): void => {
 // 监听匹配超时
 export const onMatchmakingTimeout = (callback: () => void): void => {
   socket.on('matchmakingTimeout', callback);
+};
+
+// 监听匹配错误（如姓名缺失）
+export const onMatchmakingError = (callback: (data: { code: string; message?: string }) => void): void => {
+  socket.on('matchmakingError', callback);
 };
 
 // 监听对战状态更新

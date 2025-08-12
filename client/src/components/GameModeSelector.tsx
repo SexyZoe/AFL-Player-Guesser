@@ -1,5 +1,6 @@
 import React from 'react';
 import { GameMode } from '../types';
+import { useGame } from '../context/GameContext';
 
 interface GameModeSelectorProps {
   selectedMode: GameMode;
@@ -7,6 +8,7 @@ interface GameModeSelectorProps {
 }
 
 const GameModeSelector: React.FC<GameModeSelectorProps> = ({ selectedMode, onSelectMode }) => {
+  const { randomMatchBestOf, setRandomMatchBestOf } = useGame();
   return (
     <div className="flex flex-col items-center mb-8 w-full">
       <h2 className="text-2xl font-bold mb-4 w-full" style={{ textAlign: 'center' }}>Select Game Mode</h2>
@@ -36,6 +38,20 @@ const GameModeSelector: React.FC<GameModeSelectorProps> = ({ selectedMode, onSel
             <div className="text-3xl mb-2">⚔️</div>
             <h3 className="text-xl font-bold mb-1">Random Match</h3>
             <p className="text-gray-600">Match with a random online player and race to guess faster</p>
+            {selectedMode === 'random' && (
+              <div className="mt-3 flex items-center justify-center gap-2">
+                {[3,5,7].map(n => (
+                  <button
+                    key={n}
+                    type="button"
+                    className={`afl-button ${randomMatchBestOf===n ? 'ring-4 ring-afl-blue' : ''}`}
+                    onClick={(e) => { e.stopPropagation(); setRandomMatchBestOf(n as 3|5|7); }}
+                  >
+                    BO{n}
+                  </button>
+                ))}
+              </div>
+            )}
           </div>
         </div>
 
