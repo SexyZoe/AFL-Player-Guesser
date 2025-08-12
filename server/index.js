@@ -16,15 +16,33 @@ const Player = require('./models/Player');
 // 初始化Express应用
 const app = express();
 const server = http.createServer(app);
+
+// CORS/WS 允许域名（生产环境建议通过环境变量配置）
+const allowedOriginsEnv = (process.env.CORS_ORIGINS || '').split(',').map(s => s.trim()).filter(Boolean);
+const isProd = String(process.env.NODE_ENV).toLowerCase() === 'production';
+const socketCorsOrigin = allowedOriginsEnv.length > 0 ? allowedOriginsEnv : (isProd ? ["http://localhost:3000"] : "*");
+
 const io = socketIo(server, {
   cors: {
-    origin: "*",
-    methods: ["GET", "POST"]
+    origin: socketCorsOrigin,
+    methods: ["GET", "POST"],
+    credentials: true
   }
 });
 
 // 中间件
-app.use(cors());
+const expressCorsOptions = allowedOriginsEnv.length > 0
+  ? {
+      origin: function (origin, callback) {
+        // 允许无 Origin（如本地脚本）或在白名单中的来源
+        if (!origin || allowedOriginsEnv.includes(origin)) return callback(null, true);
+        return callback(new Error('Not allowed by CORS'));
+      },
+      credentials: true
+    }
+  : { origin: true, credentials: true };
+
+app.use(cors(expressCorsOptions));
 app.use(express.json());
 
 // 静态文件服务 - 提供球员图片
@@ -106,6 +124,20 @@ const displayNames = {};
 
 io.on('connection', (socket) => {
   console.log('新用户连接:', socket.id);
+
+  // 简单频率限制（每socket）：默认 3 次/秒
+  const rateWindowMs = 1000;
+  const maxEventsPerWindow = 3;
+  const lastTimestamps = new Map(); // eventName -> [ts...]
+
+  function isRateLimited(eventName) {
+    const now = Date.now();
+    const arr = lastTimestamps.get(eventName) || [];
+    const filtered = arr.filter(ts => now - ts < rateWindowMs);
+    filtered.push(now);
+    lastTimestamps.set(eventName, filtered);
+    return filtered.length > maxEventsPerWindow;
+  }
 
   // 创建私人房间（可选系列赛 bestOf: 3|5|7）
   socket.on('createRoom', ({ seriesBestOf } = {}) => {
@@ -215,6 +247,7 @@ io.on('connection', (socket) => {
 
   // 加入随机匹配队列
   socket.on('joinMatchmaking', ({ seriesBestOf, displayName } = {}) => {
+    if (isRateLimited('joinMatchmaking')) return;
     const bestOf = [3,5,7].includes(Number(seriesBestOf)) ? Number(seriesBestOf) : 3;
     console.log('📥 [服务器] 收到 joinMatchmaking 事件，来自:', socket.id, 'bestOf:', bestOf);
     
@@ -277,6 +310,7 @@ io.on('connection', (socket) => {
 
   // 离开随机匹配队列
   socket.on('leaveMatchmaking', () => {
+    if (isRateLimited('leaveMatchmaking')) return;
     let removed = false;
     [3,5,7].forEach(k => {
       const q = matchmakingQueues[k];
@@ -291,6 +325,7 @@ io.on('connection', (socket) => {
 
   // 主动离开当前游戏/房间（用于随机匹配或私房在客户端点击返回主页时）
   socket.on('leaveCurrentGame', ({ roomCode } = {}) => {
+    if (isRateLimited('leaveCurrentGame')) return;
     try {
       // 1) 如果在等待匹配，先从所有匹配队列移除
       let removed = false;
@@ -319,6 +354,7 @@ io.on('connection', (socket) => {
 
   // 处理匹配确认 - 核心ACK机制
   socket.on('matchFoundAck', ({ roomCode }) => {
+    if (isRateLimited('matchFoundAck')) return;
     console.log('📝 [服务器] 收到匹配确认:', socket.id, '房间:', roomCode);
     
     if (matchingRooms[roomCode]) {
@@ -392,6 +428,16 @@ io.on('connection', (socket) => {
 
   // 猜测球员（支持实时对战状态同步）
   socket.on('guessPlayer', ({ roomCode, playerId }) => {
+    if (isRateLimited('guessPlayer')) {
+      return; // 静默丢弃过快的请求
+    }
+    // 基础校验
+    if (!roomCode || !rooms[roomCode]) return;
+    const room = rooms[roomCode];
+    if (!room.players || !room.players.includes(socket.id)) return;
+    if (room.gameState !== 'playing') return;
+    const numericId = Number(playerId);
+    if (!Number.isFinite(numericId)) return;
     if (rooms[roomCode] && rooms[roomCode].gameState === 'playing' && rooms[roomCode].playersStatus) {
       // 随机匹配对战房
       const room = rooms[roomCode];

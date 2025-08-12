@@ -40,7 +40,7 @@ const NameModal: React.FC<NameModalProps> = ({ isOpen, initialName = '', onConfi
               placeholder="如：Alex、小李、队长…"
               autoFocus
             />
-            <button type="submit" className="afl-button w-full">确认</button>
+            <button type="submit" className="afl-button w-full" aria-label="Let's Play! 🚀">确认</button>
           </form>
         </div>
       </div>
