@@ -42,10 +42,7 @@ const NameModal: React.FC<NameModalProps> = ({ isOpen, initialName = '', onConfi
               placeholder="e.g., Alex, Sam, Captain…"
               autoFocus
             />
-            <button type="submit" className="afl-button w-full" aria-label="Confirm">Confirm</button>
-            {onClose && (
-              <button type="button" className="afl-button w-full mt-2" onClick={onClose}>Exit</button>
-            )}
+
           </form>
         </div>
       </div>

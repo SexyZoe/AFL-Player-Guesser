@@ -124,6 +124,8 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
   
   // 防止重复操作的状态
   const [isJoiningMatchmaking, setIsJoiningMatchmaking] = useState(false);
+  // 标识本次是否是用户主动点击了“取消匹配”（用于过滤滞后的 matchFound）
+  const didCancelMatchmakingRef = useRef<boolean>(false);
   // 模式独立的昵称
   const [isNameModalOpen, setIsNameModalOpen] = useState<boolean>(false);
   const [randomDisplayName, setRandomDisplayName] = useState<string>('');
@@ -331,16 +333,19 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
 
     // 匹配队列加入成功回调
     socketService.onMatchmakingJoined(() => {
+      // 进入匹配状态前清理取消标记
+      didCancelMatchmakingRef.current = false;
       console.log('📥 [客户端] 收到 matchmakingJoined 事件，切换到匹配状态');
       setGameState('matchmaking');
-      setIsJoiningMatchmaking(false); // 加入成功后重置状态
+      setIsJoiningMatchmaking(false);
       console.log('✅ [客户端] 已加入匹配队列，当前状态: matchmaking');
     });
 
     // 匹配队列离开成功回调
     socketService.onMatchmakingLeft(() => {
       setGameState('waiting');
-      setIsJoiningMatchmaking(false); // 离开匹配队列后重置状态
+      setIsJoiningMatchmaking(false);
+      didCancelMatchmakingRef.current = true; // 标记本次已取消
       console.log('已离开匹配队列');
     });
 
@@ -356,6 +361,10 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
 
     // 匹配成功回调
     socketService.onMatchFound((data) => {
+      if (didCancelMatchmakingRef.current || gameStateRef.current !== 'matchmaking') {
+        console.warn('⚠️ [客户端] 收到 matchFound 但已不在匹配状态，忽略');
+        return;
+      }
       console.log('🎉 [客户端] 收到 matchFound 事件:', data);
       console.log('🏠 [客户端] 房间代码:', data.roomCode);
       console.log('🎯 [客户端] 目标球员:', data.targetPlayer.name);
@@ -538,26 +547,17 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
 
   // 创建多人游戏房间
   const createRoom = (seriesBestOf?: 3 | 5 | 7) => {
-    // 若未设置昵称，先弹出，待确认后再继续
-    if (!privateDisplayNameRef.current) {
-      setPendingAction({ type: 'createRoom', seriesBestOf });
-      setIsNameModalOpen(true);
-      return;
-    }
+    // 允许未设置昵称也可创建房间（昵称可稍后设置）
     socketService.createRoom(seriesBestOf);
     setGameState('waiting');
     setGuesses(0);
-    setGuessHistory([]); // 清理之前的猜测历史
+    setGuessHistory([]);
     setIsGameWon(false);
   };
 
   // 加入多人游戏房间
   const joinRoom = (code: string) => {
-    if (!privateDisplayNameRef.current) {
-      setPendingAction({ type: 'joinRoom', code });
-      setIsNameModalOpen(true);
-      return;
-    }
+    // 允许未设置昵称也可加入房间（昵称可稍后设置）
     socketService.joinRoom(code);
     setPrivateRoomCode(code);
   };
@@ -729,11 +729,17 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
       
       // 已有昵称，开始加入匹配队列并防重
       setIsJoiningMatchmaking(true);
+      didCancelMatchmakingRef.current = false;
+      // 立即切换到匹配中界面，避免等待连接/服务端回调导致UI不可见
+      if (gameStateRef.current === 'waiting') {
+        setGameState('matchmaking');
+      }
 
       socketService.joinMatchmaking(bestOf, randomDisplayNameRef.current)
         .then(() => {
-          setError(''); // 清除之前的错误
-          console.log('✅ [客户端] 成功加入匹配队列');
+          setError('');
+          setIsJoiningMatchmaking(false);
+          console.log('✅ [客户端] 成功加入匹配队列，已切换到匹配界面');
         })
         .catch((error) => {
           console.error('❌ [客户端] 加入匹配队列失败:', error);
@@ -745,9 +751,10 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
 
   // 取消匹配
   const cancelMatchmaking = () => {
+    didCancelMatchmakingRef.current = true;
     socketService.leaveMatchmaking();
-    setIsJoiningMatchmaking(false); // 取消匹配后重置状态
-    setError(''); // 清除错误
+    setIsJoiningMatchmaking(false);
+    setError('');
   };
 
   // 关闭答案模态框
@@ -866,10 +873,14 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
         onConfirm={(name) => {
           if (gameModeRef.current === 'private') {
             setPrivateDisplayName(name);
+            // 立即同步 ref，避免后续逻辑读取到旧值
+            privateDisplayNameRef.current = name;
             // 私房：入房即同步服务端
             socketService.setDisplayName(name);
           } else if (gameModeRef.current === 'random') {
             setRandomDisplayName(name);
+            // 立即同步 ref，避免 startGame 读取旧值导致未入队
+            randomDisplayNameRef.current = name;
             // 随机匹配：立即同步服务端，确保昵称正确显示
             socketService.setDisplayName(name);
           } else {
