@@ -30,15 +30,7 @@ app.use(express.json());
 // 静态文件服务 - 提供球员图片
 app.use('/images', express.static(path.join(__dirname, 'public/images')));
 
-// 生产环境下提供前端构建文件
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, '../client/build')));
-  
-  // 处理前端路由
-  app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../client/build/index.html'));
-  });
-}
+// 生产环境下提供前端构建文件（注意：必须放在 API 路由之后，见文件末尾）
 
 // 球员数据存储
 let players = [];
@@ -857,6 +849,21 @@ if (process.env.MONGODB_URI) {
 
 // 启动服务器
 const PORT = process.env.PORT || 3002;
+// 生产环境下提供前端构建文件与 SPA 回退（放在所有 API 路由之后，避免覆盖 /api 与 /socket.io 等）
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, '../client/build')));
+  app.get('*', (req, res, next) => {
+    // 排除 API、Socket.IO、图片与静态资源请求
+    if (
+      req.path.startsWith('/api') ||
+      req.path.startsWith('/socket.io') ||
+      req.path.startsWith('/images')
+    ) {
+      return next();
+    }
+    res.sendFile(path.join(__dirname, '../client/build/index.html'));
+  });
+}
 server.listen(PORT, () => {
   console.log(`服务器运行在端口 ${PORT}`);
 });
