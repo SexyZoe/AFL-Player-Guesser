@@ -65,9 +65,8 @@ const PlayerCard: React.FC<PlayerCardProps> = ({ player, onClick }) => {
 
   return (
     <div 
-      className="relative rounded-2xl overflow-hidden shadow-2xl hover:shadow-3xl transition-all duration-500 cursor-pointer transform hover:-translate-y-2 hover:scale-105 h-full bg-white"
+      className="relative rounded-2xl overflow-hidden shadow-2xl hover:shadow-3xl transition-all duration-500 cursor-pointer transform hover:-translate-y-2 hover:scale-105 h-full bg-white player-card-root"
       onClick={onClick}
-      style={{ minHeight: '500px' }}
     >
       {/* 球队颜色渐变背景 */}
       <div className={`absolute inset-0 bg-gradient-to-br ${getTeamColor(player.team || '')}`} style={{opacity: 0.15}}></div>

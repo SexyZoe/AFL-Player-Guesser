@@ -2018,6 +2018,18 @@ kbd:hover {
   transform-origin: center;
 }
 
+/* 恢复：不对 PlayerCard 高度做强约束，遵循组件内部布局 */
+.player-card-root { min-height: auto; }
+.answer-modal-content .player-card-container { max-height: none; overflow: visible; }
+.answer-modal-content .player-card-root { max-height: none; overflow: visible; }
+
+/* 移动端进一步收紧高度，保证不占满全屏 */
+@media (max-width: 640px) {
+  .answer-modal-content { max-height: 75vh; }
+  .answer-modal-content .player-card-container { max-height: none; }
+  .answer-modal-content .player-card-root { max-height: none; }
+}
+
 /* 移动端：答案卡片整体缩放以“一屏展示完” */
 @media (max-width: 480px) {
   .answer-modal-content .player-card-container,
@@ -2109,7 +2121,7 @@ kbd:hover {
 @media (max-width: 768px) {
   .answer-modal-content {
     margin: 0.5rem;
-    max-height: 95vh;
+    max-height: 80vh;
     border-radius: 16px;
   }
 
@@ -2119,7 +2131,7 @@ kbd:hover {
   }
 
   .answer-modal-title {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
   }
 
   .answer-modal-subtitle {
@@ -2127,7 +2139,7 @@ kbd:hover {
   }
 
   .answer-modal-body {
-    padding: 1.5rem;
+    padding: 1.25rem;
   }
 
   .reveal-title {
