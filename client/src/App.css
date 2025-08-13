@@ -524,12 +524,20 @@ kbd:hover {
   background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
   padding: 1rem;
   border-radius: 1rem;
+  gap: 0.75rem;
+  flex-wrap: nowrap; /* 防止换行导致重叠 */
 }
 
 .target-title {
   font-size: 1.25rem;
   font-weight: bold;
   color: #2D3748;
+  white-space: nowrap;          /* 小屏不换行 */
+  overflow: hidden;             /* 超出隐藏 */
+  text-overflow: ellipsis;      /* 省略号 */
+  max-width: 100%;
+  min-width: 0;                 /* 允许在 flex 中收缩并换行 */
+  flex: 1 1 auto;               /* 占据剩余空间 */
 }
 
 .guesses-counter {
@@ -539,6 +547,12 @@ kbd:hover {
   padding: 0.5rem 1rem;
   border-radius: 0.75rem;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* 防止在小屏被压缩变形 */
+.guesses-counter,
+.home-button-small {
+  flex-shrink: 0;
 }
 
 .guesses-label {
@@ -551,6 +565,58 @@ kbd:hover {
   color: var(--afl-blue);
   font-weight: bold;
   font-size: 1.1rem;
+}
+
+/* 移动端：上下两行布局（常见手机宽度） */
+@media (max-width: 640px) {
+  .target-header { padding: 0.75rem 0.85rem; gap: 0.6rem; flex-direction: column; align-items: stretch; }
+  .target-title {
+    font-size: 1.05rem;
+    max-width: 100%;
+    white-space: normal;
+    text-overflow: clip;
+    display: -webkit-box;
+    line-clamp: 2;
+    -webkit-line-clamp: 2;      /* 最多两行 */
+    -webkit-box-orient: vertical;
+    line-height: 1.2;
+    word-break: keep-all;
+    overflow-wrap: anywhere;
+  }
+  .header-controls { gap: 0.5rem; width: 100%; justify-content: space-between; align-items: center; }
+  .guesses-counter { padding: 0.3rem 0.6rem; border-radius: 0.5rem; }
+  .guesses-label { margin-right: 0.35rem; font-size: 0.8rem; }
+  .guesses-value { font-size: 0.95rem; }
+  .home-button-small { width: 34px; height: 34px; font-size: 0.9rem; }
+}
+
+/* 更小屏：进一步压缩 */
+@media (max-width: 480px) {
+  .target-header { padding: 0.6rem 0.75rem; gap: 0.5rem; flex-direction: column; align-items: stretch; }
+  .target-title {
+    font-size: 1rem;
+    max-width: 100%;
+    white-space: normal;                /* 允许换行 */
+    text-overflow: clip;                /* 移除省略号 */
+    display: -webkit-box;               /* 两行截断 */
+    line-clamp: 2;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    line-height: 1.15;
+    word-break: keep-all;
+  }
+  .header-controls { gap: 0.5rem; width: 100%; justify-content: space-between; }
+  .guesses-counter { padding: 0.2rem 0.45rem; border-radius: 0.5rem; }
+  .guesses-label { margin-right: 0.25rem; font-size: 0.75rem; }
+  .guesses-value { font-size: 0.9rem; }
+  .home-button-small { width: 32px; height: 32px; font-size: 0.85rem; }
+}
+
+/* 极小屏：仅显示计数值，隐藏文字标签 */
+@media (max-width: 360px) {
+  .target-title { max-width: 52vw; font-size: 0.95rem; }
+  .guesses-label { display: none; }
+  .guesses-counter { padding: 0.2rem 0.5rem; }
 }
 
 .target-card {
@@ -1952,6 +2018,17 @@ kbd:hover {
   transform-origin: center;
 }
 
+/* 移动端：答案卡片整体缩放以“一屏展示完” */
+@media (max-width: 480px) {
+  .answer-modal-content .player-card-container,
+  .game-container .player-card-container {
+    transform: none; /* 由 JS 动态缩放控制 */
+  }
+  .answer-modal-content .player-card-container .text-3xl { font-size: 1.35rem; }
+  .answer-modal-content .player-card-container .text-2xl { font-size: 1.15rem; }
+  .answer-modal-content .player-card-container .w-32 { width: 6.5rem; height: 6.5rem; }
+}
+
 @keyframes cardReveal {
   0% {
     opacity: 0;
@@ -2274,3 +2351,39 @@ kbd:hover {
   padding: 1rem 0;
   margin-bottom: 1rem;
 } 
+
+/* —— Mobile UX 改进：锁定横向滚动 + 流式字体缩放 —— */
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* 仅允许纵向滑动，防止下拉列表左右拖动 */
+.custom-dropdown-select,
+.custom-dropdown-list {
+  touch-action: pan-y;
+}
+
+.custom-dropdown-list {
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+}
+
+/* 选项与当前值统一省略显示，避免因超长文案撑宽导致横向滚动 */
+.custom-dropdown-option,
+.custom-dropdown-current {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* 流式字体缩放：小屏更紧凑，桌面维持原有视觉 */
+@media (max-width: 768px) {
+  html { font-size: clamp(14px, 4.2vw, 16px); }
+  .app-title { font-size: clamp(1.75rem, 7vw, 2.25rem); }
+  .start-button { font-size: clamp(1rem, 4.5vw, 1.25rem); padding: 0.75rem 2rem; }
+  .custom-dropdown-select { font-size: 15px; height: 44px; line-height: 42px; }
+  .custom-dropdown-option { font-size: 14px; }
+  .search-input { font-size: 14px; }
+}

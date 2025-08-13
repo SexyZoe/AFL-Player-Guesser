@@ -257,7 +257,7 @@ const PlayerList: React.FC<PlayerListProps> = ({ players, onSelectPlayer }) => {
                     {/* 底部提示 */}
                     {filteredPlayers.length === 8 && (
                       <div className="mx-2 mb-2 px-4 py-3 bg-gradient-to-r from-yellow-50 to-amber-50 border border-yellow-200 text-sm text-yellow-700 text-center rounded-lg font-medium">
-                        ⚡ Showing first 8 results • Type more to narrow down
+                        ⚡ Showing first 8 results 
                       </div>
                     )}
                   </div>
