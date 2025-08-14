@@ -2,10 +2,10 @@ const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const Player = require('../models/Player');
 
-// 加载环境变量
+// Load environment variables
 dotenv.config();
 
-// 球队名称映射（数据库名称 -> 文件夹名称）
+// Team name mapping (DB name -> folder name)
 const teamNameMapping = {
   'Adelaide Crows': 'Adelaide Crows',
   'Brisbane Lions': 'Brisbane Lions',
@@ -27,52 +27,52 @@ const teamNameMapping = {
   'West Coast Eagles': 'West Coast Eagles'
 };
 
-// 连接到MongoDB
+// Connect to MongoDB
 async function connectDB() {
   try {
     await mongoose.connect(process.env.MONGODB_URI);
-    console.log('MongoDB 连接成功');
+    console.log('MongoDB connected');
   } catch (error) {
-    console.error('MongoDB 连接失败:', error);
+    console.error('MongoDB connection failed:', error);
     process.exit(1);
   }
 }
 
-// 更新球员图片URL
+// Update player image URLs
 async function updatePlayerImages() {
   try {
-    // 获取所有球员
+    // Fetch all players
     const players = await Player.find({});
-    console.log(`找到 ${players.length} 名球员`);
+    console.log(`Found ${players.length} players`);
 
-    // 更新每个球员的图片URL
+    // Update each player's image URL
     for (const player of players) {
-      // 获取对应的文件夹名称
+      // Determine the mapped folder name
       const folderName = teamNameMapping[player.team] || player.team;
       
-      // 修复图片URL格式，使用简化的文件夹名称
+      // Normalize image URL using mapped folder
       const imageUrl = `/images/players/${folderName}/${player._id}.webp`;
       
       await Player.findByIdAndUpdate(player._id, {
         image: imageUrl
       });
       
-      console.log(`更新球员 ${player.name} 的图片URL: ${imageUrl}`);
+      console.log(`Updated image URL for ${player.name}: ${imageUrl}`);
     }
 
-    console.log('所有球员图片URL更新完成');
+    console.log('All player image URLs updated');
   } catch (error) {
-    console.error('更新图片URL失败:', error);
+    console.error('Failed to update image URLs:', error);
   }
 }
 
-// 主函数
+// Main entry
 async function main() {
   await connectDB();
   await updatePlayerImages();
   mongoose.connection.close();
-  console.log('脚本执行完成');
+  console.log('Script finished');
 }
 
-// 运行脚本
+// Run script
 main(); 

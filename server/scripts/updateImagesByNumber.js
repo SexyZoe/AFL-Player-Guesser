@@ -4,40 +4,40 @@ const Player = require('../models/Player');
 const fs = require('fs');
 const path = require('path');
 
-// 加载环境变量
+// Load environment variables
 dotenv.config();
 
-// 连接到MongoDB
+// Connect to MongoDB
 async function connectDB() {
   try {
     await mongoose.connect(process.env.MONGODB_URI);
-    console.log('MongoDB 连接成功');
+    console.log('MongoDB connected');
   } catch (error) {
-    console.error('MongoDB 连接失败:', error);
+    console.error('MongoDB connection failed:', error);
     process.exit(1);
   }
 }
 
-// 根据球员号码更新图片URL
+// Update image URLs by player number
 async function updateImagesByNumber() {
   try {
     const players = await Player.find({});
     const imageDir = path.join(__dirname, '..', 'public', 'images', 'players');
     
-    console.log(`找到 ${players.length} 名球员`);
-    console.log(`图片目录: ${imageDir}`);
+    console.log(`Found ${players.length} players`);
+    console.log(`Images dir: ${imageDir}`);
     
-    // 获取所有图片文件
+    // Read all image files
     const imageFiles = fs.readdirSync(imageDir).filter(file => 
       file.endsWith('.webp') || file.endsWith('.jpg') || file.endsWith('.png')
     );
     
-    console.log(`找到 ${imageFiles.length} 个图片文件`);
+    console.log(`Found ${imageFiles.length} image files`);
     
     let matchedCount = 0;
     let unmatchedPlayers = [];
     
-    // 按球队分组处理（因为不同球队可能有相同号码）
+    // Group by team (different teams may have same numbers)
     const playersByTeam = {};
     players.forEach(player => {
       const teamKey = player.team || 'unknown';
@@ -47,23 +47,23 @@ async function updateImagesByNumber() {
       playersByTeam[teamKey].push(player);
     });
     
-    console.log(`\n按球队分组处理:`);
+    console.log(`\nProcessing by team:`);
     
     for (const [team, teamPlayers] of Object.entries(playersByTeam)) {
-      console.log(`\n处理球队: ${team} (${teamPlayers.length} 名球员)`);
+      console.log(`\nTeam: ${team} (${teamPlayers.length} players)`);
       
       for (const player of teamPlayers) {
         if (!player.number) {
-          console.log(`❌ ${player.name} -> 没有号码`);
+          console.log(`❌ ${player.name} -> no number`);
           unmatchedPlayers.push({
             name: player.name,
             team: player.team,
-            reason: '没有号码'
+            reason: 'no number'
           });
           continue;
         }
         
-        // 尝试匹配不同的文件名格式
+        // Try multiple filename patterns
         const teamShort = team.replace(/\s+/g, '').toLowerCase();
         const possibleNames = [
           `${player.number}.webp`,
@@ -99,17 +99,17 @@ async function updateImagesByNumber() {
             number: player.number,
             possibleNames: possibleNames
           });
-          console.log(`❌ ${player.name} (#${player.number}) -> 未找到匹配的图片`);
+          console.log(`❌ ${player.name} (#${player.number}) -> no matching image found`);
         }
       }
     }
     
-    console.log(`\n匹配结果:`);
-    console.log(`成功匹配: ${matchedCount}/${players.length}`);
-    console.log(`未匹配: ${unmatchedPlayers.length}`);
+    console.log(`\nMatch results:`);
+    console.log(`Matched: ${matchedCount}/${players.length}`);
+    console.log(`Unmatched: ${unmatchedPlayers.length}`);
     
     if (unmatchedPlayers.length > 0) {
-      console.log(`\n未匹配的球员及其可能的文件名:`);
+      console.log(`\nUnmatched players and possible filenames:`);
       unmatchedPlayers.forEach(player => {
         console.log(`${player.name} (${player.team || 'Unknown'}, #${player.number || 'N/A'}):`);
         if (player.possibleNames) {
@@ -123,17 +123,17 @@ async function updateImagesByNumber() {
     }
     
   } catch (error) {
-    console.error('更新图片失败:', error);
+    console.error('Failed to update images:', error);
   }
 }
 
-// 主函数
+// Main entry
 async function main() {
   await connectDB();
   await updateImagesByNumber();
   mongoose.connection.close();
-  console.log('\n脚本执行完成');
+  console.log('\nScript finished');
 }
 
-// 运行脚本
+// Run script
 main(); 

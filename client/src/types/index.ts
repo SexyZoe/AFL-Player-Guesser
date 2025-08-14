@@ -1,7 +1,7 @@
-// 球员类型定义
+// Player type definitions
 export interface Player {
-  _id?: string; // MongoDB的_id字段
-  id?: string | number; // 兼容性字段
+  _id?: string; // MongoDB _id field
+  id?: string | number; // compatibility field
   name: string;
   team: string;
   age: string | number;
@@ -10,21 +10,21 @@ export interface Player {
   number: number;
   position: string;
   gamesPlayed: number;
-  games?: number; // 为了兼容性添加games字段
-  origin?: string; // 球员出生地/籍贯
-  image?: string; // 球员头像图片URL
+  games?: number; // compatibility field
+  origin?: string; // player origin
+  image?: string; // player image URL
 }
 
-// 游戏模式类型
+// Game mode type
 export type GameMode = 'solo' | 'random' | 'private';
 
-// 游戏状态类型
+// Game state type
 export type GameState = 'waiting' | 'playing' | 'finished' | 'matchmaking';
 
-// 游戏结束原因
+// Game end reason
 export type GameEndReason = 'CORRECT_GUESS' | 'ALL_GUESSES_USED' | 'MAX_GUESSES_REACHED' | 'PLAYER_DISCONNECTED';
 
-// 房间类型
+// Room type
 export interface Room {
   roomCode: string;
   players: string[];
@@ -32,25 +32,25 @@ export interface Room {
   gameState: GameState;
 }
 
-// 猜测结果类型
+// Guess result type
 export interface GuessResult {
   isCorrect: boolean;
   playerId: number;
 }
 
-// 游戏结束类型
+// Game over type
 export interface GameOver {
   winner: string;
   targetPlayer: Player;
 }
 
-// 属性比较结果类型
+// Attribute comparison result type
 export type ComparisonResult = 'correct' | 'close' | 'incorrect';
 
-// 数值比较方向
+// Numeric comparison direction
 export type ComparisonDirection = 'higher' | 'lower' | 'equal' | 'none';
 
-// 猜测历史记录项
+// Guess history item
 export interface GuessHistoryItem {
   player: Player;
   comparison: {
@@ -71,7 +71,7 @@ export interface GuessHistoryItem {
   };
 }
 
-// 玩家状态类型（对战模式）
+// Player status type (battle mode)
 export interface PlayerStatus {
   socketId: string;
   guesses: number;
@@ -79,19 +79,19 @@ export interface PlayerStatus {
   isWinner: boolean;
 }
 
-// 匹配成功类型
+// Match found type
 export interface MatchFound {
   roomCode: string;
   targetPlayer: Player;
   opponentId: string;
 }
 
-// 对战状态更新类型
+// Battle status update type
 export interface BattleStatusUpdate {
   playersStatus: { [socketId: string]: PlayerStatus };
 }
 
-// 对战游戏结束类型
+// Battle game over type
 export interface BattleGameOver {
   winner?: PlayerStatus;
   loser?: PlayerStatus;
@@ -100,13 +100,13 @@ export interface BattleGameOver {
   playersStatus?: { [socketId: string]: PlayerStatus };
 } 
 
-// 房间内玩家（用于显示昵称）
+// Player in room (for display names)
 export interface RoomPlayer {
   socketId: string;
   displayName: string;
 }
 
-// 私房房间玩家更新事件
+// Room players update event (private rooms)
 export interface RoomPlayersUpdate {
   players: RoomPlayer[];
   hostId?: string;

@@ -10,7 +10,7 @@ const PlayerCard: React.FC<PlayerCardProps> = ({ player, onClick }) => {
   const [imageError, setImageError] = useState(false);
   const [imageLoading, setImageLoading] = useState(true);
 
-  // 格式化身高体重，避免单位重复
+  // Format height/weight; avoid duplicate units
   const formatHeight = (height: string | number | undefined | null) => {
     if (height === undefined || height === null) return 'N/A';
     if (typeof height === 'number') return `${height}cm`;
@@ -23,18 +23,18 @@ const PlayerCard: React.FC<PlayerCardProps> = ({ player, onClick }) => {
     return weight.endsWith('kg') ? weight : `${weight}kg`;
   };
 
-  // 处理图片加载错误
+  // Handle image load error
   const handleImageError = () => {
     setImageError(true);
     setImageLoading(false);
   };
 
-  // 处理图片加载完成
+  // Handle image load success
   const handleImageLoad = () => {
     setImageLoading(false);
   };
 
-  // 获取球队的颜色
+  // Get team color gradient class by team name
   const getTeamColor = (team: string): string => {
     const teamColors: Record<string, string> = {
       'Adelaide': 'from-yellow-500 to-red-600',
@@ -57,7 +57,7 @@ const PlayerCard: React.FC<PlayerCardProps> = ({ player, onClick }) => {
       'Western Bulldogs': 'from-red-500 to-blue-600',
     };
     
-    // 获取球队名的第一部分
+    // Use the first word of the team name as key if available
     const teamFirstWord = team?.split(' ')[0] || '';
     
     return teamColors[teamFirstWord] || teamColors[team] || 'from-gray-500 to-gray-700';
@@ -68,14 +68,14 @@ const PlayerCard: React.FC<PlayerCardProps> = ({ player, onClick }) => {
       className="relative rounded-2xl overflow-hidden shadow-2xl hover:shadow-3xl transition-all duration-500 cursor-pointer transform hover:-translate-y-2 hover:scale-105 h-full bg-white player-card-root"
       onClick={onClick}
     >
-      {/* 球队颜色渐变背景 */}
+      {/* Team color gradient background */}
       <div className={`absolute inset-0 bg-gradient-to-br ${getTeamColor(player.team || '')}`} style={{opacity: 0.15}}></div>
       
-      {/* 装饰性边框 */}
+      {/* Decorative border */}
       <div className="absolute inset-0 rounded-2xl border-2 border-white border-opacity-20"></div>
       
       <div className="relative p-8 h-full flex flex-col">
-        {/* 球员头像 */}
+        {/* Player avatar */}
         <div className="flex justify-center mb-6">
           <div className="relative w-32 h-32 rounded-full overflow-hidden border-4 border-white shadow-lg">
             {player.image ? (
@@ -105,7 +105,7 @@ const PlayerCard: React.FC<PlayerCardProps> = ({ player, onClick }) => {
             )}
           </div>
         </div>
-        {/* 球员名字和号码 */}
+        {/* Player name and number */}
         <div className="flex items-start justify-between mb-6">
           <div className="flex-1">
             <h3 className="text-3xl font-bold text-gray-800 leading-tight">
@@ -117,7 +117,7 @@ const PlayerCard: React.FC<PlayerCardProps> = ({ player, onClick }) => {
           </div>
         </div>
         
-        {/* 球队和位置 */}
+        {/* Team and position */}
         <div className="mb-6 flex gap-3">
           <div className="bg-white bg-opacity-90 backdrop-blur-sm px-4 py-2 rounded-xl shadow-md flex-1">
             <div className="text-gray-500 text-sm font-medium">Team</div>
@@ -129,7 +129,7 @@ const PlayerCard: React.FC<PlayerCardProps> = ({ player, onClick }) => {
           </div>
         </div>
         
-        {/* 球员属性 */}
+        {/* Player attributes */}
         <div className="grid grid-cols-2 gap-4 mt-auto">
           <div className="bg-white bg-opacity-90 backdrop-blur-sm rounded-xl p-4 shadow-md text-center transform hover:scale-105 transition-transform duration-200">
             <div className="text-gray-500 text-sm font-medium mb-1">Age</div>

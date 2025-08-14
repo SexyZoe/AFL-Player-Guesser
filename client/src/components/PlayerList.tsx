@@ -17,9 +17,9 @@ const PlayerList: React.FC<PlayerListProps> = ({ players, onSelectPlayer }) => {
 
   const filteredPlayers = players.filter(player =>
     searchTerm ? player.name.toLowerCase().includes(searchTerm.toLowerCase()) : true
-  ).slice(0, 8); // 限制显示前8个结果
+  ).slice(0, 8); // limit to the first 8 results
 
-  // 生成自动完成建议
+  // Generate autocomplete suggestion
   useEffect(() => {
     if (searchTerm.length > 0) {
       const firstMatch = players.find(player =>
@@ -36,7 +36,7 @@ const PlayerList: React.FC<PlayerListProps> = ({ players, onSelectPlayer }) => {
     }
   }, [searchTerm, players]);
 
-  // 点击外部关闭下拉框
+  // Close dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (searchRef.current && !searchRef.current.contains(event.target as Node)) {
@@ -51,7 +51,7 @@ const PlayerList: React.FC<PlayerListProps> = ({ players, onSelectPlayer }) => {
     };
   }, []);
 
-  // 处理键盘导航
+  // Handle keyboard navigation
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (!showDropdown) {
       if (e.key === 'ArrowDown' && filteredPlayers.length > 0) {
@@ -68,7 +68,7 @@ const PlayerList: React.FC<PlayerListProps> = ({ players, onSelectPlayer }) => {
 
     switch (e.key) {
       case 'Tab':
-        // Tab键自动完成
+        // Tab to accept autocomplete
         if (autocompleteSuggestion) {
           e.preventDefault();
           setSearchTerm(autocompleteSuggestion);
@@ -119,21 +119,21 @@ const PlayerList: React.FC<PlayerListProps> = ({ players, onSelectPlayer }) => {
     }
   };
 
-  // 处理输入变化
+  // Handle input change
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setSearchTerm(value);
     setSelectedIndex(-1);
-    setShowDropdown(true); // 始终显示下拉菜单
+    setShowDropdown(true); // always show dropdown
     
-    // 模拟搜索加载效果
+    // Simulate loading effect
     if (value.length > 0) {
       setIsLoading(true);
       setTimeout(() => setIsLoading(false), 200);
     }
   };
 
-  // 处理选择玩家
+  // Handle player selection
   const handleSelectPlayer = (player: Player) => {
     onSelectPlayer(player);
     setSearchTerm('');
@@ -143,7 +143,7 @@ const PlayerList: React.FC<PlayerListProps> = ({ players, onSelectPlayer }) => {
     inputRef.current?.blur();
   };
 
-  // 处理输入框聚焦
+  // Handle input focus
   const handleInputFocus = () => {
     setShowDropdown(true);
     if (filteredPlayers.length > 0) {
@@ -151,14 +151,14 @@ const PlayerList: React.FC<PlayerListProps> = ({ players, onSelectPlayer }) => {
     }
   };
 
-  // 处理搜索按钮点击
+  // Handle search button click
   const handleSearchClick = () => {
     if (filteredPlayers.length > 0) {
       handleSelectPlayer(filteredPlayers[0]);
     }
   };
 
-  // 接受自动完成建议
+  // Accept autocomplete suggestion
   const acceptAutocompletion = () => {
     if (autocompleteSuggestion) {
       setSearchTerm(autocompleteSuggestion);
@@ -167,17 +167,17 @@ const PlayerList: React.FC<PlayerListProps> = ({ players, onSelectPlayer }) => {
     }
   };
 
-  // 处理下拉菜单点击
+  // Handle dropdown click
   const handleDropdownClick = (e: React.MouseEvent) => {
-    // 如果点击的是搜索框，不要阻止事件
+    // Don't stop propagation when clicking the searchbox itself
     if ((e.target as Element).classList.contains('custom-dropdown-searchbox')) {
       return;
     }
     
-    // 切换下拉菜单显示状态
+    // Toggle dropdown open state
     setShowDropdown(!showDropdown);
     
-    // 如果打开下拉菜单，聚焦搜索框
+    // When opening the dropdown, focus the searchbox
     if (!showDropdown) {
       setTimeout(() => {
         inputRef.current?.focus();
@@ -187,7 +187,7 @@ const PlayerList: React.FC<PlayerListProps> = ({ players, onSelectPlayer }) => {
 
   return (
     <div className="w-full max-w-4xl mx-auto">
-      {/* 搜索区域 */}
+      {/* Search area */}
       <div className="search-wrapper">
         <div className="mb-8 text-center">
           <h2 className="text-3xl font-bold text-gray-800 mb-3 bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent">
@@ -197,7 +197,7 @@ const PlayerList: React.FC<PlayerListProps> = ({ players, onSelectPlayer }) => {
         </div>
 
         <div className="relative w-full max-w-2xl mx-auto" ref={searchRef}>
-          {/* 新的自定义下拉菜单 */}
+          {/* Custom dropdown */}
           <div className="relative">
             <div 
               className={`custom-dropdown-select ${showDropdown ? 'open' : ''}`}
@@ -207,9 +207,9 @@ const PlayerList: React.FC<PlayerListProps> = ({ players, onSelectPlayer }) => {
                 {searchTerm || 'Search for any AFL player...'}
               </span>
               
-              {/* 自定义下拉列表 */}
+              {/* Dropdown list */}
               <div className="custom-dropdown-list">
-                {/* 搜索框 */}
+                {/* Search box */}
                 <div className="custom-dropdown-search">
                   <input
                     ref={inputRef}
@@ -224,7 +224,7 @@ const PlayerList: React.FC<PlayerListProps> = ({ players, onSelectPlayer }) => {
                   />
                 </div>
                 
-                {/* 搜索结果 */}
+                {/* Search results */}
                 {filteredPlayers.length > 0 ? (
                   <div>
                     {filteredPlayers.map((player, index) => (
@@ -236,7 +236,7 @@ const PlayerList: React.FC<PlayerListProps> = ({ players, onSelectPlayer }) => {
                         onClick={() => handleSelectPlayer(player)}
                         onMouseEnter={() => setSelectedIndex(index)}
                       >
-                        {/* 高亮匹配的文本 */}
+                        {/* Highlight matched substring */}
                         {searchTerm && player.name.toLowerCase().includes(searchTerm.toLowerCase()) ? (
                           <>
                             {player.name.substring(0, player.name.toLowerCase().indexOf(searchTerm.toLowerCase()))}
@@ -254,7 +254,7 @@ const PlayerList: React.FC<PlayerListProps> = ({ players, onSelectPlayer }) => {
                       </div>
                     ))}
                     
-                    {/* 底部提示 */}
+                    {/* Footer hint */}
                     {filteredPlayers.length === 8 && (
                       <div className="mx-2 mb-2 px-4 py-3 bg-gradient-to-r from-yellow-50 to-amber-50 border border-yellow-200 text-sm text-yellow-700 text-center rounded-lg font-medium">
                         ⚡ Showing first 8 results 

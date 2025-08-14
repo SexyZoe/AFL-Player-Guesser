@@ -11,7 +11,7 @@ const BattleEffects: React.FC<BattleEffectsProps> = ({ battleResult, isVisible }
   useEffect(() => {
     if (battleResult && isVisible) {
       setShowEffects(true);
-      // 5秒后隐藏特效
+      // Hide effects after 5 seconds
       const timer = setTimeout(() => {
         setShowEffects(false);
       }, 5000);
@@ -30,12 +30,12 @@ const BattleEffects: React.FC<BattleEffectsProps> = ({ battleResult, isVisible }
     <>
       {battleResult === 'win' && (
         <div className="victory-celebration">
-          {/* 彩带效果 */}
+          {/* Confetti */}
           {Array.from({ length: 9 }, (_, i) => (
             <div key={`confetti-${i}`} className="confetti" />
           ))}
           
-          {/* 烟花效果 */}
+          {/* Fireworks */}
           {Array.from({ length: 3 }, (_, i) => (
             <div key={`fireworks-${i}`} className="fireworks" />
           ))}

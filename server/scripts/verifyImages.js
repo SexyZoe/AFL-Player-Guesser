@@ -4,28 +4,28 @@ const Player = require('../models/Player');
 const fs = require('fs');
 const path = require('path');
 
-// 加载环境变量
+// Load environment variables
 dotenv.config();
 
-// 连接到MongoDB
+// Connect to MongoDB
 async function connectDB() {
   try {
     await mongoose.connect(process.env.MONGODB_URI);
-    console.log('MongoDB 连接成功');
+console.log('MongoDB connected');
   } catch (error) {
-    console.error('MongoDB 连接失败:', error);
+console.error('MongoDB connection failed:', error);
     process.exit(1);
   }
 }
 
-// 验证图片文件是否存在
+// Verify whether image files exist
 async function verifyImages() {
   try {
     const players = await Player.find({});
     const imageDir = path.join(__dirname, '..', 'public', 'images', 'players');
     
-    console.log(`验证 ${players.length} 名球员的图片`);
-    console.log(`图片目录: ${imageDir}\n`);
+console.log(`Verifying images for ${players.length} players`);
+console.log(`Images dir: ${imageDir}\n`);
     
     let hasImageCount = 0;
     let validImageCount = 0;
@@ -47,57 +47,57 @@ async function verifyImages() {
       if (player.image) {
         hasImageCount++;
         
-        // 提取文件名
+// Extract filename
         const filename = player.image.replace('/images/players/', '');
         const fullPath = path.join(imageDir, filename);
         
-        // 检查文件是否存在
+// Check file existence
         if (fs.existsSync(fullPath)) {
           const stats = fs.statSync(fullPath);
           status.fileSize = Math.round(stats.size / 1024) + ' KB';
-          status.status = '✅ 有效';
+status.status = '✅ valid';
           validImages.push(status);
           validImageCount++;
           console.log(`✅ ${player.name} -> ${filename} (${status.fileSize})`);
         } else {
-          status.status = '❌ 文件不存在';
+status.status = '❌ file missing';
           invalidImages.push(status);
           invalidImageCount++;
-          console.log(`❌ ${player.name} -> ${filename} (文件不存在)`);
+console.log(`❌ ${player.name} -> ${filename} (file missing)`);
         }
       } else {
-        status.status = '⚠️ 没有图片URL';
+status.status = '⚠️ no image URL';
         missingImages.push(status);
         missingImageCount++;
-        console.log(`⚠️ ${player.name} -> 没有图片URL`);
+console.log(`⚠️ ${player.name} -> no image URL`);
       }
     }
     
-    // 统计结果
-    console.log(`\n========== 验证结果 ==========`);
-    console.log(`总球员数: ${players.length}`);
-    console.log(`有图片URL: ${hasImageCount}`);
-    console.log(`有效图片: ${validImageCount}`);
-    console.log(`无效图片: ${invalidImageCount}`);
-    console.log(`缺少图片: ${missingImageCount}`);
-    console.log(`完整率: ${Math.round((validImageCount / players.length) * 100)}%`);
+// Summary
+console.log(`\n========== Validation Summary ==========`);
+console.log(`Total players: ${players.length}`);
+console.log(`With image URL: ${hasImageCount}`);
+console.log(`Valid images: ${validImageCount}`);
+console.log(`Invalid images: ${invalidImageCount}`);
+console.log(`Missing images: ${missingImageCount}`);
+console.log(`Coverage: ${Math.round((validImageCount / players.length) * 100)}%`);
     
-    // 显示详细信息
+    // Detailed listings
     if (invalidImages.length > 0) {
-      console.log(`\n========== 无效图片列表 ==========`);
+      console.log(`\n========== Invalid image list ==========`);
       invalidImages.forEach(img => {
         console.log(`${img.name} (${img.team}, #${img.number}): ${img.imageUrl}`);
       });
     }
     
     if (missingImages.length > 0) {
-      console.log(`\n========== 缺少图片列表 ==========`);
+      console.log(`\n========== Missing image list ==========`);
       missingImages.forEach(img => {
         console.log(`${img.name} (${img.team}, #${img.number})`);
       });
     }
     
-    // 保存报告
+    // Save report
     const report = {
       timestamp: new Date().toISOString(),
       summary: {
@@ -116,20 +116,20 @@ async function verifyImages() {
     const reportPath = path.join(__dirname, '..', 'image_verification_report.json');
     fs.writeFileSync(reportPath, JSON.stringify(report, null, 2));
     
-    console.log(`\n验证报告已保存: ${reportPath}`);
+    console.log(`\nVerification report saved: ${reportPath}`);
     
   } catch (error) {
-    console.error('验证图片失败:', error);
+    console.error('Image verification failed:', error);
   }
 }
 
-// 主函数
+// Main entry
 async function main() {
   await connectDB();
   await verifyImages();
   mongoose.connection.close();
-  console.log('\n脚本执行完成');
+  console.log('\nScript finished');
 }
 
-// 运行脚本
+// Run script
 main(); 

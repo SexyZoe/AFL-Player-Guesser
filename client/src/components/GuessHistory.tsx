@@ -5,7 +5,7 @@ interface GuessHistoryProps {
   guessHistory: GuessHistoryItem[];
 }
 
-// 获取比较结果的CSS类名
+// Get CSS class for comparison result
 const getComparisonClass = (result: ComparisonResult): string => {
   switch (result) {
     case 'correct':
@@ -17,7 +17,7 @@ const getComparisonClass = (result: ComparisonResult): string => {
   }
 };
 
-// 获取方向指示器
+// Get direction indicator
 const getDirectionIndicator = (direction: ComparisonDirection): string => {
   switch (direction) {
     case 'higher':
@@ -31,7 +31,7 @@ const getDirectionIndicator = (direction: ComparisonDirection): string => {
   }
 };
 
-// 格式化身高体重，避免单位重复
+// Format height/weight; avoid duplicate units
 const formatHeight = (height: string | number | undefined | null) => {
   if (height === undefined || height === null) return 'N/A';
   if (typeof height === 'number') return `${height}cm`;
@@ -60,7 +60,7 @@ const GuessHistory: React.FC<GuessHistoryProps> = ({ guessHistory }) => {
 
   return (
     <div className="mt-4 max-w-6xl mx-auto px-3 sm:px-6 lg:px-8">
-      {/* 标题和计数 */}
+      {/* Title and count */}
       <div className="mb-4 sm:mb-6 flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
         <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent">Guess History</h3>
         <div className="bg-gradient-to-r from-blue-100 to-indigo-100 text-blue-800 px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg sm:rounded-xl text-xs sm:text-sm font-bold border border-blue-200 shadow-sm self-start">
@@ -68,7 +68,7 @@ const GuessHistory: React.FC<GuessHistoryProps> = ({ guessHistory }) => {
         </div>
       </div>
       
-      {/* 图例 - 响应式 */}
+      {/* Legend - responsive */}
       <div className="mb-4 sm:mb-6 p-3 sm:p-4 bg-gradient-to-r from-gray-50 to-blue-50 rounded-lg sm:rounded-xl border border-gray-200">
         <div className="flex flex-wrap gap-3 sm:gap-6 text-xs sm:text-sm">
           <div className="flex items-center gap-1.5 sm:gap-2">
@@ -91,7 +91,7 @@ const GuessHistory: React.FC<GuessHistoryProps> = ({ guessHistory }) => {
         </div>
       </div>
       
-      {/* md 及以上：横向表格 */}
+      {/* md and up: horizontal table */}
       <div className="hidden md:block bg-gradient-to-br from-white to-gray-50 rounded-xl sm:rounded-2xl shadow-2xl overflow-hidden border border-gray-200">
         <div className="overflow-x-auto">
           <table className="min-w-full">
@@ -166,16 +166,16 @@ const GuessHistory: React.FC<GuessHistoryProps> = ({ guessHistory }) => {
         </div>
       </div>
 
-      {/* 小屏（< md）：两列紧凑堆叠，保持表格风格且不横向滚动 */}
+      {/* Small screens (< md): two-column compact list with table-like styling and no horizontal scroll */}
       <div className="md:hidden space-y-3">
         {guessHistory.map((guess, index) => (
           <div key={index} className="bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden">
-            {/* 行头部 */}
+            {/* Row header */}
             <div className="bg-gradient-to-r from-gray-100 to-blue-50 px-3 py-2 border-b border-gray-200 flex items-center justify-between">
               <div className="font-bold text-gray-800 text-sm truncate">{guess.player.name}</div>
               <div className="text-[11px] text-gray-600 font-medium">#{index + 1}</div>
             </div>
-            {/* 行内容：两列网格 */}
+            {/* Row content: two-column grid */}
             <div className="p-3">
               <div className="grid grid-cols-2 gap-2">
                 <div className="text-center">

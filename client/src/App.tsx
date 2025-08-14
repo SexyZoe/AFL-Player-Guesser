@@ -38,9 +38,9 @@ const App: React.FC = () => {
      seriesBestOf,
      seriesTargetWins,
      isSeriesFinal,
-    // 由于上下文未暴露 seriesWins，这里通过本地状态从 battleStatus 推导暂不显示胜场，
-    // 后续在 gameOver 系列赛事件中已更新 context 内部seriesWins，将在此传入占位 {}
-    // 暂不直接暴露 hostId，先在面板中仅用是否可开始逻辑控制
+    // seriesWins is not exposed directly by context here; do not display win counts for now.
+    // In gameOver (series) events, context updates its internal seriesWins; pass placeholder {} here.
+    // hostId is intentionally not exposed; the panel uses simple eligibility logic instead.
     roundCountdown,
     winnerName,
     showAnswerModal,
@@ -56,7 +56,7 @@ const App: React.FC = () => {
     closeAnswerModal
   } = useGame();
 
-  // 加载状态
+  // Loading state
   if (loading) {
     return (
       <div className="loading-container w-full h-screen flex items-center justify-center">
@@ -68,7 +68,7 @@ const App: React.FC = () => {
     );
   }
 
-  // 错误状态
+  // Error state
   if (error) {
     return (
       <div className="error-container w-full h-screen flex items-center justify-center">
@@ -165,12 +165,12 @@ const App: React.FC = () => {
 
         {gameState === 'playing' && (
           <div className="game-container">
-            {/* 系列赛回合倒计时（简单占位，可后续美化） */}
-            {/* TODO: 可移动到更合适的区域或组件化 */}
+            {/* Series round countdown (simple placeholder; can be styled later) */}
+            {/* TODO: Consider moving to a dedicated component/position */}
             {gameMode === 'solo' ? (
-              /* 单人模式 - 保持原有布局 */
+              /* Solo mode - keep original layout */
               <>
-                {/* 游戏状态信息 */}
+                {/* Game status header */}
                 <div className="target-header">
                   <h2 className="target-title">AFL Player Guessing Game</h2>
                   <div className="header-controls">
@@ -188,7 +188,7 @@ const App: React.FC = () => {
                   </div>
                 </div>
                 
-                {/* 玩家选择区域 */}
+                {/* Player selection area */}
                 <div className="player-list-container">
                   <PlayerList 
                     players={players} 
@@ -196,15 +196,15 @@ const App: React.FC = () => {
                   />
                 </div>
                 
-                {/* 显示猜测历史 */}
+                {/* Guess history */}
                 <GuessHistory guessHistory={guessHistory} />
               </>
             ) : (
-              /* 对战模式 - 新的左右并排布局 */
+              /* Versus mode - new side-by-side layout */
               <div className="battle-layout">
-                {/* 左侧主游戏区域 (70%) */}
+                {/* Left main game area (70%) */}
                 <div className="main-game-area">
-                  {/* 游戏状态信息 */}
+                  {/* Game status header */}
                   <div className="target-header">
                     <h2 className="target-title">⚔️ Battle Guess Player</h2>
                     <button
@@ -216,7 +216,7 @@ const App: React.FC = () => {
                     </button>
                   </div>
                   
-                  {/* 玩家选择区域 */}
+                  {/* Player selection area */}
                   <div className="player-list-container">
                     <PlayerList 
                       players={players} 
@@ -224,11 +224,11 @@ const App: React.FC = () => {
                     />
                   </div>
                   
-                  {/* 显示猜测历史 */}
+                  {/* Guess history */}
                   <GuessHistory guessHistory={guessHistory} />
                 </div>
 
-                {/* 右侧对战状态区域 (30%) */}
+                {/* Right-side battle status area (30%) */}
                 <div className="battle-sidebar">
                   <RoomSidebar
                     players={roomPlayers}
@@ -245,7 +245,7 @@ const App: React.FC = () => {
 
         {gameState === 'finished' && targetPlayer && (
           <div className="result-container w-full max-w-7xl mx-auto">
-      {/* 多人模式：移除 1v1 Battle Mode 展示，仅展示系列赛总榜 */}
+      {/* Multiplayer: remove 1v1 Battle Mode view, only show series leaderboard */}
             <GameResult
               targetPlayer={targetPlayer}
               guesses={gameMode === 'solo' ? guesses : (battleStatus && currentSocketId ? battleStatus[currentSocketId]?.guesses || 0 : 0)}
@@ -262,10 +262,10 @@ const App: React.FC = () => {
               isSeriesFinal={Boolean(isSeriesFinal)}
             />
             
-            {/* 显示最终猜测历史 */}
+            {/* Final guess history */}
             <GuessHistory guessHistory={guessHistory} />
             
-            {/* 返回主页按钮 */}
+            {/* Back to home button */}
             <div className="text-center mt-6">
               <button
                 onClick={resetGame}
@@ -282,14 +282,14 @@ const App: React.FC = () => {
         <p>&copy; {new Date().getFullYear()} AFL Guessing Game | For entertainment purposes only</p>
       </footer>
       
-      {/* 回合倒计时横幅 */}
+      {/* Round countdown banner */}
       {roundCountdown !== null && roundCountdown > 0 && gameState === 'playing' && (
         <div className="round-countdown-banner">
           Next round starts in {roundCountdown}s
         </div>
       )}
 
-      {/* 答案模态框 */}
+      {/* Answer modal */}
       {showAnswerModal && targetPlayer && (
         <AnswerModal
           isOpen={showAnswerModal}
@@ -303,7 +303,7 @@ const App: React.FC = () => {
         />
       )}
       
-      {/* 对战特效 */}
+      {/* Battle effects */}
       <BattleEffects 
         battleResult={battleResult} 
         isVisible={gameState === 'finished' && gameMode !== 'solo'} 

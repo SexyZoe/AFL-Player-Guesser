@@ -20,11 +20,11 @@ function getClientIp(req) {
 function anonymizeIp(ip) {
   if (!ip) return '';
   if (ip.includes(':')) {
-    // IPv6: 只保留前4段
+    // IPv6: keep only the first 4 segments
     const parts = ip.split(':');
     return parts.slice(0, 4).join(':') + '::';
   }
-  // IPv4: 截断最后一段
+  // IPv4: truncate the last octet
   const parts = ip.split('.');
   if (parts.length === 4) {
     parts[3] = '0';
@@ -42,10 +42,10 @@ function recordScan(key, req) {
     const referer = String(req.headers['referer'] || req.headers['referrer'] || '').slice(0, 512);
     const line = JSON.stringify({ t: now, key, ip, ua, ref: referer }) + '\n';
     fs.appendFile(QR_STATS_FILE, line, (err) => {
-      if (err) console.error('记录二维码访问失败:', err);
+      if (err) console.error('Failed to record QR scan:', err);
     });
   } catch (err) {
-    console.error('记录二维码访问异常:', err);
+    console.error('QR scan recording error:', err);
   }
 }
 
@@ -84,7 +84,7 @@ function aggregateScans(options = {}) {
 
   return {
     total,
-    totalUnique: totalUniqueIps.size, // 去重口径：按天+IP 近似 UV
+    totalUnique: totalUniqueIps.size, // De-dup heuristic: day + IP approximates UV
     days,
     byDay
   };
