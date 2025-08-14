@@ -6,6 +6,7 @@ const cors = require('cors');
 const dotenv = require('dotenv');
 const path = require('path');
 const fs = require('fs');
+const { recordScan, aggregateScans } = require('./utils/qrStats');
 
 // 加载环境变量
 dotenv.config();
@@ -26,6 +27,40 @@ const io = socketIo(server, {
 // 中间件
 app.use(cors());
 app.use(express.json());
+
+// 固定短链：/go -> 海报二维码目标（长期有效）
+// 目标地址配置在环境变量 POSTER_REDIRECT_URL
+app.get('/go', (req, res) => {
+  const targetUrl = process.env.POSTER_REDIRECT_URL;
+  if (!targetUrl) {
+    return res.status(500).send('未配置 POSTER_REDIRECT_URL');
+  }
+  // 对于“几乎不会变动”的场景，使用 301 更合适
+  recordScan('go', req);
+  return res.redirect(301, targetUrl);
+});
+
+// 别名：/play -> 同上，便于按示例使用 https://go.yourdomain.com/play
+app.get('/play', (req, res) => {
+  const targetUrl = process.env.POSTER_REDIRECT_URL;
+  if (!targetUrl) {
+    return res.status(500).send('未配置 POSTER_REDIRECT_URL');
+  }
+  recordScan('play', req);
+  return res.redirect(301, targetUrl);
+});
+
+// 简易统计接口（默认展示近30天 PV/UV）
+app.get('/api/qr-stats', (req, res) => {
+  const { days } = req.query || {};
+  try {
+    const result = aggregateScans({ days: Number(days) });
+    res.json(result);
+  } catch (err) {
+    console.error('读取二维码统计失败:', err);
+    res.status(500).json({ error: '统计失败' });
+  }
+});
 
 // 静态文件服务 - 提供球员图片
 app.use('/images', express.static(path.join(__dirname, 'public/images')));
