@@ -8,15 +8,10 @@ import GameResult from './components/GameResult';
 import GuessHistory from './components/GuessHistory';
 import BattleStatus from './components/BattleStatus';
 import RoomSidebar from './components/RoomSidebar';
-<<<<<<< Updated upstream
 import BattleEffects from './components/BattleEffects';
 import HowToPlay from './components/HowToPlay';
 import AnswerModal from './components/AnswerModal';
-=======
-// TopNavbar 已移除导航显示，留作未来需要时启用
 import MinimalSocialIcons from './components/MinimalSocialIcons';
-import { useGame } from './context/GameContext';
->>>>>>> Stashed changes
 import type { GameEndReason } from './types';
 import './App.css';
 

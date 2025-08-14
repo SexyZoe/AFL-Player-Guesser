@@ -98,25 +98,8 @@ const AnswerModal: React.FC<AnswerModalProps> = ({
           <div className="answer-reveal">
             <h3 className="reveal-title">🎯 Correct Answer</h3>
             <div className="player-card-container">
-              <PlayerCard 
-                player={targetPlayer} 
-                comparisonResult={{
-                  team: 'correct',
-                  number: 'correct',
-                  position: 'correct',
-                  age: 'correct',
-                  height: 'correct',
-                  weight: 'correct',
-                  origin: 'correct',
-                  gamesPlayed: 'correct'
-                }}
-                directionHints={{
-                  age: 'equal',
-                  height: 'equal',
-                  weight: 'equal',
-                  gamesPlayed: 'equal'
-                }}
-                showResult={true}
+              <PlayerCard
+                player={targetPlayer}
               />
             </div>
             {/* 系列赛提示（仅在非最终局的回合结束时显示） */}
