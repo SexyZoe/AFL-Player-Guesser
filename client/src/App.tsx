@@ -104,6 +104,10 @@ const App: React.FC = () => {
         <MinimalSocialIcons
           githubUrl="https://github.com/SexyZoe/AFL-Player-Guesser"
           linkedinUrl="https://www.linkedin.com/in/liu-yingqi-a19ba7175/"
+          qrUrl="https://guessfooty.up.railway.app/"
+          shareUrl="https://guessfooty.up.railway.app/"
+          shareTitle="AFL Guess Who"
+          shareText="Come and play AFL Guess Who！"
         />
       </div>
 

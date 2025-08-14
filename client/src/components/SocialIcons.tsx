@@ -59,7 +59,7 @@ const ShareIcon: React.FC = () => (
 const SocialIcons: React.FC<SocialIconsProps> = ({
   githubUrl = 'https://github.com/your-github',
   linkedinUrl = 'https://www.linkedin.com/in/your-linkedin',
-  qrUrl = 'https://guessfooty.up.railway.app/play',
+  qrUrl = 'https://guessfooty.up.railway.app/',
   shareUrl,
   shareTitle,
   shareText
@@ -81,11 +81,11 @@ const SocialIcons: React.FC<SocialIconsProps> = ({
     try {
       if (navigator.clipboard && typeof navigator.clipboard.writeText === 'function') {
         await navigator.clipboard.writeText(shareLink);
-        alert('已复制链接，去社交软件或短信粘贴分享即可');
+        alert('Link copied. Share it via your apps or SMS.');
         return;
       }
     } catch {}
-    window.prompt('复制此链接进行分享：', shareLink);
+    window.prompt('Copy this link to share:', shareLink);
   };
   return (
     <div className="soc" style={{ display: 'flex', gap: '12px', justifyContent: 'center' }}>
@@ -164,7 +164,7 @@ const SocialIcons: React.FC<SocialIconsProps> = ({
                 cursor: 'pointer'
               }}
             >
-              关闭
+              Close
             </button>
           </div>
         </div>
