@@ -8,9 +8,15 @@ import GameResult from './components/GameResult';
 import GuessHistory from './components/GuessHistory';
 import BattleStatus from './components/BattleStatus';
 import RoomSidebar from './components/RoomSidebar';
+<<<<<<< Updated upstream
 import BattleEffects from './components/BattleEffects';
 import HowToPlay from './components/HowToPlay';
 import AnswerModal from './components/AnswerModal';
+=======
+// TopNavbar 已移除导航显示，留作未来需要时启用
+import MinimalSocialIcons from './components/MinimalSocialIcons';
+import { useGame } from './context/GameContext';
+>>>>>>> Stashed changes
 import type { GameEndReason } from './types';
 import './App.css';
 
@@ -98,6 +104,13 @@ const App: React.FC = () => {
         <p className="app-subtitle text-xl">Guess the mystery AFL player!</p>
         <HowToPlay />
       </header>
+
+      <div style={{ position: 'fixed', top: 8, right: 16, zIndex: 9999 }}>
+        <MinimalSocialIcons
+          githubUrl="https://github.com/SexyZoe/AFL-Player-Guesser"
+          linkedinUrl="https://www.linkedin.com/in/liu-yingqi-a19ba7175/"
+        />
+      </div>
 
       <main className="app-main w-full px-4 py-6">
         {gameState === 'waiting' && (
