@@ -1,8 +1,8 @@
 import { io, Socket } from 'socket.io-client';
 import { Player, GuessResult, GameOver, MatchFound, BattleStatusUpdate, BattleGameOver, RoomPlayersUpdate } from '../types';
 
-// 创建socket连接 - 通过同源相对路径 + devServer 代理
-// 使用相对路径，避免不同主机名/端口导致的WS失败
+// Create socket connection - through same origin relative path + devServer proxy
+// Use relative path to avoid WS failures caused by different hostnames/ports
 const socket: Socket = io('/', {
   path: '/socket.io',
   transports: ['websocket', 'polling'],
@@ -13,7 +13,7 @@ const socket: Socket = io('/', {
   autoConnect: true
 });
 
-// 添加连接状态调试
+// Add connection status debugging
 socket.on('connect', () => {
   console.log('🟢 [Socket] 连接成功! Socket ID:', socket.id);
   console.log('🔗 [Socket] 连接状态:', socket.connected);
@@ -26,7 +26,7 @@ socket.on('disconnect', (reason) => {
 socket.on('connect_error', (error) => {
   console.error('❌ [Socket] 连接错误:', error);
   console.error('🔍 [Socket] 错误详情:', error.message);
-  // 某些环境下 error 可能没有 type 字段
+      // In some environments, error may not have type field
   const errorType = (error as unknown as { type?: string })?.type;
   if (errorType) {
     console.error('📍 [Socket] 错误类型:', errorType);
@@ -41,15 +41,15 @@ socket.on('reconnect_failed', () => {
   console.error('💀 [Socket] 重连失败');
 });
 
-// 立即检查连接状态
+  // Immediately check connection status
 console.log('🏁 [Socket] 初始化完成，连接状态:', socket.connected);
 
-// 监听socket连接
+// Listen for socket connection
 export const connectSocket = (callback: () => void): void => {
   socket.on('connect', callback);
 };
 
-// 创建房间
+// Create room
 export const createRoom = (seriesBestOf?: 3 | 5 | 7): void => {
   if (!socket.connected) {
     const onConnect = () => {
@@ -63,12 +63,12 @@ export const createRoom = (seriesBestOf?: 3 | 5 | 7): void => {
   socket.emit('createRoom', { seriesBestOf });
 };
 
-// 监听房间创建
+// Listen for room creation
 export const onRoomCreated = (callback: (data: { roomCode: string }) => void): void => {
   socket.on('roomCreated', callback);
 };
 
-// 加入房间
+// Join room
 export const joinRoom = (roomCode: string): void => {
   if (!socket.connected) {
     const onConnect = () => {
@@ -82,7 +82,7 @@ export const joinRoom = (roomCode: string): void => {
   socket.emit('joinRoom', { roomCode });
 };
 
-// 开始私房游戏（仅房间waiting且人数>=2时服务端会接受）
+// Start private room game (server accepts only when room is waiting and has >=2 players)
 export const startPrivateGame = (roomCode: string): void => {
   if (!socket.connected) {
     const onConnect = () => {
@@ -96,76 +96,76 @@ export const startPrivateGame = (roomCode: string): void => {
   socket.emit('startPrivateGame', { roomCode });
 };
 
-// 监听房间错误
+// Listen for room errors
 export const onRoomError = (callback: (data: { message: string }) => void): void => {
   socket.on('roomError', callback);
 };
 
-// 监听游戏开始
+// Listen for game start
 export const onGameStart = (callback: (data: { targetPlayer: Player }) => void): void => {
   socket.on('gameStart', callback);
 };
 
-// 猜测球员
+// Guess player
 export const guessPlayer = (roomCode: string, playerId: number): void => {
   socket.emit('guessPlayer', { roomCode, playerId });
 };
 
-// 监听猜测结果
+// Listen for guess results
 export const onGuessResult = (callback: (result: GuessResult) => void): void => {
   socket.on('guessResult', callback);
 };
 
-// 监听游戏结束
+// Listen for game over
 export const onGameOver = (callback: (data: GameOver) => void): void => {
   socket.on('gameOver', callback);
 };
 
-// 监听系列赛回合倒计时
+// Listen for series round countdown
 export const onRoundCountdown = (callback: (data: { seconds: number; nextRound: number; series?: any }) => void): void => {
   socket.on('roundCountdown', callback);
 };
 
-// 监听玩家离开
+// Listen for player leaving
 export const onPlayerLeft = (callback: (data: { socketId: string }) => void): void => {
   socket.on('playerLeft', callback);
 };
 
-// 设置本局显示名称
+// Set display name for this session
 export const setDisplayName = (displayName: string): void => {
   socket.emit('setDisplayName', { displayName });
 };
 
-// 监听房间玩家列表更新
+// Listen for room player list updates
 export const onRoomPlayersUpdate = (
   callback: (data: RoomPlayersUpdate) => void
 ): void => {
   socket.on('roomPlayersUpdate', callback);
 };
 
-// 加入随机匹配队列
+// Join random matchmaking queue
 export const joinMatchmaking = (seriesBestOf?: 3 | 5 | 7, displayName?: string): Promise<void> => {
   return new Promise((resolve, reject) => {
     console.log('📤 [客户端Socket] 发送 joinMatchmaking 事件');
     console.log('🔗 [客户端Socket] 当前连接状态:', socket.connected);
     console.log('🆔 [客户端Socket] Socket ID:', socket.id);
     
-    // 如果socket未连接，等待连接
+    // If socket not connected, wait for connection
     if (!socket.connected) {
       console.warn('⚠️ [客户端Socket] Socket未连接，等待连接...');
       
-      // 监听连接成功事件
+      // Listen for connection success event
       const onConnect = () => {
         console.log('✅ [客户端Socket] 连接已建立，发送事件');
         socket.emit('joinMatchmaking', { seriesBestOf, displayName });
-        socket.off('connect', onConnect); // 清理监听器
+        socket.off('connect', onConnect); // Clean up listener
         resolve();
       };
       
-      // 监听连接失败事件
+      // Listen for connection failure event
       const onError = (error: Error) => {
         console.error('❌ [客户端Socket] 连接失败:', error);
-        socket.off('connect', onConnect); // 清理监听器
+        socket.off('connect', onConnect); // Clean up listener
         socket.off('connect_error', onError);
         reject(error);
       };
@@ -173,70 +173,70 @@ export const joinMatchmaking = (seriesBestOf?: 3 | 5 | 7, displayName?: string):
       socket.on('connect', onConnect);
       socket.on('connect_error', onError);
       
-      // 如果还没有连接，尝试连接
+      // If not connected yet, try to connect
       if (!socket.connected) {
         socket.connect();
       }
       return;
     }
     
-    // 直接发送事件
+          // Send event directly
     socket.emit('joinMatchmaking', { seriesBestOf, displayName });
     resolve();
   });
 };
 
-// 离开随机匹配队列
+// Leave random matchmaking queue
 export const leaveMatchmaking = (): void => {
   socket.emit('leaveMatchmaking');
 };
 
-// 主动离开当前游戏/房间
+// Actively leave current game/room
 export const leaveCurrentGame = (roomCode?: string): void => {
   socket.emit('leaveCurrentGame', { roomCode });
 };
 
-// 监听匹配队列加入成功
+// Listen for successful matchmaking queue join
 export const onMatchmakingJoined = (callback: () => void): void => {
   socket.on('matchmakingJoined', callback);
 };
 
-// 监听匹配队列离开成功
+// Listen for successful matchmaking queue leave
 export const onMatchmakingLeft = (callback: () => void): void => {
   socket.on('matchmakingLeft', callback);
 };
 
-// 监听匹配成功
+// Listen for successful match
 export const onMatchFound = (callback: (data: MatchFound) => void): void => {
   socket.on('matchFound', callback);
 };
 
-// 监听匹配超时
+// Listen for match timeout
 export const onMatchmakingTimeout = (callback: () => void): void => {
   socket.on('matchmakingTimeout', callback);
 };
 
-// 监听匹配错误（如姓名缺失）
+// Listen for matchmaking errors (e.g. missing name)
 export const onMatchmakingError = (callback: (data: { code: string; message?: string }) => void): void => {
   socket.on('matchmakingError', callback);
 };
 
-// 监听对战状态更新
+// Listen for battle status updates
 export const onBattleStatusUpdate = (callback: (data: BattleStatusUpdate) => void): void => {
   socket.on('battleStatusUpdate', callback);
 };
 
-// 监听对战游戏结束
+// Listen for battle game over
 export const onBattleGameOver = (callback: (data: BattleGameOver) => void): void => {
   socket.on('battleGameOver', callback);
 };
 
-// 获取当前Socket ID
+// Get current Socket ID
 export const getCurrentSocketId = (): string | null => {
   return socket.id || null;
 };
 
-// 发送匹配成功确认
+// Send match found confirmation
 export const emitMatchFoundAck = (roomCode: string): void => {
   socket.emit('matchFoundAck', { 
     roomCode, 
@@ -245,7 +245,7 @@ export const emitMatchFoundAck = (roomCode: string): void => {
   console.log('📝 [客户端Socket] 已发送 matchFoundAck 确认信号');
 };
 
-// 清理所有事件监听器
+// Clean up all event listeners
 export const clearAllListeners = (): void => {
   socket.off('connect');
   socket.off('disconnect');
@@ -267,8 +267,8 @@ export const clearAllListeners = (): void => {
   socket.off('battleGameOver');
 };
 
-// 断开连接（开发场景下避免过早断开导致的初始化失败，这里仅清理监听，不主动断开）
+// Disconnect (in dev scenarios, avoid premature disconnection causing init failure, only clean listeners, don't actively disconnect)
 export const disconnectSocket = (): void => {
   clearAllListeners();
-  // 保持连接，以免在React StrictMode双调用下过早断开
+  // Keep connection to avoid premature disconnection in React StrictMode double calls
 };

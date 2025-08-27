@@ -14,12 +14,31 @@ import AnswerModal from './components/AnswerModal';
 import MinimalSocialIcons from './components/MinimalSocialIcons';
 import Legal from './components/Legal';
 import type { GameEndReason } from './types';
+import analytics from './utils/analytics';
 import './App.css';
 
 const App: React.FC = () => {
   const [isLegalPage, setIsLegalPage] = React.useState<boolean>(
     typeof window !== 'undefined' && window.location && window.location.hash.startsWith('#/legal')
   );
+  // Initialize analytics tracking
+  React.useEffect(() => {
+    // DAU statistics and retention tracking
+    analytics.trackDAU();
+    analytics.trackRetention();
+    
+    // User behavior tracking: app startup
+    analytics.trackUserAction('app_opened', {
+      referrer: document.referrer,
+      user_agent: navigator.userAgent.substring(0, 100),
+      screen_resolution: `${window.screen.width}x${window.screen.height}`,
+      timestamp: Date.now()
+    });
+
+    console.log('[AFL Analytics] Analytics tracking initialized');
+    console.log('[AFL Analytics] User statistics:', analytics.getUserStats());
+  }, []);
+
   React.useEffect(() => {
     const handleHashChange = () => {
       setIsLegalPage(typeof window !== 'undefined' && window.location && window.location.hash.startsWith('#/legal'));

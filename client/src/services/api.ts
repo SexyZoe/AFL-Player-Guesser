@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { Player } from '../types';
 
-// 创建axios实例
+// Create axios instance
 const api = axios.create({
   baseURL: '/api',
   headers: {
@@ -9,7 +9,7 @@ const api = axios.create({
   }
 });
 
-// 获取所有球员
+// Get all players
 export const getAllPlayers = async (): Promise<Player[]> => {
   try {
     const response = await api.get<Player[]>('/players');
@@ -20,7 +20,7 @@ export const getAllPlayers = async (): Promise<Player[]> => {
   }
 };
 
-// 获取随机球员
+// Get random player
 export const getRandomPlayer = async (): Promise<Player | null> => {
   try {
     console.log('🔄 正在请求随机球员...');

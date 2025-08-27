@@ -3,6 +3,7 @@ import { Player, GameMode, GameState, GuessHistoryItem, ComparisonResult, Compar
 import NameModal from '../components/NameModal';
 import { getAllPlayers, getRandomPlayer } from '../services/api';
 import * as socketService from '../services/socket';
+import analytics from '../utils/analytics';
 
 interface GameContextType {
   players: Player[];
@@ -16,30 +17,30 @@ interface GameContextType {
   maxGuesses: number;
   guessHistory: GuessHistoryItem[];
   isGameWon: boolean;
-  // 对战模式相关状态
+  // Battle mode related states
   battleStatus: { [socketId: string]: PlayerStatus } | null;
   currentSocketId: string | null;
   opponentStatus: PlayerStatus | null;
   battleResult: 'win' | 'lose' | null;
-  // 胜者显示名（用于模态框展示给失败方）
+  // Winner display name (for modal display to losing party)
   winnerName?: string | null;
-  // 胜者ID（socketId）
+  // Winner ID (socketId)
   winnerId?: string | null;
-  // 私房玩家列表
+  // Private room player list
   roomPlayers: RoomPlayer[];
   roomHostId: string | null;
-  // 系列赛回合倒计时与轮次
+  // Series round countdown and rounds
   roundCountdown: number | null;
   currentRound: number;
-  // 系列赛信息与胜场（用于最终结果 UI）
+  // Series information and wins (for final result UI)
   seriesWins?: Record<string, number>;
   seriesBestOf?: number | null;
   seriesTargetWins?: number | null;
   isSeriesFinal?: boolean;
-  // 答案模态框相关状态
+  // Answer modal related states
   showAnswerModal: boolean;
   gameEndReason: 'CORRECT_GUESS' | 'ALL_GUESSES_USED' | 'MAX_GUESSES_REACHED' | 'PLAYER_DISCONNECTED';
-  // 随机匹配的系列赛局数设置（BO3/5/7）
+  // Random match series game count settings (BO3/5/7)
   randomMatchBestOf: 3 | 5 | 7;
   setRandomMatchBestOf: (value: 3 | 5 | 7) => void;
   // 模式独立的昵称
@@ -93,7 +94,7 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
   const [guessHistory, setGuessHistory] = useState<GuessHistoryItem[]>([]);
   const [isGameWon, setIsGameWon] = useState<boolean>(false);
   
-  // 对战模式相关状态
+  // Battle mode related states
   const [battleStatus, setBattleStatus] = useState<{ [socketId: string]: PlayerStatus } | null>(null);
   const [currentSocketId, setCurrentSocketId] = useState<string | null>(null);
   const [opponentStatus, setOpponentStatus] = useState<PlayerStatus | null>(null);
@@ -504,10 +505,20 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
   // 开始单人游戏
   const startSoloGame = async () => {
     setLoading(true);
+    const gameStartTime = Date.now();
+    
     try {
       const player = await getRandomPlayer();
       if (player) {
         setTargetPlayer(player);
+        
+        // 🔥 Analytics: Game start event
+        analytics.trackGameStart('solo', {
+          target_player: player.name,
+          target_team: player.team,
+          game_start_time: gameStartTime
+        });
+        
         // 添加调试日志 - 显示目标球员信息
         console.log('🎯 目标球员信息:', {
           name: player.name,
@@ -527,10 +538,20 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
         setError('');
       } else {
         setError('获取随机球员失败');
+        // 🔥 Analytics: Game startup failed
+        analytics.trackError(new Error('Failed to get random player'), {
+          tags: { action: 'start_solo_game' },
+          extra: { game_mode: 'solo' }
+        });
       }
     } catch (err) {
       setError('开始游戏失败');
       console.error('开始游戏失败', err);
+      // 🔥 Analytics: Game startup error
+      analytics.trackError(err as Error, {
+        tags: { action: 'start_solo_game' },
+        extra: { game_mode: 'solo', error_type: 'api_error' }
+      });
     } finally {
       setLoading(false);
     }
@@ -651,6 +672,21 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
   const guessPlayer = (player: Player) => {
     if (!targetPlayer) return;
     
+    const currentGuessNum = guesses + 1;
+    const isCorrect = player.name === targetPlayer.name;
+    
+    // 🔥 Analytics: Guess behavior tracking
+    analytics.trackUserAction('player_guess', {
+      guess_number: currentGuessNum,
+      guessed_player: player.name,
+      guessed_team: player.team,
+      target_player: targetPlayer.name,
+      target_team: targetPlayer.team,
+      is_correct: isCorrect,
+      game_mode: gameMode,
+      max_guesses: maxGuesses
+    });
+    
     // 对于多人游戏（随机匹配和私人房间），发送猜测到服务器
     if (gameMode === 'random' || gameMode === 'private') {
       // 检查是否超过猜测次数限制
@@ -675,6 +711,8 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
       // 注意：对战模式下不在这里更新状态，等待服务器通知
     } else {
       // 单人游戏的本地处理
+      const gameStartTime = Date.now(); // For calculating game duration
+      
       setGuesses((prev) => prev + 1);
       
       // 生成比较结果
@@ -683,20 +721,38 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
       // 添加到猜测历史
       setGuessHistory((prev) => [...prev, comparisonResult]);
       
-      // 检查是否猜对
-      const isCorrect = player.name === targetPlayer.name;
-      
       // 检查是否达到最大猜测次数
-      const isMaxGuesses = guesses + 1 >= maxGuesses;
+      const isMaxGuesses = currentGuessNum >= maxGuesses;
       
       if (isCorrect) {
         setIsGameWon(true);
         setGameEndReason('CORRECT_GUESS');
         setShowAnswerModal(true);
+        
+        // 🔥 Analytics: Game completed successfully
+        analytics.trackGameComplete({
+          gameMode: 'solo',
+          result: 'win',
+          guessesUsed: currentGuessNum,
+          maxGuesses: maxGuesses,
+          duration: gameStartTime, // 将在analytics中计算实际持续时间
+          targetPlayer: targetPlayer.name
+        });
+        
       } else if (isMaxGuesses) {
         setIsGameWon(false);
         setGameEndReason('MAX_GUESSES_REACHED');
         setShowAnswerModal(true);
+        
+        // 🔥 Analytics: Game completed with failure
+        analytics.trackGameComplete({
+          gameMode: 'solo',
+          result: 'lose',
+          guessesUsed: currentGuessNum,
+          maxGuesses: maxGuesses,
+          duration: gameStartTime,
+          targetPlayer: targetPlayer.name
+        });
       }
     }
   };
@@ -720,6 +776,13 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
       // 使用全局状态的 bestOf（默认3）
       const bestOf = randomMatchBestOf;
       
+      // 🔥 Analytics: Start matchmaking
+      analytics.trackMatchmakingStart();
+      analytics.trackGameStart('random', {
+        series_best_of: bestOf,
+        display_name: randomDisplayNameRef.current || 'anonymous'
+      });
+      
       // 随机匹配逻辑 - 需要昵称后才能加入匹配队列
       if (!randomDisplayNameRef.current) {
         setPendingAction({ type: 'joinMatchmaking' });
@@ -729,16 +792,21 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
       
       // 已有昵称，开始加入匹配队列并防重
       setIsJoiningMatchmaking(true);
+      const matchStartTime = Date.now();
 
       socketService.joinMatchmaking(bestOf, randomDisplayNameRef.current)
         .then(() => {
           setError(''); // 清除之前的错误
           console.log('✅ [客户端] 成功加入匹配队列');
+          // 🔥 Analytics: Matchmaking successful
+          analytics.trackMatchmakingSuccess(Date.now() - matchStartTime);
         })
         .catch((error) => {
           console.error('❌ [客户端] 加入匹配队列失败:', error);
           setError('连接失败，请重试');
           setIsJoiningMatchmaking(false); // 失败时重置状态
+          // 🔥 Analytics: Matchmaking failed
+          analytics.trackMatchmakingFailed(error.message, Date.now() - matchStartTime);
         });
     }
   };
