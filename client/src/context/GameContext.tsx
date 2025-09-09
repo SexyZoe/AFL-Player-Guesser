@@ -411,7 +411,7 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
       setCurrentSocketId(currentId);
       
       // 找到对手状态
-      const opponentId = data.playersStatus ? Object.keys(data.playersStatus).find(id => id !== currentId) : undefined;
+      const opponentId = (data.playersStatus && typeof data.playersStatus === 'object') ? Object.keys(data.playersStatus).find(id => id !== currentId) : undefined;
       if (opponentId) {
         setOpponentStatus(data.playersStatus[opponentId]);
       }
